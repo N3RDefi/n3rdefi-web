@@ -1,5 +1,5 @@
 module.exports = {
-  ssr: true,
+  ssr: false,
   target: 'static',
   telemetry: false,
   /*
@@ -50,13 +50,16 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: [{ src: '@/plugins/quasar', ssr: false }],
+  // Auto import components (https://go.nuxtjs.dev/config-components)
+  components: true,
   /*
    ** Nuxt.js dev-modules
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
+    '@nuxtjs/style-resources',
   ],
   /*
    ** Nuxt.js modules
@@ -75,9 +78,7 @@ module.exports = {
    ** Nuxt Firebase module configuration
    ** See https://firebase.nuxtjs.org/guide/getting-started/#full-configuration
    */
-  env: {
-    FIRE_ENV: process.env.FIRE_ENV,
-  },
+  env: {},
   build: {
     /*
      ** You can extend webpack config here
