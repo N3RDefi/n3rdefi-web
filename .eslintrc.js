@@ -13,12 +13,13 @@ module.exports = {
   extends: [
     '@nuxtjs',
     'eslint:recommended',
+    "plugin:eslint-plugin/recommended",
     'plugin:vue/recommended',
     'prettier',
     'prettier/vue',
     'plugin:prettier/recommended',
   ],
-  plugins: ['vue', 'prettier', 'eslint'],
+  plugins: ['vue', 'prettier', 'eslint-plugin'],
   globals: {
     page: true,
     $nuxt: true,
