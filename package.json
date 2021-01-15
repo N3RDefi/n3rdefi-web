@@ -26,7 +26,7 @@
     "@nomiclabs/hardhat-ethers": "^2.0.1",
     "@nomiclabs/hardhat-waffle": "^2.0.1",
     "@nuxtjs/eslint-config": "^3.1.0",
-    "@nuxtjs/eslint-module": "^2.0.0",
+    "@nuxtjs/eslint-module": "^3.0.2",
     "@openzeppelin/contracts": "^3.3.0",
     "babel-eslint": "^10.1.0",
     "chai": "^4.2.0",
