@@ -1,6 +1,30 @@
 {
-  "plugins": [
-    "transform-es2015-modules-commonjs",
-    "transform-object-rest-spread"
-  ]
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+        "targets": {
+          "browsers": ["> 10%"],
+          "node": "current"
+        },
+        "useBuiltIns": "usage"
+      }
+    ]
+  ],
+  "plugins": ["@babel/plugin-transform-runtime"],
+  "env": {
+    "test": {
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "targets": {
+              "node": "current"
+            }
+          }
+        ]
+      ]
+    }
+  }
 }

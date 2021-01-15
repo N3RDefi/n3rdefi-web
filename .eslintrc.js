@@ -5,6 +5,22 @@ module.exports = {
     node: true,
     es6: true,
   },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.vue', '.ts'],
+      },
+    },
+    // @SN 25/04/2019, Resolves import issue: https://stackoverflow.com/questions/55174647/nuxt-js-importing-vuex-emits-eslintimport-no-extraneous-dependencies-error
+    'import/core-modules': [
+      'vue',
+      'vuex',
+      'axios',
+      '@nuxt/config',
+      'dotenv',
+      'vue-meta',
+    ],
+  },
   parserOptions: {
     parser: 'babel-eslint',
     ecmaVersion: 6,
@@ -12,12 +28,14 @@ module.exports = {
   },
   extends: [
     '@nuxtjs',
+    'plugin:nuxt/recommended',
+    'plugin:vue/essential',
     'eslint:recommended',
-    "plugin:eslint-plugin/recommended",
+    'plugin:eslint-plugin/recommended',
+    'plugin:prettier/recommended',
     'plugin:vue/recommended',
     'prettier',
     'prettier/vue',
-    'plugin:prettier/recommended',
   ],
   plugins: ['vue', 'prettier', 'eslint-plugin'],
   globals: {
@@ -173,5 +191,15 @@ module.exports = {
     'prefer-destructuring': 1,
     'prefer-rest-params': 1,
     'prefer-spread': 1,
+
+    'vue/one-component-per-file': 0,
+    'vue/no-arrow-functions-in-watch': 0,
+    'vue/no-custom-modifiers-on-v-model': 0,
+    'vue/no-multiple-template-root': 0,
+    'vue/no-mutating-props': 0,
+    'vue/no-dupe-v-else-if': 0,
+    'vue/no-v-for-template-key': 0,
+    'vue/no-v-model-argument': 0,
+    'vue/experimental-script-setup-vars': 0,
   },
 }
