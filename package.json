@@ -36,7 +36,7 @@
     "eslint": "^7.10.0",
     "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-eslint-plugin": "^2.3.0",
-    "eslint-plugin-nuxt": "^1.0.0",
+    "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^7.0.1",
     "eslint-plugin-prettier": "^3.1.4",
     "ethereum-waffle": "^3.2.1",
