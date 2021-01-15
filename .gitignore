@@ -102,3 +102,30 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.pnp.*
+
+# IDE files
+.idea
+
+# database files and Docs
+data/
+docs/
+
+# cypress example tests
+test/cypress/integration/examples/
+test/cypress/screenshots
+
+# generated references during runtime
+static/assets/ref
+
+#Hardhat files
+cache
+artifacts
