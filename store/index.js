@@ -27,10 +27,12 @@ const mutations = {
     state.leftDrawerOpen = !state.leftDrawerOpen
   },
   CONNECT_USER(state, user) {
+    console.log('Connect User:')
     state.user = user
   },
-  SET_NFTS(state, nfts) {
-    state.nfts = nfts
+  GENERATE_NFT(state, nft) {
+    console.log('Generate NFT:', nft)
+    // state.nfts.push(nft)
   },
 }
 

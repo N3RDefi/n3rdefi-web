@@ -72,7 +72,7 @@ module.exports = {
    ** Load SASS variables/lib for all components
    */
   styleResources: {
-    sass: ['assets/sass/main.sass'],
+    sass: ['~/assets/sass/theme-variables.sass'],
   },
   /*
    ** Nuxt Firebase module configuration

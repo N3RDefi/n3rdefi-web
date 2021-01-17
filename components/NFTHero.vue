@@ -1,8 +1,10 @@
 <template>
   <div class="row">
-    <div v-for="n in 6" :key="`sm-${n}`" class="col-4 q-px-sm">
-      <ImgCard />
+    <div v-for="n in nfts" :key="`sm-${n}`" class="col-4 q-px-sm">
+      <ImgCard :nft="n" />
+      <pre>NFT: {{ n }}</pre>
     </div>
+    <pre>NFTs: {{ nfts }}</pre>
   </div>
 </template>
 <script>
@@ -21,6 +23,19 @@ export default {
       lorem:
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     }
+  },
+  computed: {
+    ...mapGetters({
+      getNfts: 'getNfts',
+    }),
+    nfts: {
+      get() {
+        return this.$store.state.nfts
+      },
+      set(value) {
+        this.$store.commit('GENERATE_NFT', value)
+      },
+    },
   },
 }
 </script>

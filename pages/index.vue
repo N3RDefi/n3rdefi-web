@@ -72,7 +72,7 @@ import Incubator from '~/components/Incubator.vue'
 import Academy from '~/components/Academy.vue'
 
 export default {
-  name: 'GooglePhotosLayout',
+  name: 'N3RD',
   components: {
     Header,
     SidebarLeft,

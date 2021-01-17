@@ -6,9 +6,6 @@
     <q-card-section class="q-pt-none"
       >Connect your account to continue ....</q-card-section
     >
-    <q-card-section class="q-pt-none">
-      <pre>{{ user }}</pre>
-    </q-card-section>
     <q-card-section>
       <q-btn
         v-if="!user"
@@ -18,6 +15,9 @@
         @click="connectUser()"
         >Connect</q-btn
       >
+    </q-card-section>
+    <q-card-section class="q-pt-none">
+      <pre>USER: {{ user }}</pre>
     </q-card-section>
   </q-card>
 </template>

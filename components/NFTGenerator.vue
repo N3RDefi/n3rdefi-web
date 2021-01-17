@@ -3,12 +3,57 @@
     <q-card-section>
       <div class="text-h6">{{ title }}</div>
     </q-card-section>
-    <q-card-section class="q-pt-none">
-      {{ lorem }}
-    </q-card-section>
-    <q-separator inset />
+    <q-card-section class="q-pt-none"></q-card-section>
     <q-card-section>
-      {{ lorem }}
+      <div class="q-pa-md" style="max-width: 400px">
+        <q-form
+          ref="nftForm"
+          class="q-gutter-md"
+          @submit="generateNFT"
+          @reset="onReset"
+        >
+          <q-input
+            v-model="name"
+            filled
+            label="Name *"
+            hint="NFT name"
+            lazy-rules
+            :rules="[
+              (val) => (val && val.length > 0) || 'Please type something',
+            ]"
+          />
+
+          <q-input
+            v-model="age"
+            filled
+            type="number"
+            label="Your age *"
+            lazy-rules
+            :rules="[
+              (val) => (val !== null && val !== '') || 'Please type your age',
+              (val) => (val > 0 && val < 100) || 'Please type a real age',
+            ]"
+          />
+          <q-toggle v-model="accept" label="I accept the license and terms" />
+
+          <div>
+            <q-btn
+              outline
+              label="Submit"
+              type="submit"
+              color="primary"
+              class="full-width q-mb-sm"
+            />
+            <q-btn
+              label="Reset"
+              type="reset"
+              color="primary"
+              flat
+              class="full-width"
+            />
+          </div>
+        </q-form>
+      </div>
     </q-card-section>
   </q-card>
 </template>
@@ -19,10 +64,41 @@ export default {
   name: 'NFTGenerator',
   data() {
     return {
-      title: 'NFTGenerator',
-      lorem:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      title: 'Create your 8-Bit NFT',
+      name: null,
+      age: null,
+      accept: false,
     }
+  },
+  methods: {
+    onSubmit() {
+      if (this.accept !== true) {
+        this.$q.notify({
+          color: 'red-5',
+          textColor: 'white',
+          icon: 'warning',
+          message: 'You need to accept the license and terms first',
+        })
+      } else {
+        this.$q.notify({
+          color: 'green-4',
+          textColor: 'white',
+          icon: 'cloud_done',
+          message: 'Submitted',
+        })
+      }
+    },
+
+    onReset() {
+      this.name = null
+      this.age = null
+      this.accept = false
+    },
+
+    generateNFT(value) {
+      const { newNFT } = { ...value }
+      this.$store.commit('GENERATE_NFT', newNFT)
+    },
   },
 }
 </script>
