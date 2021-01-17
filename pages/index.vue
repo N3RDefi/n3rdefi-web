@@ -6,48 +6,48 @@
       <!-- <router-view /> -->
       <q-page padding>
         <!-- First Row - Intro & Connect -->
-        <div class="row items-center justify-evenly">
-          <div class="col">
+        <div class="row items-start justify-evenly">
+          <div class="col q-pa-sm">
             <Intro />
           </div>
-          <div class="col">
+          <div class="col q-pa-sm">
             <Connect />
           </div>
         </div>
         <!-- END First Row -->
         <!-- Second Row - Intro & Connect -->
-        <div class="row items-center justify-evenly">
-          <div class="col-6">
+        <div class="row items-start justify-evenly">
+          <div class="col-6 q-pa-sm">
             <NFTGenerator />
           </div>
-          <div class="col-6">
+          <div class="col-6 q-pa-sm">
             <NFTHero />
           </div>
         </div>
         <!-- END Second Row -->
         <!-- Third Row - Intro & Connect -->
-        <div class="row items-center justify-evenly">
-          <div class="col">
+        <div class="row items-start justify-evenly">
+          <div class="col q-pa-sm">
             <D3fi />
           </div>
-          <div class="col">
+          <div class="col q-pa-sm">
             <Seal />
           </div>
         </div>
         <!-- END Third Row -->
         <!-- Fourth Row - Intro & Connect -->
-        <div class="row items-center justify-evenly">
-          <div class="col">
+        <div class="row items-start justify-evenly">
+          <div class="col q-pa-sm">
             <G3fi />
           </div>
         </div>
         <!-- END Fourth Row -->
         <!-- Fifth Row - Intro & Connect -->
-        <div class="row items-center justify-evenly">
-          <div class="col">
+        <div class="row items-start justify-evenly">
+          <div class="col q-pa-sm">
             <Incubator />
           </div>
-          <div class="col">
+          <div class="col q-pa-sm">
             <Academy />
           </div>
           <!-- END Fifth Row -->

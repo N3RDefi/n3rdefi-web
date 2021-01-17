@@ -3,12 +3,21 @@
     <q-card-section>
       <div class="text-h6">{{ title }}</div>
     </q-card-section>
+    <q-card-section class="q-pt-none"
+      >Connect your account to continue ....</q-card-section
+    >
     <q-card-section class="q-pt-none">
-      {{ lorem }}
+      <pre>{{ user }}</pre>
     </q-card-section>
-    <q-separator inset />
     <q-card-section>
-      {{ lorem }}
+      <q-btn
+        v-if="!user"
+        outline
+        color="grey-8"
+        class="full-width"
+        @click="connectUser()"
+        >Connect</q-btn
+      >
     </q-card-section>
   </q-card>
 </template>
@@ -19,10 +28,26 @@ export default {
   name: 'Connect',
   data() {
     return {
-      title: 'Connect',
-      lorem:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      title: 'Account',
     }
+  },
+  computed: {
+    ...mapGetters({
+      getUser: 'getUser',
+    }),
+    user: {
+      get() {
+        return this.$store.state.user
+      },
+      set(value) {
+        this.$store.commit('SEARCH', value)
+      },
+    },
+  },
+  methods: {
+    connectUser(value) {
+      this.$store.commit('CONNECT_USER', value)
+    },
   },
 }
 </script>

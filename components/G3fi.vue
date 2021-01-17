@@ -1,6 +1,6 @@
 <template>
   <div class="row items-center justify-evenly">
-    <div class="col">
+    <div class="col q-pr-sm">
       <q-card flat bordered class="my-card">
         <q-card-section>
           <div class="text-h6">{{ title }}</div>
@@ -14,7 +14,7 @@
         </q-card-section>
       </q-card>
     </div>
-    <div class="col">
+    <div class="col q-pl-sm">
       <q-card flat bordered class="my-card">
         <q-card-section>
           <div class="text-h6">{{ title }}</div>

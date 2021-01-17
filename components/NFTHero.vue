@@ -1,7 +1,6 @@
 <template>
   <div class="row">
-    <div class="full-width text-h4" align="center">{{ title }}</div>
-    <div v-for="n in 6" :key="`sm-${n}`" class="col-4">
+    <div v-for="n in 6" :key="`sm-${n}`" class="col-4 q-px-sm">
       <ImgCard />
     </div>
   </div>

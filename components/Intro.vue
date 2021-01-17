@@ -4,11 +4,19 @@
       <div class="text-h6">{{ title }}</div>
     </q-card-section>
     <q-card-section class="q-pt-none">
-      {{ lorem }}
+      What is N3RDefi? N3RDefi is a safe environment, where fellow N3RDz can
+      come together to form a community. Being part of a community offers trust,
+      strength, safety and commitment to a united cause, this help reduce and
+      even eliminate bad actors.
     </q-card-section>
     <q-separator inset />
     <q-card-section>
-      {{ lorem }}
+      Rewards earned for being a good player can be utilised throughout the
+      N3RDefi ecosystem, for example to purchase NFT's in our NFT marketplace,
+      these can get staked and either put up for sale or used as a blueprint for
+      artists, so fellow N3RDs can buy a t-shirt, hoodie or cap with their
+      favourite8-Bit Art. Proceeds would be distributed back to NFT holders in
+      the form of XP, tokens or various other prizes.
     </q-card-section>
   </q-card>
 </template>
@@ -20,8 +28,6 @@ export default {
   data() {
     return {
       title: 'Welcome to N3RDefi',
-      lorem:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     }
   },
 }

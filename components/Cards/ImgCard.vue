@@ -1,8 +1,7 @@
 <template>
-  <q-card class="my-card">
+  <q-card class="n3rd-nft-card q-mb-md">
     <q-card-section horizontal>
       <q-img class="col" :src="image" />
-
       <q-card-actions vertical class="justify-around">
         <q-btn flat round color="red" icon="favorite" />
         <q-btn flat round color="accent" icon="bookmark" />
@@ -31,7 +30,7 @@ export default {
 <style lang="sass">
 @import "../../assets/sass/theme-variables"
 
-.n3rd-image-card
+.n3rd-nft-card
   background-color: $white
 
 /* CSS Media Queries */

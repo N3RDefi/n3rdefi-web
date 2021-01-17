@@ -10,10 +10,10 @@ const actions = {
   onAuthStateChangedAction(state, { user, nfts }) {
     if (!user) {
       // Remove state if now user
-      state.commit('SET_USER', null)
+      state.commit('CONNECT_USER', null)
       state.commit('SET_NFTS', null)
     } else {
-      state.commit('SET_USER', user)
+      state.commit('CONNECT_USER', user)
       state.commit('SET_NFTS', nfts)
     }
   },
@@ -26,7 +26,7 @@ const mutations = {
   TOGGLE_LEFTDRAWER(state, value) {
     state.leftDrawerOpen = !state.leftDrawerOpen
   },
-  SET_USER(state, user) {
+  CONNECT_USER(state, user) {
     state.user = user
   },
   SET_NFTS(state, nfts) {
