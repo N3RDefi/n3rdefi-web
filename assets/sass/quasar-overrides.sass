@@ -38,17 +38,17 @@ $PI: 3.14159265359
   @return round($number * $power) / $power
 @function sin($angle)
   $sin: 0
-  
+
   $rad: $angle / 180 * $PI
-  
+
   @for $i from 0 through 25
     $sin: $sin + pow(-1, $i) * pow($rad, (2 * $i + 1)) / fact(2 * $i + 1)
   @return $sin
 @function cos($angle)
   $cos: 0
-  
+
   $rad: $angle / 180 * $PI
-  
+
   @for $i from 0 through 25
     $cos: $cos + pow(-1, $i) * pow($rad, 2 * $i) / fact(2 * $i)
   @return $cos
@@ -474,7 +474,7 @@ $shadow-up-24 : 0 -11px 15px -7px $elevation-umbra, 0 -24px 38px 3px $elevation-
 $shadows-up: ($shadow-up-1, $shadow-up-2, $shadow-up-3, $shadow-up-4, $shadow-up-5, $shadow-up-6, $shadow-up-7, $shadow-up-8, $shadow-up-9, $shadow-up-10, $shadow-up-11, $shadow-up-12, $shadow-up-13, $shadow-up-14, $shadow-up-15, $shadow-up-16, $shadow-up-17, $shadow-up-18, $shadow-up-19, $shadow-up-20, $shadow-up-21, $shadow-up-22, $shadow-up-23, $shadow-up-24)
 $generic-border-radius          : 4px !default
 $generic-hover-transition       : .3s cubic-bezier(.25, .8, .5, 1) !default
-$typography-font-family         : 'Roboto', '-apple-system', 'Helvetica Neue', Helvetica, Arial, sans-serif !default
+$typography-font-family         : inter, -apple-system, system-ui, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol" !default
 $min-line-height                : 1.12 !default
 $button-border-radius           : 3px !default
 $button-padding                 : 4px 16px !default
@@ -516,7 +516,7 @@ $table-dark-selected-background : rgba(255, 255, 255, .1) !default
 $toolbar-min-height             : 50px !default
 $toolbar-padding                : 0 12px !default
 $toolbar-inset-size             : 58px !default
-$toolbar-title-font-size        : 21px !default
+$toolbar-title-font-size        : 16px !default
 $toolbar-title-font-weight      : normal !default
 $toolbar-title-letter-spacing   : .01em !default
 $toolbar-title-padding          : 0 12px !default
@@ -546,7 +546,7 @@ $img-content-position           : absolute !default
 $img-content-padding            : 16px !default
 $img-content-color              : #fff !default
 $img-content-background         : rgba(0, 0, 0, .47) !default
-*, *:before, *:after 
+*, *:before, *:after
   box-sizing: inherit
   -webkit-tap-highlight-color: transparent
   -moz-tap-highlight-color: transparent
@@ -662,7 +662,7 @@ input[type='search']::-webkit-search-decoration
   text-align: center
   position: relative
   box-sizing: content-box
-  fill: currentColor 
+  fill: currentColor
   &:before, &:after
     width: 100%
     height: 100%
@@ -873,10 +873,10 @@ input[type='search']::-webkit-search-decoration
     cursor: pointer
     &.q-btn--standard
       .q-btn__wrapper:before
-        
-        
-        
-        
+
+
+
+
         transition: box-shadow $button-transition
       &:active,
       &.q-btn--active
@@ -941,7 +941,7 @@ input[type='search']::-webkit-search-decoration
     padding: 8px
     min-height: 40px
     min-width: 40px
-  
+
   &__content
     transition: opacity .3s
     z-index: 0
@@ -1134,7 +1134,7 @@ input[type='search']::-webkit-search-decoration
     max-width: 100%
     border: 0
 .q-carousel
-  background-color: #fff 
+  background-color: #fff
   height: 400px
   &__slide
     min-height: 100%
@@ -1546,7 +1546,7 @@ body.desktop .q-chip--clickable:focus
       height: 36px !important
       &--inactive
         background: linear-gradient(to bottom, rgba(0,0,0,.3) 0%, rgba(0,0,0,.15) 25%, rgba(0,0,0,.1))
-  
+
   &__spectrum
     width: 100%
     height: 100%
@@ -1563,7 +1563,7 @@ body.desktop .q-chip--clickable:focus
     border-radius: 50%
     transform: translate(-5px, -5px)
   &__hue .q-slider__track-container
-    background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%) !important 
+    background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%) !important
     opacity: 1
   &__alpha .q-slider__track-container
     color: #fff
@@ -1596,7 +1596,7 @@ body.desktop .q-chip--clickable:focus
       height: 16px
       margin-top: 8px
       color: $grey-9
-  
+
   &__tune-tab
     .q-slider
       margin-left: 18px
@@ -1606,7 +1606,7 @@ body.desktop .q-chip--clickable:focus
       border: 1px solid $grey-4
       border-radius: $generic-border-radius
       width: 3.5em
-  
+
   &__palette-tab
     padding: 0 !important
   &__palette-rows
@@ -1615,7 +1615,7 @@ body.desktop .q-chip--clickable:focus
   &__cube
     padding-bottom: 10%
     width: 10% !important
-  
+
   input
     color: inherit
     background: transparent
@@ -1804,7 +1804,7 @@ body.desktop .q-chip--clickable:focus
     flex-direction: column
   &--portrait-standard
     .q-date__content
-      height: calc(100% - 86px) 
+      height: calc(100% - 86px)
     .q-date__header
       border-top-right-radius: inherit
       height: 86px
@@ -1813,7 +1813,7 @@ body.desktop .q-chip--clickable:focus
       height: 30px
   &--portrait-minimal
     .q-date__content
-      height: 100% 
+      height: 100%
   &--landscape
     flex-direction: row
     align-items: stretch
@@ -2078,7 +2078,7 @@ body.q-ios-padding .q-dialog__inner
     animation: q-expansion-done 0s
 @keyframes q-expansion-done
   0%
-    --q-exp-done: 1 
+    --q-exp-done: 1
 .z-fab
   z-index: $z-fab
 .q-fab
@@ -2307,8 +2307,8 @@ $field-transition-label-right-up: .324s cubic-bezier(.4,0,.2,1)
     padding: 6px 0
   &__native, &__input
     width: 100%
-    min-width: 0 
-    outline: 0 !important 
+    min-width: 0
+    outline: 0 !important
     &:-webkit-autofill
       -webkit-animation-name: q-autofill
       -webkit-animation-fill-mode: both
@@ -2319,7 +2319,7 @@ $field-transition-label-right-up: .324s cubic-bezier(.4,0,.2,1)
     &:invalid
       box-shadow: none
   &__native[type="file"]
-    line-height: 1em 
+    line-height: 1em
   &__input
     padding: 0
     height: 0
@@ -2333,7 +2333,7 @@ $field-transition-label-right-up: .324s cubic-bezier(.4,0,.2,1)
   &__suffix
     padding-left: 4px
   &--readonly, &--disabled
-    .q-placeholder 
+    .q-placeholder
       opacity: 1 !important
   &--readonly
     &.q-field--labeled
@@ -2349,7 +2349,7 @@ $field-transition-label-right-up: .324s cubic-bezier(.4,0,.2,1)
       pointer-events: none
     .q-field__control > div
       opacity: .6 !important
-      &, * 
+      &, *
         outline: 0 !important
   &__label
     left: 0
@@ -2433,7 +2433,7 @@ $field-transition-label-right-up: .324s cubic-bezier(.4,0,.2,1)
     &.q-field--rounded .q-field__control
       border-radius: 28px
     &.q-field--highlighted
-      
+
       .q-field__control:hover:before
         border-color: transparent
       .q-field__control:after
@@ -2995,9 +2995,9 @@ body.body--dark
     border-color: $separator-dark-color
 body.platform-ios
   .q-layout--containerized
-    
-    
-    
+
+
+
     position: unset !important
 .q-linear-progress
   position: relative
@@ -3342,7 +3342,7 @@ body.platform-ios
   border-radius: $generic-border-radius
   &--anim
     cursor: wait
-  
+
   box-sizing: border-box
   &:before
     content: '\00a0'
@@ -4129,9 +4129,9 @@ body.platform-ios
       padding: 0
     .q-field__marginal
       height: 24px
-.q-table__bottom 
+.q-table__bottom
   border-top: 1px solid $table-border-color
-.q-table 
+.q-table
   thead, tr, th, td
     border-color: $table-border-color
   tbody
@@ -4172,7 +4172,7 @@ body.desktop .q-table > tbody > tr:not(.q-tr--no-hover):hover > td:not(.q-td--no
   transition: color .3s, background-color .3s
   text-transform: uppercase
   white-space: nowrap
-  
+
   color: inherit
   text-decoration: none
   &--full
@@ -4898,12 +4898,12 @@ body.desktop
     transition: transform .3s
     &--rotate
       transform: rotate3d(0, 0, 1, 90deg)
-  
+
   > .q-tree__node
     padding: 0
     &:after, > .q-tree__node-header:before
       display: none
-  
+
   > .q-tree__node--child > .q-tree__node-header
     padding-left: 24px
   &--dark .q-tree__node-header-content
@@ -4933,8 +4933,8 @@ body.desktop
     width: 100%
     height: 100%
     cursor: pointer !important
-    z-index: 1 
-    
+    z-index: 1
+
     &::-webkit-file-upload-button
       cursor: pointer
   &__header, &__file
@@ -5115,7 +5115,7 @@ img.responsive
   bottom: 200vh !important
 .q-loading
   color: #000
-  
+
   position: fixed !important
   &:before
     content: ''
@@ -5311,7 +5311,7 @@ body.q-ios-padding .q-notifications__list
   animation-fill-mode: both
   &.infinite
     animation-iteration-count: infinite
-  
+
   &.hinge
     animation-duration: 2s
   &.repeat-1
@@ -6935,7 +6935,7 @@ img.responsive
   margin-top: var(--q-pe-top, 0) !important
   margin-left: var(--q-pe-left, 0) !important
   will-change: auto
-  visibility: collapse 
+  visibility: collapse
 \:root
   @each $name, $size in $sizes
     #{"--q-size-"}#{$name}: #{$size}
@@ -7013,7 +7013,7 @@ img.responsive
   touch-action: pan-x
 .q-touch-y
   touch-action: pan-y
-$transition-easing: cubic-bezier(0.215, 0.61, 0.355, 1) 
+$transition-easing: cubic-bezier(0.215, 0.61, 0.355, 1)
 .q-transition
   &--slide-right,
   &--slide-left,
@@ -7231,7 +7231,7 @@ sup
 .readonly
   cursor: default !important
 .disabled, [disabled]
-  &, * 
+  &, *
     outline: 0 !important
     cursor: not-allowed !important
 .disabled, [disabled]
@@ -7355,7 +7355,7 @@ body.body--dark
   background: $grey-9
   background: var(--q-color-dark)
 @mixin ie_style
-  
+
   .q-item,
   .q-toolbar,
   .q-notification
@@ -7382,7 +7382,7 @@ body.body--dark
       min-height: 48px
     &--multi-line
       min-height: 68px
-  
+
   .q-btn__wrapper,
   .q-time__content,
   .q-toolbar__title,
@@ -7409,13 +7409,13 @@ body.body--dark
         .row > &, .flex > &
           flex-basis: auto
           min-width: 0%
-  
+
   .q-item
     &__section
       &--avatar
-        
+
         min-width: 56px
-  
+
   button.q-btn--actionable:active:hover
     .q-btn__wrapper
       margin: -1px 1px 1px -1px
@@ -7428,35 +7428,35 @@ body.body--dark
     overflow: visible
     &--wrap
       flex-direction: row
-  
+
   .q-carousel__slide > *
     max-width: 100%
-  
+
   .q-tabs--vertical
     .q-tab__indicator
       height: auto
-  
+
   .q-spinner
     animation: q-ie-spinner 2s linear infinite #{"/* rtl:ignore */"}
     transform-origin: center center #{"/* rtl:ignore */"}
     opacity: .5
     &.q-spinner-mat .path
       stroke-dasharray: 89, 200
-  
+
   .q-checkbox
     &__indet
       opacity: 0
     &__inner--indet
       .q-checkbox__indet
         opacity: 1
-  
+
   .q-radio
     &__check
       opacity: 0
     &__inner--truthy
       .q-radio__check
         opacity: 1
-  
+
   .q-date__main
     min-height: 290px !important
   .q-date__months
@@ -7466,7 +7466,7 @@ body.body--dark
     flex-direction: column
     flex-wrap: nowrap
     flex: 1 0 auto
-  
+
   .q-field
     &__prefix, &__suffix
       flex: 1 0 auto
@@ -7479,7 +7479,7 @@ body.body--dark
           left: 0
     &--float .q-field__label
       max-width: 100%
-  
+
   .q-focus-helper
     z-index: 1
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)

@@ -1,18 +1,52 @@
 @import theme-variables.sass
-@import "~/node_modules/nes.css/css/nes.css"
+// @import "~/node_modules/nes.css/css/nes.css"
 
-html
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif
-  font-size: 16px
-  word-spacing: 1px
-  -ms-text-size-adjust: 100%
-  -webkit-text-size-adjust: 100%
-  -moz-osx-font-smoothing: grayscale
-  -webkit-font-smoothing: antialiased
-  box-sizing: border-box
+.GPL
+  &__toolbar
+    height: 64px
+  &__toolbar-input
+    width: 60%
 
-*,
-*::before,
-*::after
-  box-sizing: border-box
-  margin: 0
+  &__drawer-item
+    line-height: 24px
+    border-radius: 0 24px 24px 0
+    margin-right: 12px
+    .q-item__section--avatar
+      padding-left: 12px
+      .q-icon
+        color: #5f6368
+    .q-item__label:not(.q-item__label--caption)
+      color: #3c4043
+      letter-spacing: .01785714em
+      font-size: .875rem
+      font-weight: 500
+      line-height: 1.25rem
+    &--storage
+      border-radius: 0
+      margin-right: 0
+      padding-top: 24px
+      padding-bottom: 24px
+
+  &__side-btn
+    &__label
+      font-size: 12px
+      line-height: 24px
+      letter-spacing: .01785714em
+      font-weight: 500
+
+  .row > div
+    padding: 10px 15px
+    background: rgba(86,61,124,.15)
+    border: 1px solid rgba(86,61,124,.2)
+
+  .row + .row
+    margin-top: 1rem
+
+  .my-content
+    padding: 10px 15px
+    background: rgba(86,61,124,.15)
+    border: 1px solid rgba(86,61,124,.2)
+
+  @media (min-width: 1024px)
+    &__page-container
+      padding-left: 94px

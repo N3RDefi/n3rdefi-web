@@ -1,0 +1,137 @@
+<template>
+  <q-page-sticky
+    v-if="$q.screen.gt.sm"
+    expand
+    position="left"
+    class="n3rd-page-sticky-sidebar"
+  >
+    <div class="fit q-pt-xl q-px-sm column">
+      <q-btn
+        round
+        flat
+        color="grey-8"
+        stack
+        no-caps
+        size="26px"
+        class="GPL__side-btn"
+      >
+        <q-icon size="22px" name="add" />
+        <div class="GPL__side-btn__label">Create</div>
+      </q-btn>
+
+      <q-btn
+        round
+        flat
+        color="grey-8"
+        stack
+        no-caps
+        size="26px"
+        class="GPL__side-btn"
+      >
+        <q-icon size="22px" name="photo" />
+        <div class="GPL__side-btn__label">Browse</div>
+      </q-btn>
+
+      <q-btn
+        round
+        flat
+        color="grey-8"
+        stack
+        no-caps
+        size="26px"
+        class="GPL__side-btn"
+      >
+        <q-icon size="22px" name="photo_album" />
+        <div class="GPL__side-btn__label">Collections</div>
+      </q-btn>
+
+      <q-btn
+        round
+        flat
+        color="grey-8"
+        stack
+        no-caps
+        size="26px"
+        class="GPL__side-btn"
+      >
+        <q-icon size="22px" name="assistant" />
+        <div class="GPL__side-btn__label">Rankings</div>
+      </q-btn>
+
+      <q-btn
+        round
+        flat
+        color="grey-8"
+        stack
+        no-caps
+        size="26px"
+        class="GPL__side-btn"
+      >
+        <q-icon size="22px" name="book" />
+        <div class="GPL__side-btn__label">Activity</div>
+      </q-btn>
+
+      <q-btn
+        round
+        flat
+        color="grey-8"
+        stack
+        no-caps
+        size="26px"
+        class="GPL__side-btn"
+      >
+        <q-icon size="22px" name="people" />
+        <div class="GPL__side-btn__label">Sharing</div>
+      </q-btn>
+    </div>
+  </q-page-sticky>
+</template>
+<script>
+export default {
+  name: 'Header',
+  data() {
+    return {}
+  },
+}
+</script>
+<style lang="sass">
+@import "../assets/sass/theme-variables"
+
+.n3rd-page-sticky-sidebar
+
+/* CSS Media Queries */
+/* $breakpoint-xl: 2400px */
+@media only screen and (max-width: 2400px)
+  .hide-on-bigscreen
+    display: none
+
+/* $breakpoint-lg:  1199px */
+@media only screen and (max-width: 1199px)
+  .hide-on-tablet
+    display: none
+
+/* $breakpoint-md: 1023px */
+@media only screen and (max-width: 1023px)
+  .hide-on-tablet
+    display: none
+
+/* $breakpoint-md: 959px */
+@media only screen and (max-width: 959px)
+  .hide-on-mobile
+    display: none
+
+/* $breakpoint-sm: 839px */
+@media only screen and (max-width: 839px)
+  .hide-on-mobile
+    display: none
+
+/* $breakpoint-xs: 479px */
+@media only screen and (max-width: 479px)
+  .hide-on-mobile
+    display: none
+
+// This is for old phone screen sizes 360px and smaller
+@media only screen and (max-width: 359px)
+  .hide-on-mobile
+    display: none
+</style>
