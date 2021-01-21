@@ -50,7 +50,10 @@ module.exports = {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '@/plugins/quasar', ssr: false }],
+  plugins: [
+    { src: '@/plugins/quasar', ssr: false },
+    { src: '@/plugins/web3', ssr: false },
+  ],
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
   /*

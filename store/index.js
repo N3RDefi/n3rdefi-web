@@ -1,21 +1,32 @@
 const state = () => ({
-  leftDrawerOpen: false,
-  searchText: '',
+  web3: {
+    web3Instance: false,
+    networkId: null,
+    coinbase: null,
+    balance: null,
+  },
+  contractInstance: null,
   user: null,
   nfts: [],
   nftCats: [],
+  leftDrawerOpen: false,
+  searchText: '',
 })
 
 const actions = {
-  onAuthStateChangedAction(state, { user, nfts }) {
-    if (!user) {
-      // Remove state if now user
-      state.commit('CONNECT_USER', null)
+  onAuthStateChangedAction(state, { account, nfts }) {
+    if (!account) {
+      // Remove state if now account
+      state.commit('CONNECT_ACCOUNT', null)
       state.commit('SET_NFTS', null)
     } else {
-      state.commit('CONNECT_USER', user)
+      state.commit('CONNECT_ACCOUNT', account)
       state.commit('SET_NFTS', nfts)
     }
+  },
+  setupWeb3Account(state, { account }) {
+    console.log('setupWeb3Account:', account)
+    state.commit('CONNECT_ACCOUNT', account)
   },
 }
 
@@ -26,12 +37,28 @@ const mutations = {
   TOGGLE_LEFTDRAWER(state, value) {
     state.leftDrawerOpen = !state.leftDrawerOpen
   },
-  CONNECT_USER(state, user) {
-    console.log('Connect User:')
-    state.user = user
+  WEB3INSTANCE(state, payload) {
+    console.log('WEB3INSTANCE:', payload.networkId)
+    state.web3.web3Instance = !!payload.networkId
+    if (payload.networkId) {
+      state.web3.networkId = payload.networkId
+    }
   },
-  GENERATE_NFT(state, nft) {
-    console.log('Generate NFT:', nft)
+  CONNECT_ACCOUNT(state, payload) {
+    /* Set the web3Instance if Account */
+    state.web3.web3Instance = true
+    state.web3.coinbase = payload
+  },
+  SET_NETWORK(state, payload) {
+    /* Set the networkId of MetaMask */
+    state.web3.networkId = payload
+  },
+  SET_BALANCE(state, payload) {
+    /* Set the Balance of the Account */
+    state.web3.balance = payload
+  },
+  GENERATE_NFT(state, payload) {
+    console.log('GENERATE_NFT:', payload)
     // state.nfts.push(nft)
   },
 }
@@ -48,6 +75,9 @@ const getters = {
   },
   getNfts(state) {
     return state.nfts
+  },
+  web3Instance(state) {
+    return state.web3
   },
 }
 

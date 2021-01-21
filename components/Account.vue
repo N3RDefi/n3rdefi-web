@@ -3,37 +3,40 @@
     <q-card-section>
       <div class="text-h6">{{ title }}</div>
     </q-card-section>
-    <q-card-section class="q-pt-none"
-      >Connect your MetaMask to continue ....</q-card-section
-    >
-    <q-card-section>
+    <q-card-section class="q-pt-none">
+      <p>Network: {{ web3.networkId }}</p>
+      <p>Account: {{ web3.coinbase }}</p>
+      <p>Balance: {{ web3.balance }}</p>
+    </q-card-section>
+    <!-- <q-card-section>
       <q-btn
+        v-if="!user"
         outline
         color="grey-8"
         class="full-width"
-        @click="connectMetaMask()"
+        @click="connectUser()"
         >Connect</q-btn
       >
+    </q-card-section> -->
+    <q-card-section class="q-pt-none">
+      <pre>WEB3: {{ web3 }}</pre>
     </q-card-section>
   </q-card>
 </template>
 <script>
 export default {
-  name: 'Connect',
+  name: 'Account',
+  props: {
+    web3: {
+      type: Object,
+      required: false,
+      default: () => ({}),
+    },
+  },
   data() {
     return {
-      title: 'Connect',
+      title: 'Account',
     }
-  },
-  methods: {
-    async connectMetaMask() {
-      const account = await this.$web3.connectMetaMask()
-      if (account) {
-        this.$store.commit('CONNECT_ACCOUNT', account)
-        const balance = await this.$web3.getBalance(account)
-        this.$store.commit('SET_BALANCE', balance)
-      }
-    },
   },
 }
 </script>
