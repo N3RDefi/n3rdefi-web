@@ -4,25 +4,35 @@
       <div class="text-h6">{{ title }}</div>
     </q-card-section>
     <q-card-section class="q-pt-none">
-      <p>Web3 Instance: {{ web3.web3Instance }}</p>
-      <p>Is MetaMask: {{ web3.isMetaMask }}</p>
-      <p>Chain Id HEX: {{ web3.chainIdHEX }}</p>
-      <p>Network: {{ networkFilter(web3.chainIdHEX) }}</p>
-      <p>Account: {{ web3.account[0] }}</p>
-      <p>Balance: {{ web3.balance }}</p>
+      <p>Account: {{ user.account[0] }}</p>
+      <p>Balance: {{ user.balance }}</p>
     </q-card-section>
-    <!-- <q-card-section>
+    <q-card-section class="q-pt-none">
+      <p>Web3 Instance: {{ user.web3Instance }}</p>
+      <p>Is MetaMask: {{ user.isMetaMask }}</p>
+      <p>Chain Id HEX: {{ user.chainIdHEX }}</p>
+      <p>Network: {{ networkFilter(user.chainIdHEX) }}</p>
+    </q-card-section>
+    <q-card-section>
       <q-btn
-        v-if="!user"
+        v-if="user"
         outline
         color="grey-8"
-        class="full-width"
-        @click="connectUser()"
-        >Connect</q-btn
+        class="full-width q-mb-sm"
+        @click="sendTransaction(to, from, value)"
+        >Send Transaction</q-btn
       >
-    </q-card-section> -->
+      <q-btn
+        v-if="user"
+        outline
+        color="primary"
+        class="full-width"
+        @click="requestPermissions()"
+        >Request Permissions</q-btn
+      >
+    </q-card-section>
     <q-card-section class="q-pt-none">
-      <pre>WEB3: {{ web3 }}</pre>
+      <pre>User: {{ user }}</pre>
     </q-card-section>
   </q-card>
 </template>
@@ -31,7 +41,7 @@ import { networkFilter } from '~/util/networkFilter'
 export default {
   name: 'Account',
   props: {
-    web3: {
+    user: {
       type: Object,
       required: false,
       default: () => ({}),
@@ -45,6 +55,48 @@ export default {
   methods: {
     networkFilter(chainId) {
       return networkFilter(chainId)
+    },
+    async sendTransaction(to, from, value) {
+      // window.ethereum
+      try {
+        const transactionHash = await window.ethereum.request({
+          method: 'eth_sendTransaction',
+          params: [
+            {
+              to,
+              from,
+              value,
+            },
+          ],
+        })
+        // Handle the result
+        console.log(transactionHash)
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    async requestPermissions() {
+      await window.ethereum
+        .request({
+          method: 'eth_requestAccounts',
+          params: [{ eth_accounts: {} }],
+        })
+        .then((permissions) => {
+          const accountsPermission = permissions.find(
+            (permission) => permission.parentCapability === 'eth_accounts'
+          )
+          if (accountsPermission) {
+            console.log('eth_accounts permission successfully requested!')
+          }
+        })
+        .catch((error) => {
+          if (error.code === 4001) {
+            // EIP-1193 userRejectedRequest error
+            console.log('Permissions needed to continue.')
+          } else {
+            console.error(error)
+          }
+        })
     },
   },
 }

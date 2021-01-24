@@ -9,15 +9,14 @@
 import Vue from 'vue'
 import Web3 from 'web3'
 import detectEthereumProvider from '@metamask/detect-provider'
-/* Network Enum */
-import { networks } from '~/util/networks.js'
 /* Contracts ABI */
 import N3RD_ABI from '~/contracts/abi/N3RD_ABI'
 import N3RDY_ABI from '~/contracts/abi/N3RDY_ABI'
 import N3RDAO_ABI from '~/contracts/abi/N3RDAO_ABI'
 import SAFU_ABI from '~/contracts/abi/SAFU_ABI'
 import SAFUSEAL_ABI from '~/contracts/abi/SAFUSEAL_ABI'
-/* Set our Network */
+/* Network Enum */
+import { networks } from '~/util/networks.js'
 const network = networks.MUMBAI_TEST_NET
 // console.log('Choosen Network', network)
 /* Contract Addresses */
@@ -26,7 +25,11 @@ const N3RD_ADDR =
   network === 1
     ? '0xfb0349F08e2078a2944Ae3205446D176c3b45373'
     : '0xE4Ae305ebE1AbE663f261Bc00534067C80ad677C'
-const DAO_ADDR =
+const N3RDY_ADDR =
+  network === 1
+    ? '0xfb0349F08e2078a2944Ae3205446D176c3b45373'
+    : '0xE4Ae305ebE1AbE663f261Bc00534067C80ad677C'
+const N3RDAO_ADDR =
   network === 1
     ? '0x4b38dCD3E3f422F33Ef1F49eD3A3F11c7A5d27bC'
     : '0x04e283c9350Bab8A1243ccfc1dd9BF1Ab72dF4f0'
@@ -34,7 +37,7 @@ const SAFU_ADDR =
   network === 1
     ? '0x94fFAD4568fF00D921C76aA158848b33D7Bd65d3'
     : '0x4ab5b40746566c09f4B90313D0801D3b93f56EF5'
-const UTILS_ADDR =
+const SAFUSEAL_ADDR =
   network === 1
     ? '0xeFD9BfFe7c63Ab5962648E3e83e44306C4dAD747'
     : '0xCaF0366aF95E8A03E269E52DdB3DbB8a00295F91'
@@ -43,14 +46,14 @@ const UTILS_ADDR =
 const getWeb3 = async () => {
   const provider = await detectEthereumProvider()
   if (provider) {
-    console.log(
-      `%c Ethereum successfully detected! : ${JSON.stringify(
-        window.ethereum,
-        null,
-        4
-      )}`,
-      'background: #222; color: #bada55'
-    )
+    // console.log(
+    //   `%c Ethereum successfully detected! : ${JSON.stringify(
+    //     window.ethereum,
+    //     null,
+    //     4
+    //   )}`,
+    //   'background: #222; color: #bada55'
+    // )
     return window.ethereum
   } else if (window.web3) {
     console.log('Old Web3 is installed!', window.web3.currentProvider)
@@ -118,7 +121,7 @@ web3.getAccounts = async () => {
   }
   return false
 }
-/* Gets The Network or ChainID */
+/* Gets The Network or ChainId, returned as a HEX from MetaMask */
 web3.getChainId = async () => {
   const provider = await detectEthereumProvider()
   if (provider) {
@@ -184,9 +187,25 @@ web3.getExplorerURL = (network) => {
   return 'https://testnet.bscscan.com//'
 }
 
-web3.getTokenContract = (address) => {
+web3.getN3RDTokenContract = () => {
   const web3 = getWeb3()
-  return new web3.eth.Contract(N3RD_ABI, address)
+  return new web3.eth.Contract(N3RD_ABI, N3RD_ADDR)
+}
+web3.getN3RDYTokenContract = () => {
+  const web3 = getWeb3()
+  return new web3.eth.Contract(N3RDY_ABI, N3RDY_ADDR)
+}
+web3.getN3RDAOTokenContract = () => {
+  const web3 = getWeb3()
+  return new web3.eth.Contract(N3RDAO_ABI, N3RDAO_ADDR)
+}
+web3.getSAFUTokenContract = () => {
+  const web3 = getWeb3()
+  return new web3.eth.Contract(SAFU_ABI, SAFU_ADDR)
+}
+web3.getSAFUSEALTokenContract = () => {
+  const web3 = getWeb3()
+  return new web3.eth.Contract(SAFUSEAL_ABI, SAFUSEAL_ADDR)
 }
 
 web3.getTokenSymbol = (address) => {

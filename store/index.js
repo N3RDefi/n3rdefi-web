@@ -1,5 +1,8 @@
+import pollWeb3 from '../util/pollWeb3'
+
 const state = () => ({
-  web3: {
+  web3: {},
+  user: {
     web3Instance: false,
     isMetaMask: false,
     chainId: null,
@@ -16,7 +19,6 @@ const state = () => ({
     SAFUContract: null,
     SAFUSealContract: null,
   },
-  user: null,
   nfts: [],
   nftCats: [],
   leftDrawerOpen: false,
@@ -24,48 +26,55 @@ const state = () => ({
 })
 
 const actions = {
-  onAuthStateChangedAction(state, { account, nfts }) {
-    if (!account) {
-      // Remove state if now account
-      state.commit('SET_ACCOUNT', null)
-    } else {
-      state.commit('SET_ACCOUNT', account)
-    }
-  },
-  setupWeb3Account(state, { account }) {
-    state.commit('SET_ACCOUNT', account)
+  pollWeb3({ commit }, payload) {
+    commit('POLL_WEB3', payload)
   },
 }
 
 const mutations = {
-  SET_WEB3_INSTANCE(state, payload) {
+  SET_WEB3(state, payload) {
     /* The Browser has Ethereum installed but not connected */
-    state.web3.web3Instance = payload
+    Object.assign(state.web3, payload)
+    pollWeb3()
+  },
+  POLL_WEB3(state, payload) {
+    console.log('pollWeb3Instance mutation being executed', payload)
+    state.user.account = payload.account
+    state.user.chainIdHEX = payload.chainIdHEX
+    state.user.chainName = payload.chainName
+    state.user.balance = payload.balance
+  },
+  SET_USER(state, payload) {
+    /* Set the User Object as a whole */
+    Object.assign(state.user, payload)
+  },
+  SET_WEB3_INSTANCE(state, payload) {
+    /* The User has Ethereum installed but not connected */
+    state.user.web3Instance = payload
   },
   SET_IS_METAMASK(state, payload) {
     /* MetaMask is installed but not connected */
-    state.web3.isMetaMask = payload
+    state.user.isMetaMask = payload
   },
   SET_CHAIN_ID(state, payload) {
     /* Set the chainId of network provider */
-    state.web3.chainId = payload
+    state.user.chainId = payload
   },
   SET_CHAIN_ID_HEX(state, payload) {
     /* Set the chainIdHEX of network provider */
-    state.web3.chainIdHEX = payload
+    state.user.chainIdHEX = payload
   },
   SET_CHAIN_NAME(state, payload) {
     /* Set the Network Name of network provider */
-    state.web3.chainName = payload
+    state.user.chainName = payload
   },
   SET_ACCOUNT(state, payload) {
-    /* Set the web3Instance if Account */
-    state.web3.web3Instance = true
-    state.web3.account = payload
+    /* Set the Users default Account */
+    state.user.account = payload
   },
   SET_BALANCE(state, payload) {
-    /* Set the Balance of the Account */
-    state.web3.balance = payload
+    /* Set the Balance of the Users account */
+    state.user.balance = payload
   },
   SET_NFT(state, payload) {
     state.nfts.push(payload)
@@ -83,25 +92,31 @@ const mutations = {
 
 const getters = {
   getWeb3(state) {
-    return state.web3.web3Instance
-  },
-  getWeb3Instance(state) {
-    return state.web3.web3Instance
-  },
-  getChainId(state) {
-    return state.web3.chainId
-  },
-  getChainIdHEX(state) {
-    return state.web3.chainIdHEX
-  },
-  getAccount(state) {
-    return state.web3.account
-  },
-  getBalance(state) {
-    return state.web3.balance
+    return state.web3
   },
   getUser(state) {
     return state.user
+  },
+  getWeb3Instance(state) {
+    return state.user.web3Instance
+  },
+  getIsMetaMask(state) {
+    return state.user.isMetaMask
+  },
+  getChainId(state) {
+    return state.user.chainId
+  },
+  getChainIdHEX(state) {
+    return state.user.chainIdHEX
+  },
+  getChainName(state) {
+    return state.user.chainName
+  },
+  getAccount(state) {
+    return state.user.account
+  },
+  getBalance(state) {
+    return state.user.balance
   },
   getNfts(state) {
     return state.nfts

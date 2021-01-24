@@ -1,5 +1,4 @@
 import { networks } from '~/util/networks'
-
 /* Filter the network by the HEX chainId received from MetaMask */
 export function networkFilter(chainHEX) {
   const chainId = String(chainHEX)

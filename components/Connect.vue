@@ -4,14 +4,14 @@
       <div class="text-h6">{{ title }}</div>
     </q-card-section>
     <q-card-section class="q-pt-none"
-      >{{ !web3.web3Instance ? 'Install Metamask' : 'Connect' }} your MetaMask
+      >{{ !user.web3Instance ? 'Install Metamask' : 'Connect' }} your MetaMask
       to continue ....</q-card-section
     >
     <q-card-section>
       <q-btn
         outline
-        :color="!web3.web3Instance ? 'primary' : 'grey-8'"
-        :label="!web3.web3Instance ? 'Install' : 'Connect'"
+        :color="!user.web3Instance ? 'primary' : 'grey-8'"
+        :label="!user.web3Instance ? 'Install' : 'Connect'"
         class="full-width"
         @click="connectMetaMask()"
       />
@@ -22,11 +22,11 @@
 /* Enums and Helper */
 import { networks } from '~/util/networks'
 import { networkFilter } from '~/util/networkFilter'
-
+/* LFG */
 export default {
   name: 'Connect',
   props: {
-    web3: {
+    user: {
       type: Object,
       required: false,
       default: () => ({}),
@@ -41,12 +41,29 @@ export default {
     async connectMetaMask() {
       /* Check Web3 Instance */
       const web3_ = await this.$web3()
+      this.$store.commit('SET_WEB3', web3_)
       /* Enable MetaMask and Sign in */
       if (web3_ && web3_.isMetaMask === true) {
         this.$store.commit('SET_IS_METAMASK', true)
       }
+      /* Load User Account Info into the store */
+      const accountLoaded = await this.loadAccount()
+      if (accountLoaded) {
+        console.log(
+          '%c MetaMask connected successfully!',
+          'background: blue; color: white'
+        )
+      } else {
+        console.log(
+          '%c Please connect MetaMask!',
+          'background: red; color: white'
+        )
+      }
+    },
+    async loadAccount() {
+      /* Load Network, Account and Balance/s */
       const account = await this.$web3.connectMetaMask()
-      if (account) {
+      if (account && account !== '') {
         this.$store.commit('SET_ACCOUNT', account)
         const chainIdHEX = await this.$web3.getChainId(account)
         this.$store.commit('SET_CHAIN_ID_HEX', chainIdHEX)
@@ -54,6 +71,9 @@ export default {
         this.$store.commit('SET_CHAIN_NAME', chainName)
         const balance = await this.$web3.getBalance(account)
         this.$store.commit('SET_BALANCE', balance)
+        return true
+      } else {
+        return false
       }
     },
   },

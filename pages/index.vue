@@ -11,16 +11,16 @@
             <Intro />
           </div>
           <div
-            v-if="!web3.account"
+            v-if="!user.account"
             class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pa-sm"
           >
-            <Connect :web3="web3" />
+            <Connect :user="user" />
           </div>
           <div
-            v-if="web3.web3Instance && web3.account"
+            v-if="user.web3Instance && user.account"
             class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pa-sm"
           >
-            <Account :web3="web3" />
+            <Account :user="user" />
           </div>
         </div>
         <!-- END First Row -->
@@ -67,11 +67,12 @@
   </q-layout>
 </template>
 <script>
-import { mapMutations, mapGetters } from 'vuex'
+/* Import Vuex State, Getters and Mutations */
+import { mapState, mapMutations, mapGetters } from 'vuex'
 /* Enums and Helper */
 import { networks } from '~/util/networks'
 import { networkFilter } from '~/util/networkFilter'
-
+/* Components */
 import Header from '~/components/Header.vue'
 import SidebarLeft from '~/components/SidebarLeft.vue'
 import PageStickyMenu from '~/components/PageStickyMenu.vue'
@@ -85,7 +86,7 @@ import Seal from '~/components/Seal.vue'
 import G3fi from '~/components/G3fi.vue'
 import Incubator from '~/components/Incubator.vue'
 import Academy from '~/components/Academy.vue'
-
+/* LFG */
 export default {
   name: 'N3RD',
   components: {
@@ -107,37 +108,59 @@ export default {
     return {}
   },
   computed: {
+    ...mapState(['web3', 'user']),
     ...mapGetters({
       getWeb3: 'getWeb3',
+      getChainIdHEX: 'getChainIdHEX',
     }),
     web3: {
       get() {
         return this.$store.state.web3
       },
       set(value) {
-        // this.$store.commit('SET_WEB3_INSTANCE', value)
+        this.$store.commit('SET_WEB3', value)
+      },
+    },
+    user: {
+      get() {
+        return this.$store.state.user
+      },
+      set(value) {
+        this.$store.commit('SET_USER', value)
       },
     },
   },
   async beforeCreate() {
     /* Check Web3 Instance */
     const web3_ = await this.$web3()
+    console.log(
+      `%c Web3 detected beforeCreate : ${JSON.stringify(web3_, null, 4)}`,
+      'background: #222; color: #bada55'
+    )
     if (web3_) {
+      this.$store.commit('SET_WEB3', web3_)
       this.$store.commit('SET_WEB3_INSTANCE', true)
       if (web3_ && web3_.isMetaMask === true) {
         this.$store.commit('SET_IS_METAMASK', true)
       }
+      /* Load User Account Info into the store */
       const accountLoaded = await this.loadAccount()
       if (accountLoaded) {
-        console.log('MetaMask loaded successfully!')
+        console.log(
+          '%c MetaMask loaded successfully!',
+          'background: green; color: white'
+        )
       } else {
-        console.log('Please load MetaMask!')
+        console.log(
+          '%c Please connect MetaMask!',
+          'background: red; color: white'
+        )
       }
     }
   },
   methods: {
     async loadAccount() {
-      /* Load Network, Account and Balance/s */
+      /* Load Account, Chain Info and Balance/s */
       const account = await this.$web3.getAccount()
       if (account[0] && account[0] !== '') {
         this.$store.commit('SET_ACCOUNT', account)
