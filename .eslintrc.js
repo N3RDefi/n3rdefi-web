@@ -62,7 +62,7 @@ module.exports = {
     'no-unused-vars': 0,
     eqeqeq: 2,
     'no-await-in-loop': 2,
-    complexity: [2, 10],
+    complexity: [2, 12],
     'dot-location': 2,
     'guard-for-in': 1,
     'no-alert': 2,

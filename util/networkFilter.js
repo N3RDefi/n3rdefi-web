@@ -7,6 +7,9 @@ export function networkFilter(chainHEX) {
     case networks.MAIN_NET.hex:
       networkName = networks.MAIN_NET.name
       break
+    case networks.BINANCE_MAIN_NET.hex:
+      networkName = networks.BINANCE_MAIN_NET.name
+      break
     case networks.ROPSTEN_TEST_NET.hex:
       networkName = networks.ROPSTEN_TEST_NET.name
       break
@@ -18,6 +21,9 @@ export function networkFilter(chainHEX) {
       break
     case networks.KOVAN_TEST_NET.hex:
       networkName = networks.KOVAN_TEST_NET.name
+      break
+    case networks.BINANCE_TEST_NET.hex:
+      networkName = networks.BINANCE_TEST_NET.name
       break
     case networks.MUMBAI_TEST_NET.hex:
       networkName = networks.MUMBAI_TEST_NET.name
