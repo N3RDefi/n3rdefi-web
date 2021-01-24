@@ -1,25 +1,37 @@
 <template>
-  <q-card flat bordered class="my-card">
+  <q-card flat bordered class="n3rd-card n3rd-connect-card">
     <q-card-section>
       <div class="text-h6">{{ title }}</div>
     </q-card-section>
     <q-card-section class="q-pt-none"
-      >Connect your MetaMask to continue ....</q-card-section
+      >{{ !web3.web3Instance ? 'Install Metamask' : 'Connect' }} your MetaMask
+      to continue ....</q-card-section
     >
     <q-card-section>
       <q-btn
         outline
-        color="grey-8"
+        :color="!web3.web3Instance ? 'primary' : 'grey-8'"
+        :label="!web3.web3Instance ? 'Install' : 'Connect'"
         class="full-width"
         @click="connectMetaMask()"
-        >Connect</q-btn
-      >
+      />
     </q-card-section>
   </q-card>
 </template>
 <script>
+/* Enums and Helper */
+import { networks } from '~/util/networks'
+import { networkFilter } from '~/util/networkFilter'
+
 export default {
   name: 'Connect',
+  props: {
+    web3: {
+      type: Object,
+      required: false,
+      default: () => ({}),
+    },
+  },
   data() {
     return {
       title: 'Connect',
@@ -27,9 +39,19 @@ export default {
   },
   methods: {
     async connectMetaMask() {
+      /* Check Web3 Instance */
+      const web3_ = await this.$web3()
+      /* Enable MetaMask and Sign in */
+      if (web3_ && web3_.isMetaMask === true) {
+        this.$store.commit('SET_IS_METAMASK', true)
+      }
       const account = await this.$web3.connectMetaMask()
       if (account) {
-        this.$store.commit('CONNECT_ACCOUNT', account)
+        this.$store.commit('SET_ACCOUNT', account)
+        const chainIdHEX = await this.$web3.getChainId(account)
+        this.$store.commit('SET_CHAIN_ID_HEX', chainIdHEX)
+        const chainName = networkFilter(chainIdHEX)
+        this.$store.commit('SET_CHAIN_NAME', chainName)
         const balance = await this.$web3.getBalance(account)
         this.$store.commit('SET_BALANCE', balance)
       }
@@ -40,7 +62,7 @@ export default {
 <style lang="sass">
 @import "../assets/sass/theme-variables"
 
-.n3rd-element
+.n3rd-card
   background-color: $white
 
 /* CSS Media Queries */

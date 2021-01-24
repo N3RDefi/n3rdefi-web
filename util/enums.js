@@ -1,9 +1,0 @@
-export const networks = Object.freeze({
-  MAIN_NET: 1,
-  ROPSTEN_TEST_NET: 3,
-  RINKEBY_TEST_NET: 4,
-  KOVAN_TEST_NET: 42,
-  MUMBAI_TEST_NET: 8001,
-  TRUFFLE_DEV_NET: 4447,
-  GANACHE_DEV_NET: 5777,
-})

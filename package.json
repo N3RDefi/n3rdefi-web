@@ -15,6 +15,7 @@
     "solhint": "./node_modules/.bin/solhint -f table contracts/**/*.sol"
   },
   "dependencies": {
+    "@metamask/detect-provider": "^1.2.0",
     "@nuxtjs/dotenv": "^1.4.0",
     "core-js": "^3.6.5",
     "nes.css": "^2.3.0",

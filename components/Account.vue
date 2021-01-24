@@ -1,11 +1,14 @@
 <template>
-  <q-card flat bordered class="my-card">
+  <q-card flat bordered class="n3rd-card n3rd-account-card">
     <q-card-section>
       <div class="text-h6">{{ title }}</div>
     </q-card-section>
     <q-card-section class="q-pt-none">
-      <p>Network: {{ web3.networkId }}</p>
-      <p>Account: {{ web3.coinbase }}</p>
+      <p>Web3 Instance: {{ web3.web3Instance }}</p>
+      <p>Is MetaMask: {{ web3.isMetaMask }}</p>
+      <p>Chain Id HEX: {{ web3.chainIdHEX }}</p>
+      <p>Network: {{ networkFilter(web3.chainIdHEX) }}</p>
+      <p>Account: {{ web3.account[0] }}</p>
       <p>Balance: {{ web3.balance }}</p>
     </q-card-section>
     <!-- <q-card-section>
@@ -24,6 +27,7 @@
   </q-card>
 </template>
 <script>
+import { networkFilter } from '~/util/networkFilter'
 export default {
   name: 'Account',
   props: {
@@ -38,12 +42,17 @@ export default {
       title: 'Account',
     }
   },
+  methods: {
+    networkFilter(chainId) {
+      return networkFilter(chainId)
+    },
+  },
 }
 </script>
 <style lang="sass">
 @import "../assets/sass/theme-variables"
 
-.n3rd-element
+.n3rd-account-card
   background-color: $white
 
 /* CSS Media Queries */

@@ -1,11 +1,21 @@
 const state = () => ({
   web3: {
     web3Instance: false,
-    networkId: null,
-    coinbase: null,
+    isMetaMask: false,
+    chainId: null,
+    chainIdHEX: null,
+    chainName: null,
+    account: null,
     balance: null,
   },
-  contractInstance: null,
+  contracts: {
+    contractInstance: null,
+    N3RDContract: null,
+    N3RDyContract: null,
+    N3RDaoContract: null,
+    SAFUContract: null,
+    SAFUSealContract: null,
+  },
   user: null,
   nfts: [],
   nftCats: [],
@@ -17,58 +27,78 @@ const actions = {
   onAuthStateChangedAction(state, { account, nfts }) {
     if (!account) {
       // Remove state if now account
-      state.commit('CONNECT_ACCOUNT', null)
-      state.commit('SET_NFTS', null)
+      state.commit('SET_ACCOUNT', null)
     } else {
-      state.commit('CONNECT_ACCOUNT', account)
-      state.commit('SET_NFTS', nfts)
+      state.commit('SET_ACCOUNT', account)
     }
   },
   setupWeb3Account(state, { account }) {
-    console.log('setupWeb3Account:', account)
-    state.commit('CONNECT_ACCOUNT', account)
+    state.commit('SET_ACCOUNT', account)
   },
 }
 
 const mutations = {
-  SEARCH(state, payload) {
-    state.searchText = payload
+  SET_WEB3_INSTANCE(state, payload) {
+    /* The Browser has Ethereum installed but not connected */
+    state.web3.web3Instance = payload
   },
-  TOGGLE_LEFTDRAWER(state, value) {
-    state.leftDrawerOpen = !state.leftDrawerOpen
+  SET_IS_METAMASK(state, payload) {
+    /* MetaMask is installed but not connected */
+    state.web3.isMetaMask = payload
   },
-  WEB3INSTANCE(state, payload) {
-    console.log('WEB3INSTANCE:', payload.networkId)
-    state.web3.web3Instance = !!payload.networkId
-    if (payload.networkId) {
-      state.web3.networkId = payload.networkId
-    }
+  SET_CHAIN_ID(state, payload) {
+    /* Set the chainId of network provider */
+    state.web3.chainId = payload
   },
-  CONNECT_ACCOUNT(state, payload) {
+  SET_CHAIN_ID_HEX(state, payload) {
+    /* Set the chainIdHEX of network provider */
+    state.web3.chainIdHEX = payload
+  },
+  SET_CHAIN_NAME(state, payload) {
+    /* Set the Network Name of network provider */
+    state.web3.chainName = payload
+  },
+  SET_ACCOUNT(state, payload) {
     /* Set the web3Instance if Account */
     state.web3.web3Instance = true
-    state.web3.coinbase = payload
-  },
-  SET_NETWORK(state, payload) {
-    /* Set the networkId of MetaMask */
-    state.web3.networkId = payload
+    state.web3.account = payload
   },
   SET_BALANCE(state, payload) {
     /* Set the Balance of the Account */
     state.web3.balance = payload
   },
-  GENERATE_NFT(state, payload) {
-    console.log('GENERATE_NFT:', payload)
-    // state.nfts.push(nft)
+  SET_NFT(state, payload) {
+    state.nfts.push(payload)
+  },
+  SET_NFT_CAT(state, payload) {
+    state.nftCats.push(payload)
+  },
+  SET_SEARCH(state, payload) {
+    state.searchText = payload
+  },
+  TOGGLE_LEFTDRAWER(state) {
+    state.leftDrawerOpen = !state.leftDrawerOpen
   },
 }
 
 const getters = {
-  getSearchText(state) {
-    return state.searchText
+  getWeb3(state) {
+    return state.web3.web3Instance
   },
-  getLeftDrawerState(state) {
-    return state.leftDrawerOpen
+  getWeb3Instance(state) {
+    return state.web3.web3Instance
+  },
+  getChainId(state) {
+    return state.web3.chainId
+  },
+  getChainIdHEX(state) {
+    return state.web3.chainIdHEX
+  },
+  getAccount(state) {
+    return state.web3.account
+  },
+  getBalance(state) {
+    return state.web3.balance
   },
   getUser(state) {
     return state.user
@@ -76,8 +106,14 @@ const getters = {
   getNfts(state) {
     return state.nfts
   },
-  web3Instance(state) {
-    return state.web3
+  getNftCats(state) {
+    return state.nftCats
+  },
+  getSearchText(state) {
+    return state.searchText
+  },
+  getLeftDrawerState(state) {
+    return state.leftDrawerOpen
   },
 }
 
