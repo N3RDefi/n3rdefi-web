@@ -13,8 +13,6 @@
   </q-card>
 </template>
 <script>
-import { mapMutations, mapGetters } from 'vuex'
-
 export default {
   name: 'D3fi',
   data() {

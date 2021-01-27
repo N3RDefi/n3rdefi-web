@@ -1,6 +1,6 @@
 import Web3 from 'web3'
 import detectEthereumProvider from '@metamask/detect-provider'
-import { networkFilter } from '~/util/networkFilter'
+import { networkFilter } from './networkFilter'
 
 const pollWeb3 = async () => {
   const provider = await detectEthereumProvider()
@@ -22,15 +22,15 @@ const pollWeb3 = async () => {
         const [...newAccount] = accounts
 
         const web3 = new Web3(window.ethereum)
-        let displayBalance_ = 0
-        const balance = await web3.eth.getBalance(
+        let displayBalance = 0
+        await web3.eth.getBalance(
           String(newAccount),
           'latest',
           (err, result) => {
             if (err) {
               console.log(err)
             } else {
-              displayBalance_ = web3.utils.fromWei(result, 'ether')
+              displayBalance = web3.utils.fromWei(result, 'ether')
             }
           }
         )
@@ -38,7 +38,7 @@ const pollWeb3 = async () => {
           account: newAccount,
           chainIdHEX: chainId,
           chainName: networkFilter(chainId),
-          balance: displayBalance_,
+          balance: displayBalance,
         })
       }
     }

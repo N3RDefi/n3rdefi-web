@@ -1,7 +1,9 @@
 <template>
   <q-card flat bordered class="n3rd-card n3rd-account-card">
     <q-card-section>
-      <div class="text-h6">{{ title }}</div>
+      <div class="text-h6">
+        {{ title }}
+      </div>
     </q-card-section>
     <q-card-section class="q-pt-none">
       <p>Account: {{ user.account[0] }}</p>
@@ -11,7 +13,8 @@
       <p>Web3 Instance: {{ user.web3Instance }}</p>
       <p>Is MetaMask: {{ user.isMetaMask }}</p>
       <p>Chain Id HEX: {{ user.chainIdHEX }}</p>
-      <p>Network: {{ networkFilter(user.chainIdHEX) }}</p>
+      <p>Network ID: {{ networkFilter(user.chainIdHEX, 'id') }}</p>
+      <p>Network: {{ networkFilter(user.chainIdHEX, 'name') }}</p>
     </q-card-section>
     <q-card-section>
       <q-btn
@@ -19,17 +22,27 @@
         outline
         color="grey-8"
         class="full-width q-mb-sm"
-        @click="sendTransaction(to, from, value)"
-        >Send Transaction</q-btn
+        @click="
+          sendTransaction(
+            (from = 'test'),
+            (to = 'test'),
+            (value = 'test'),
+            (gas = 'test'),
+            (gasPrice = 'test')
+          )
+        "
       >
+        Send Transaction
+      </q-btn>
       <q-btn
         v-if="user"
         outline
         color="primary"
         class="full-width"
         @click="requestPermissions()"
-        >Request Permissions</q-btn
       >
+        Request Permissions
+      </q-btn>
     </q-card-section>
     <q-card-section class="q-pt-none">
       <pre>User: {{ user }}</pre>
@@ -37,7 +50,8 @@
   </q-card>
 </template>
 <script>
-import { networkFilter } from '~/util/networkFilter'
+import { networkFilter } from '../util/networkFilter'
+
 export default {
   name: 'Account',
   props: {
@@ -53,25 +67,22 @@ export default {
     }
   },
   methods: {
-    networkFilter(chainId) {
-      return networkFilter(chainId)
+    networkFilter(chainId, filterType) {
+      return networkFilter(chainId, filterType)
     },
-    async sendTransaction(to, from, value) {
-      // window.ethereum
+    async sendTransaction(from, to, value, gas, gasPrice) {
       try {
-        const transactionHash = await window.ethereum.request({
-          method: 'eth_sendTransaction',
-          params: [
-            {
-              to,
-              from,
-              value,
-            },
-          ],
-        })
+        const sent = await this.$web3.sendTransaction(
+          from,
+          to,
+          value,
+          gas,
+          gasPrice
+        )
         // Handle the result
-        console.log(transactionHash)
+        console.log(sent)
       } catch (error) {
+        // Handle the error
         console.error(error)
       }
     },

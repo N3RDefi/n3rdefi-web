@@ -59,7 +59,6 @@
           <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pa-sm">
             <Academy />
           </div>
-          <!-- END Fifth Row -->
         </div>
       </q-page>
       <PageStickyMenu />
@@ -68,24 +67,24 @@
 </template>
 <script>
 /* Import Vuex State, Getters and Mutations */
-import { mapState, mapMutations, mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 /* Enums and Helper */
-import { networks } from '~/util/networks'
-import { networkFilter } from '~/util/networkFilter'
+// import { networks } from '../util/networks'
+import { networkFilter } from '../util/networkFilter'
 /* Components */
-import Header from '~/components/Header.vue'
-import SidebarLeft from '~/components/SidebarLeft.vue'
-import PageStickyMenu from '~/components/PageStickyMenu.vue'
-import Intro from '~/components/Intro.vue'
-import Connect from '~/components/Connect.vue'
-import Account from '~/components/Account.vue'
-import NFTGenerator from '~/components/NFTGenerator.vue'
-import NFTHero from '~/components/NFTHero.vue'
-import D3fi from '~/components/D3fi.vue'
-import Seal from '~/components/Seal.vue'
-import G3fi from '~/components/G3fi.vue'
-import Incubator from '~/components/Incubator.vue'
-import Academy from '~/components/Academy.vue'
+import Header from '../components/Header.vue'
+import SidebarLeft from '../components/SidebarLeft.vue'
+import PageStickyMenu from '../components/PageStickyMenu.vue'
+import Intro from '../components/Intro.vue'
+import Connect from '../components/Connect.vue'
+import Account from '../components/Account.vue'
+import NFTGenerator from '../components/NFTGenerator.vue'
+import NFTHero from '../components/NFTHero.vue'
+import D3fi from '../components/D3fi.vue'
+import Seal from '../components/Seal.vue'
+import G3fi from '../components/G3fi.vue'
+import Incubator from '../components/Incubator.vue'
+import Academy from '../components/Academy.vue'
 /* LFG */
 export default {
   name: 'N3RD',
@@ -132,15 +131,15 @@ export default {
   },
   async beforeCreate() {
     /* Check Web3 Instance */
-    const web3_ = await this.$web3()
+    const web3 = await this.$web3()
     console.log(
-      `%c Web3 detected beforeCreate : ${JSON.stringify(web3_, null, 4)}`,
+      `%c Web3 detected beforeCreate : ${JSON.stringify(web3, null, 4)}`,
       'background: #222; color: #bada55'
     )
-    if (web3_) {
-      this.$store.commit('SET_WEB3', web3_)
+    if (web3) {
+      this.$store.commit('SET_WEB3', web3)
       this.$store.commit('SET_WEB3_INSTANCE', true)
-      if (web3_ && web3_.isMetaMask === true) {
+      if (web3 && web3.isMetaMask === true) {
         this.$store.commit('SET_IS_METAMASK', true)
       }
       /* Load User Account Info into the store */
@@ -171,9 +170,8 @@ export default {
         const balance = await this.$web3.getBalance(account)
         this.$store.commit('SET_BALANCE', balance)
         return true
-      } else {
-        return false
       }
+      return false
     },
   },
 }

@@ -5,8 +5,8 @@ const state = () => ({
   user: {
     web3Instance: false,
     isMetaMask: false,
-    chainId: null,
     chainIdHEX: null,
+    chainId: null,
     chainName: null,
     account: null,
     balance: null,
@@ -21,8 +21,8 @@ const state = () => ({
   },
   nfts: [],
   nftCats: [],
-  leftDrawerOpen: false,
   searchText: '',
+  leftDrawerOpen: false,
 })
 
 const actions = {

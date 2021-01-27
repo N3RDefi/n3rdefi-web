@@ -31,8 +31,6 @@
   </div>
 </template>
 <script>
-import { mapMutations, mapGetters } from 'vuex'
-
 export default {
   name: 'G3fi',
   data() {
