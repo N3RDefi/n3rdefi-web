@@ -29,6 +29,7 @@ const pollWeb3 = async () => {
           (err, result) => {
             if (err) {
               console.log(err)
+              displayBalance = 0
             } else {
               displayBalance = web3.utils.fromWei(result, 'ether')
             }
@@ -36,8 +37,9 @@ const pollWeb3 = async () => {
         )
         $nuxt.$store.dispatch('pollWeb3', {
           account: newAccount,
-          chainIdHEX: chainId,
-          chainName: networkFilter(chainId),
+          chainId: networkFilter(chainId, 'id'),
+          chainIdHEX: String(chainId),
+          chainName: networkFilter(chainId, 'name'),
           balance: displayBalance,
         })
       }

@@ -9,6 +9,7 @@
 import Vue from 'vue'
 import Web3 from 'web3'
 import detectEthereumProvider from '@metamask/detect-provider'
+import { Arkane } from '@arkane-network/web3-arkane-provider/'
 /* Contracts ABI */
 import N3RDBEP20_ABI from '../contracts/abi/N3RDBEP20_ABI'
 import N3RD_ABI from '../contracts/abi/N3RD_ABI'
@@ -58,23 +59,44 @@ const BSC_ADDR =
 console.log('ETH_ADDR', ETH_ADDR)
 console.log('BNB_ADDR', BNB_ADDR)
 console.log('BSC_ADDR', BSC_ADDR)
-
-/* Base function to check the Provider  */
+/* Arkane Options */
+const arkaneOptions = {
+  clientId: 'N3RDefi',
+  // rpcUrl: 'https://kovan.infura.io/v3/YOUR-PROJECT-ID', // optional
+  environment: 'staging', // optional, production by default possible values are 'local', 'tst1', 'staging', 'prod'
+  windowMode: 'POPUP', // optional, REDIRECT by default
+  useOverlayWithPopup: true,
+  // bearerTokenProvider: () => 'obtained_bearer_token', // optional, default undefined
+  // optional: you can set an identity provider to be used when authenticating
+  authenticationOptions: {
+    idpHint: 'google',
+  },
+}
+/* Base function to check the Arkane Provider  */
+const getArkaneProvider = async () => {
+  const provider = await detectEthereumProvider()
+  if (provider) {
+    Arkane.createArkaneProviderEngine(arkaneOptions).then((provider) => {
+      console.log(
+        `%c createArkaneProviderEngine : ${JSON.stringify(provider, null, 4)}`,
+        'background: #222; color: #bada55'
+      )
+      return new Web3(provider)
+    })
+  } else {
+    // If the provider is not detected, detectEthereumProvider resolves to null
+    console.error('Please install MetaMask to continue!')
+    return null
+  }
+  return null
+}
+/* Base function to check the Ethereum Provider  */
 const getWeb3 = async () => {
   const provider = await detectEthereumProvider()
   if (provider) {
-    // console.log(
-    //   `%c Ethereum successfully detected! : ${JSON.stringify(
-    //     window.ethereum,
-    //     null,
-    //     4
-    //   )}`,
-    //   'background: #222; color: #bada55'
-    // )
-    return window.ethereum
+    return provider
   }
   if (window.web3) {
-    console.log('Old Web3 is installed!', window.web3.currentProvider)
     return new Web3(window.web3)
   }
   // If the provider is not detected, detectEthereumProvider resolves to null
@@ -85,6 +107,11 @@ const getWeb3 = async () => {
 const web3 = () => {
   const newWeb3 = getWeb3()
   return newWeb3
+}
+/* Connect the Arkane Provider */
+web3.connectArkaneProvider = async () => {
+  const arkaneProvider = await getArkaneProvider()
+  return arkaneProvider
 }
 /* Connect Metamask, returns first Account */
 web3.connectMetaMask = async () => {

@@ -68,8 +68,7 @@
 <script>
 /* Import Vuex State, Getters and Mutations */
 import { mapState, mapGetters } from 'vuex'
-/* Enums and Helper */
-// import { networks } from '../util/networks'
+/* Enums and Network Helper */
 import { networkFilter } from '../util/networkFilter'
 /* Components */
 import Header from '../components/Header.vue'
@@ -85,6 +84,7 @@ import Seal from '../components/Seal.vue'
 import G3fi from '../components/G3fi.vue'
 import Incubator from '../components/Incubator.vue'
 import Academy from '../components/Academy.vue'
+
 /* LFG */
 export default {
   name: 'N3RD',
@@ -110,7 +110,7 @@ export default {
     ...mapState(['web3', 'user']),
     ...mapGetters({
       getWeb3: 'getWeb3',
-      getChainIdHEX: 'getChainIdHEX',
+      getUser: 'getUser',
     }),
     web3: {
       get() {
@@ -132,10 +132,6 @@ export default {
   async beforeCreate() {
     /* Check Web3 Instance */
     const web3 = await this.$web3()
-    console.log(
-      `%c Web3 detected beforeCreate : ${JSON.stringify(web3, null, 4)}`,
-      'background: #222; color: #bada55'
-    )
     if (web3) {
       this.$store.commit('SET_WEB3', web3)
       this.$store.commit('SET_WEB3_INSTANCE', true)

@@ -15,6 +15,9 @@
     "solhint": "./node_modules/.bin/solhint -f table contracts/**/*.sol"
   },
   "dependencies": {
+    "@arkane-network/arkane-connect": "^1.22.0",
+    "@arkane-network/web3-arkane-provider": "^0.18.0",
+    "@arkane-network/web3-provider-engine": "^16.0.1-e",
     "@metamask/detect-provider": "^1.2.0",
     "@nuxtjs/dotenv": "^1.4.0",
     "core-js": "^3.6.5",
