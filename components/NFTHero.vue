@@ -8,9 +8,9 @@
   </div>
 </template>
 <script>
-import { mapMutations, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
-import ImgCard from '~/components/Cards/ImgCard.vue'
+import ImgCard from './Cards/ImgCard.vue'
 
 export default {
   name: 'NFTHero',

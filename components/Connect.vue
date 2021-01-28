@@ -20,8 +20,7 @@
 </template>
 <script>
 /* Enums and Helper */
-import { networks } from '~/util/networks'
-import { networkFilter } from '~/util/networkFilter'
+import { networkFilter } from '../util/networkFilter'
 /* LFG */
 export default {
   name: 'Connect',
@@ -40,10 +39,10 @@ export default {
   methods: {
     async connectMetaMask() {
       /* Check Web3 Instance */
-      const web3_ = await this.$web3()
-      this.$store.commit('SET_WEB3', web3_)
+      const web3 = await this.$web3()
+      this.$store.commit('SET_WEB3', web3)
       /* Enable MetaMask and Sign in */
-      if (web3_ && web3_.isMetaMask === true) {
+      if (web3 && web3.isMetaMask === true) {
         this.$store.commit('SET_IS_METAMASK', true)
       }
       /* Load User Account Info into the store */
@@ -67,14 +66,15 @@ export default {
         this.$store.commit('SET_ACCOUNT', account)
         const chainIdHEX = await this.$web3.getChainId(account)
         this.$store.commit('SET_CHAIN_ID_HEX', chainIdHEX)
-        const chainName = networkFilter(chainIdHEX)
+        const chainId = networkFilter(chainIdHEX, 'id')
+        this.$store.commit('SET_CHAIN_ID', chainId)
+        const chainName = networkFilter(chainIdHEX, 'name')
         this.$store.commit('SET_CHAIN_NAME', chainName)
         const balance = await this.$web3.getBalance(account)
         this.$store.commit('SET_BALANCE', balance)
         return true
-      } else {
-        return false
       }
+      return false
     },
   },
 }

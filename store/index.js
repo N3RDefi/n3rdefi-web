@@ -5,11 +5,19 @@ const state = () => ({
   user: {
     web3Instance: false,
     isMetaMask: false,
-    chainId: null,
     chainIdHEX: null,
+    chainId: null,
     chainName: null,
     account: null,
     balance: null,
+  },
+  profile: {
+    userId: null,
+    hasMasterPin: null,
+    username: null,
+    email: null,
+    firstName: null,
+    lastName: null,
   },
   contracts: {
     contractInstance: null,
@@ -21,8 +29,8 @@ const state = () => ({
   },
   nfts: [],
   nftCats: [],
-  leftDrawerOpen: false,
   searchText: '',
+  leftDrawerOpen: false,
 })
 
 const actions = {
@@ -32,56 +40,92 @@ const actions = {
 }
 
 const mutations = {
+  /* Web3 & Providers */
   SET_WEB3(state, payload) {
-    /* The Browser has Ethereum installed but not connected */
     Object.assign(state.web3, payload)
     pollWeb3()
   },
   POLL_WEB3(state, payload) {
-    console.log('pollWeb3Instance mutation being executed', payload)
     state.user.account = payload.account
+    state.user.chainId = payload.chainId
     state.user.chainIdHEX = payload.chainIdHEX
     state.user.chainName = payload.chainName
     state.user.balance = payload.balance
   },
+  /* User */
   SET_USER(state, payload) {
-    /* Set the User Object as a whole */
     Object.assign(state.user, payload)
   },
   SET_WEB3_INSTANCE(state, payload) {
-    /* The User has Ethereum installed but not connected */
     state.user.web3Instance = payload
   },
   SET_IS_METAMASK(state, payload) {
-    /* MetaMask is installed but not connected */
     state.user.isMetaMask = payload
   },
   SET_CHAIN_ID(state, payload) {
-    /* Set the chainId of network provider */
     state.user.chainId = payload
   },
   SET_CHAIN_ID_HEX(state, payload) {
-    /* Set the chainIdHEX of network provider */
     state.user.chainIdHEX = payload
   },
   SET_CHAIN_NAME(state, payload) {
-    /* Set the Network Name of network provider */
     state.user.chainName = payload
   },
   SET_ACCOUNT(state, payload) {
-    /* Set the Users default Account */
     state.user.account = payload
   },
   SET_BALANCE(state, payload) {
-    /* Set the Balance of the Users account */
     state.user.balance = payload
   },
+  /* Arkane Profile */
+  SET_PROFILE(state, payload) {
+    Object.assign(state.profile, payload)
+  },
+  SET_PROFILE_USERID(state, payload) {
+    state.profile.userId = payload
+  },
+  SET_PROFILE_HASMASTERPIN(state, payload) {
+    state.profile.hasMasterPin = payload
+  },
+  SET_PROFILE_USERNAME(state, payload) {
+    state.profile.username = payload
+  },
+  SET_PROFILE_EMAIL(state, payload) {
+    state.profile.email = payload
+  },
+  SET_PROFILE_FIRSTNAME(state, payload) {
+    state.profile.firstName = payload
+  },
+  SET_PROFILE_LASTNAME(state, payload) {
+    state.profile.lastName = payload
+  },
+  /* Contracts */
+  SET_CONTRACT_INSTANCE(state, payload) {
+    state.contracts.contractInstance = payload
+  },
+  SET_CONTRACT_N3RDCONTRACT(state, payload) {
+    state.contracts.N3RDContract = payload
+  },
+  SET_CONTRACT_N3RDYCONTRACT(state, payload) {
+    state.contracts.N3RDyContract = payload
+  },
+  SET_CONTRACT_N3RDAOCONTRACT(state, payload) {
+    state.contracts.N3RDaoContract = payload
+  },
+  SET_CONTRACT_SAFUCONTRACT(state, payload) {
+    state.contracts.SAFUContract = payload
+  },
+  SET_CONTRACT_SAFUSEALCONTRACT(state, payload) {
+    state.contracts.SAFUSealContract = payload
+  },
+  /* NFTs */
   SET_NFT(state, payload) {
     state.nfts.push(payload)
   },
   SET_NFT_CAT(state, payload) {
     state.nftCats.push(payload)
   },
+  /* Website */
   SET_SEARCH(state, payload) {
     state.searchText = payload
   },
@@ -91,9 +135,11 @@ const mutations = {
 }
 
 const getters = {
+  /* Web3 */
   getWeb3(state) {
     return state.web3
   },
+  /* User */
   getUser(state) {
     return state.user
   },
@@ -118,12 +164,55 @@ const getters = {
   getBalance(state) {
     return state.user.balance
   },
+  /* Profile */
+  getProfile(state) {
+    return state.profile
+  },
+  getUserId(state) {
+    return state.profile.userId
+  },
+  getHasMasterPin(state) {
+    return state.profile.hasMasterPin
+  },
+  getUsername(state) {
+    return state.profile.username
+  },
+  getEmail(state) {
+    return state.profile.email
+  },
+  getFirstName(state) {
+    return state.profile.firstName
+  },
+  getLastName(state) {
+    return state.profile.lastName
+  },
+  /* Contracts */
+  getContractInstance(state) {
+    return state.contracts.contractInstance
+  },
+  getN3RDContract(state) {
+    return state.contracts.N3RDContract
+  },
+  getN3RDyContract(state) {
+    return state.contracts.N3RDyContract
+  },
+  getN3RDaoContract(state) {
+    return state.contracts.N3RDaoContract
+  },
+  getSAFUContract(state) {
+    return state.contracts.SAFUContract
+  },
+  getSAFUSealContract(state) {
+    return state.contracts.SAFUSealContract
+  },
+  /* NFTs */
   getNfts(state) {
     return state.nfts
   },
   getNftCats(state) {
     return state.nftCats
   },
+  /* Website */
   getSearchText(state) {
     return state.searchText
   },

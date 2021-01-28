@@ -9,65 +9,109 @@
 import Vue from 'vue'
 import Web3 from 'web3'
 import detectEthereumProvider from '@metamask/detect-provider'
+import { Arkane } from '@arkane-network/web3-arkane-provider/'
 /* Contracts ABI */
-import N3RD_ABI from '~/contracts/abi/N3RD_ABI'
-import N3RDY_ABI from '~/contracts/abi/N3RDY_ABI'
-import N3RDAO_ABI from '~/contracts/abi/N3RDAO_ABI'
-import SAFU_ABI from '~/contracts/abi/SAFU_ABI'
-import SAFUSEAL_ABI from '~/contracts/abi/SAFUSEAL_ABI'
+import N3RDBEP20_ABI from '../contracts/abi/N3RDBEP20_ABI'
+import N3RD_ABI from '../contracts/abi/N3RD_ABI'
+import N3RDY_ABI from '../contracts/abi/N3RDY_ABI'
+import N3RDAO_ABI from '../contracts/abi/N3RDAO_ABI'
+import SAFU_ABI from '../contracts/abi/SAFU_ABI'
+import SAFUSEAL_ABI from '../contracts/abi/SAFUSEAL_ABI'
 /* Network Enum */
-import { networks } from '~/util/networks.js'
-const network = networks.MUMBAI_TEST_NET
-// console.log('Choosen Network', network)
-/* Contract Addresses */
-const BNB_ADDR = '0x0000000000000000000000000000000000000000'
-const N3RD_ADDR =
-  network === 1
-    ? '0xfb0349F08e2078a2944Ae3205446D176c3b45373'
-    : '0xE4Ae305ebE1AbE663f261Bc00534067C80ad677C'
-const N3RDY_ADDR =
-  network === 1
-    ? '0xfb0349F08e2078a2944Ae3205446D176c3b45373'
-    : '0xE4Ae305ebE1AbE663f261Bc00534067C80ad677C'
-const N3RDAO_ADDR =
-  network === 1
-    ? '0x4b38dCD3E3f422F33Ef1F49eD3A3F11c7A5d27bC'
-    : '0x04e283c9350Bab8A1243ccfc1dd9BF1Ab72dF4f0'
-const SAFU_ADDR =
-  network === 1
-    ? '0x94fFAD4568fF00D921C76aA158848b33D7Bd65d3'
-    : '0x4ab5b40746566c09f4B90313D0801D3b93f56EF5'
-const SAFUSEAL_ADDR =
-  network === 1
-    ? '0xeFD9BfFe7c63Ab5962648E3e83e44306C4dAD747'
-    : '0xCaF0366aF95E8A03E269E52DdB3DbB8a00295F91'
+import { networks } from '../util/networks'
 
-/* Base function to check the Provider  */
-const getWeb3 = async () => {
+const network = networks.MUMBAI_TEST_NET
+console.log('Choosen Network', network)
+
+/* Contract Addresses */
+const N3RDBEP20_ADDR =
+  network.id === 1
+    ? process.env.N3RD_CONTRACT_ADDRESS
+    : process.env.N3RD_TEST_CONTRACT_ADDRESS
+const N3RD_ADDR =
+  network.id === 1
+    ? process.env.N3RD_CONTRACT_ADDRESS
+    : process.env.N3RD_TEST_CONTRACT_ADDRESS
+const N3RDY_ADDR =
+  network.id === 1
+    ? process.env.N3RDY_CONTRACT_ADDRESS
+    : process.env.N3RDY_TEST_CONTRACT_ADDRESS
+const N3RDAO_ADDR =
+  network.id === 1
+    ? process.env.N3RDAO_CONTRACT_ADDRESS
+    : process.env.N3RDAO_TEST_CONTRACT_ADDRESS
+const SAFU_ADDR =
+  network.id === 1
+    ? process.env.SAFU_CONTRACT_ADDRESS
+    : process.env.SAFU_TEST_CONTRACT_ADDRESS
+const SAFUSEAL_ADDR =
+  network.id === 1
+    ? process.env.SAFUSEAL_CONTRACT_ADDRESS
+    : process.env.SAFUSEAL_TEST_CONTRACT_ADDRESS
+/* Ethereum && Binance Contract Address */
+const ETH_ADDR = process.env.ETH_ACCOUNT
+const BNB_ADDR = '0x0000000000000000000000000000000000000000'
+const BSC_ADDR =
+  network.id === 2
+    ? process.env.BINANCE_SMART_CHAIN_MAINNET
+    : process.env.BINANCE_SMART_CHAIN_TESTNET
+
+console.log('ETH_ADDR', ETH_ADDR)
+console.log('BNB_ADDR', BNB_ADDR)
+console.log('BSC_ADDR', BSC_ADDR)
+/* Arkane Options */
+const arkaneOptions = {
+  clientId: 'N3RDefi',
+  // rpcUrl: 'https://kovan.infura.io/v3/YOUR-PROJECT-ID', // optional
+  environment: 'staging', // optional, production by default possible values are 'local', 'tst1', 'staging', 'prod'
+  windowMode: 'POPUP', // optional, REDIRECT by default
+  useOverlayWithPopup: true,
+  // bearerTokenProvider: () => 'obtained_bearer_token', // optional, default undefined
+  // optional: you can set an identity provider to be used when authenticating
+  authenticationOptions: {
+    idpHint: 'google',
+  },
+}
+/* Base function to check the Arkane Provider  */
+const getArkaneProvider = async () => {
   const provider = await detectEthereumProvider()
   if (provider) {
-    // console.log(
-    //   `%c Ethereum successfully detected! : ${JSON.stringify(
-    //     window.ethereum,
-    //     null,
-    //     4
-    //   )}`,
-    //   'background: #222; color: #bada55'
-    // )
-    return window.ethereum
-  } else if (window.web3) {
-    console.log('Old Web3 is installed!', window.web3.currentProvider)
-    return new Web3(window.web3)
+    Arkane.createArkaneProviderEngine(arkaneOptions).then((provider) => {
+      console.log(
+        `%c createArkaneProviderEngine : ${JSON.stringify(provider, null, 4)}`,
+        'background: #222; color: #bada55'
+      )
+      return new Web3(provider)
+    })
   } else {
     // If the provider is not detected, detectEthereumProvider resolves to null
     console.error('Please install MetaMask to continue!')
     return null
   }
+  return null
+}
+/* Base function to check the Ethereum Provider  */
+const getWeb3 = async () => {
+  const provider = await detectEthereumProvider()
+  if (provider) {
+    return provider
+  }
+  if (window.web3) {
+    return new Web3(window.web3)
+  }
+  // If the provider is not detected, detectEthereumProvider resolves to null
+  console.error('Please install MetaMask to continue!')
+  return null
 }
 /* Base web3 Helper to check provider -> USAGE: this.$web3()  */
 const web3 = () => {
-  const web3_ = getWeb3()
-  return web3_
+  const newWeb3 = getWeb3()
+  return newWeb3
+}
+/* Connect the Arkane Provider */
+web3.connectArkaneProvider = async () => {
+  const arkaneProvider = await getArkaneProvider()
+  return arkaneProvider
 }
 /* Connect Metamask, returns first Account */
 web3.connectMetaMask = async () => {
@@ -137,35 +181,46 @@ web3.getChainId = async () => {
 web3.getBalance = async (account) => {
   const provider = await detectEthereumProvider()
   if (provider) {
-    const web3 = new Web3(window.ethereum)
-    let displayBalance_ = 0
-    const balance = await web3.eth.getBalance(
-      String(account),
-      'latest',
-      (err, result) => {
-        if (err) {
-          console.log(err)
-        } else {
-          displayBalance_ = web3.utils.fromWei(result, 'ether')
-        }
+    const newWeb3 = new Web3(window.ethereum)
+    await newWeb3.eth.getBalance(String(account), 'latest', (err, result) => {
+      if (err) {
+        console.log(err)
+      } else {
+        return newWeb3.utils.fromWei(result, 'ether')
       }
-    )
-    return displayBalance_ || 0
+      return 0
+    })
   }
   return 0
 }
 /* Send a Transaction */
-web3.sendTransaction = async (to, from, value) => {
+web3.sendTransaction = async (from, to, value, gas, gasPrice) => {
   const provider = await detectEthereumProvider()
   if (provider) {
+    /* In MetaMask, using the ethereum.request method directly, sending a transaction will involve composing an options object like this: */
+    // const transactionParameters = {
+    //   nonce: '0x00', // ignored by MetaMask
+    //   gasPrice: '0x09184e72a000', // customizable by user during MetaMask confirmation.
+    //   gas: '0x2710', // customizable by user during MetaMask confirmation.
+    //   to: '0x0000000000000000000000000000000000000000', // Required except during contract publications.
+    //   from: ethereum.selectedAddress, // must match user's active address.
+    //   value: '0x00', // Only required to send ether to the recipient from the initiating external account.
+    //   data:
+    //     '0x7f7465737432000000000000000000000000000000000000000000000000000000600057', // Optional, but used for defining smart contract creation and interaction.
+    //   chainId: '0x3', // Used to prevent transaction reuse across blockchains. Auto-filled by MetaMask.
+    // };
+
     try {
+      // txHash is a hex string, as with any RPC call, it may throw an error
       const transactionHash = await provider.request({
         method: 'eth_sendTransaction',
         params: [
           {
-            to,
             from,
+            to,
             value,
+            gas,
+            gasPrice,
           },
         ],
       })
@@ -179,38 +234,42 @@ web3.sendTransaction = async (to, from, value) => {
 }
 
 /* Error log -> USAGE: this.$web3.getExplorerURL(network)  */
-web3.getExplorerURL = (network) => {
+web3.getExplorerURL = (explorer) => {
   console.log(
-    `%c[ Console Log Here : ]\n${JSON.stringify(...network, null, 4)}`,
+    `%c[ Console Log Here : ]\n${JSON.stringify(...explorer, null, 4)}`,
     'color: lightGreen'
   )
   return 'https://testnet.bscscan.com//'
 }
 
+web3.getN3RDBEP20TokenContract = () => {
+  const newWeb3 = getWeb3()
+  return new newWeb3.eth.Contract(N3RDBEP20_ABI, N3RDBEP20_ADDR)
+}
 web3.getN3RDTokenContract = () => {
-  const web3 = getWeb3()
-  return new web3.eth.Contract(N3RD_ABI, N3RD_ADDR)
+  const newWeb3 = getWeb3()
+  return new newWeb3.eth.Contract(N3RD_ABI, N3RD_ADDR)
 }
 web3.getN3RDYTokenContract = () => {
-  const web3 = getWeb3()
-  return new web3.eth.Contract(N3RDY_ABI, N3RDY_ADDR)
+  const newWeb3 = getWeb3()
+  return new newWeb3.eth.Contract(N3RDY_ABI, N3RDY_ADDR)
 }
 web3.getN3RDAOTokenContract = () => {
-  const web3 = getWeb3()
-  return new web3.eth.Contract(N3RDAO_ABI, N3RDAO_ADDR)
+  const newWeb3 = getWeb3()
+  return new newWeb3.eth.Contract(N3RDAO_ABI, N3RDAO_ADDR)
 }
 web3.getSAFUTokenContract = () => {
-  const web3 = getWeb3()
-  return new web3.eth.Contract(SAFU_ABI, SAFU_ADDR)
+  const newWeb3 = getWeb3()
+  return new newWeb3.eth.Contract(SAFU_ABI, SAFU_ADDR)
 }
 web3.getSAFUSEALTokenContract = () => {
-  const web3 = getWeb3()
-  return new web3.eth.Contract(SAFUSEAL_ABI, SAFUSEAL_ADDR)
+  const newWeb3 = getWeb3()
+  return new newWeb3.eth.Contract(SAFUSEAL_ABI, SAFUSEAL_ADDR)
 }
 
 web3.getTokenSymbol = (address) => {
-  const web3 = getWeb3()
-  const contractToken = new web3.eth.Contract(N3RD_ABI, address)
+  const newWeb3 = getWeb3()
+  const contractToken = new newWeb3.eth.Contract(N3RD_ABI, address)
   return contractToken.methods.symbol().call()
 }
 

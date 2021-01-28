@@ -52,7 +52,7 @@
           <q-item-section top>
             <q-item-label>Storage</q-item-label>
             <q-linear-progress :value="storage" class="q-my-sm" />
-            <q-item-label caption>2.6 GB of 15 GB</q-item-label>
+            <q-item-label caption> 2.6 GB of 15 GB </q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
@@ -60,7 +60,7 @@
   </q-drawer>
 </template>
 <script>
-import { mapMutations, mapGetters } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'SidebarLeft',

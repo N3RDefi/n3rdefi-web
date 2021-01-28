@@ -3,6 +3,6 @@
  ** within the Ethereum ecosystem, both from outside
  ** the blockchain and for contract-to-contract interaction.
  * */
-const N3RD_ABI = []
+const N3RDBEP20_ABI = []
 
-export default { N3RD_ABI }
+export default { N3RDBEP20_ABI }
