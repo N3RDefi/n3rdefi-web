@@ -241,35 +241,93 @@ web3.getExplorerURL = (explorer) => {
   )
   return 'https://testnet.bscscan.com//'
 }
-
-web3.getN3RDBEP20TokenContract = () => {
+/* N3RDBEP20 Contract */
+web3.getN3RDBEP20TokenContract = async () => {
   const newWeb3 = getWeb3()
   return new newWeb3.eth.Contract(N3RDBEP20_ABI, N3RDBEP20_ADDR)
 }
-web3.getN3RDTokenContract = () => {
+web3.getN3RDBEP20TokenName = async () => {
+  const contractToken = this.getN3RDBEP20TokenContract(N3RDBEP20_ADDR)
+  return contractToken.methods.name().call()
+}
+web3.getN3RDBEP20TokenContractSymbol = async () => {
+  const newWeb3 = getWeb3()
+  const contractToken = new newWeb3.eth.Contract(N3RDBEP20_ABI, N3RDBEP20_ADDR)
+  return contractToken.methods.symbol().call()
+}
+
+/* N3RD ERC 20 Contract */
+web3.getN3RDTokenContract = async () => {
   const newWeb3 = getWeb3()
   return new newWeb3.eth.Contract(N3RD_ABI, N3RD_ADDR)
 }
-web3.getN3RDYTokenContract = () => {
+web3.getN3RDTokenName = async () => {
+  const contractToken = this.getN3RDTokenContract(N3RD_ADDR)
+  return contractToken.methods.name().call()
+}
+web3.getN3RDTokenSymbol = async () => {
+  const newWeb3 = getWeb3()
+  const contractToken = new newWeb3.eth.Contract(N3RD_ABI, N3RD_ADDR)
+  return contractToken.methods.symbol().call()
+}
+
+/* N3RDy Contract */
+web3.getN3RDYTokenContract = async () => {
   const newWeb3 = getWeb3()
   return new newWeb3.eth.Contract(N3RDY_ABI, N3RDY_ADDR)
 }
-web3.getN3RDAOTokenContract = () => {
+web3.getN3RDYTokenName = async () => {
+  const contractToken = this.getN3RDYTokenContract(N3RDY_ADDR)
+  return contractToken.methods.name().call()
+}
+web3.getN3RDYTokenSymbol = async () => {
+  const newWeb3 = getWeb3()
+  const contractToken = new newWeb3.eth.Contract(N3RDY_ABI, N3RDY_ADDR)
+  return contractToken.methods.symbol().call()
+}
+
+/* N3RDao Contract */
+web3.getN3RDAOTokenContract = async () => {
   const newWeb3 = getWeb3()
   return new newWeb3.eth.Contract(N3RDAO_ABI, N3RDAO_ADDR)
 }
-web3.getSAFUTokenContract = () => {
+web3.getN3RDAOTokenContractName = async () => {
+  const contractToken = this.getN3RDAOTokenContract(N3RDAO_ADDR)
+  return contractToken.methods.name().call()
+}
+web3.getN3RDAOTokenSymbol = async () => {
+  const newWeb3 = getWeb3()
+  const contractToken = new newWeb3.eth.Contract(N3RDAO_ABI, N3RDAO_ADDR)
+  return contractToken.methods.symbol().call()
+}
+
+/* SAFU Protocol Contract */
+web3.getSAFUTokenContract = async () => {
   const newWeb3 = getWeb3()
   return new newWeb3.eth.Contract(SAFU_ABI, SAFU_ADDR)
 }
-web3.getSAFUSEALTokenContract = () => {
+web3.getSAFUTokenName = async () => {
+  const contractToken = this.getSAFUTokenContract(SAFU_ADDR)
+  return contractToken.methods.name().call()
+}
+web3.getSAFUTokenSymbol = async () => {
+  const newWeb3 = getWeb3()
+  const contractToken = new newWeb3.eth.Contract(SAFU_ABI, SAFU_ADDR)
+  return contractToken.methods.symbol().call()
+}
+
+/* SAFU Seal Contract */
+web3.getSAFUSEALTokenContract = async () => {
   const newWeb3 = getWeb3()
   return new newWeb3.eth.Contract(SAFUSEAL_ABI, SAFUSEAL_ADDR)
 }
-
-web3.getTokenSymbol = (address) => {
+web3.getSAFUSEALTokenName = async () => {
+  const contractToken = this.getSAFUSEALTokenContract(SAFUSEAL_ADDR)
+  return contractToken.methods.name().call()
+}
+web3.getSAFUSEALTokenSymbol = async () => {
   const newWeb3 = getWeb3()
-  const contractToken = new newWeb3.eth.Contract(N3RD_ABI, address)
+  const contractToken = new newWeb3.eth.Contract(SAFUSEAL_ABI, SAFUSEAL_ADDR)
   return contractToken.methods.symbol().call()
 }
 

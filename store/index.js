@@ -12,6 +12,7 @@ const state = () => ({
     balance: null,
   },
   profile: {
+    isAuthenticated: false,
     userId: null,
     hasMasterPin: null,
     username: null,
@@ -80,6 +81,9 @@ const mutations = {
   /* Arkane Profile */
   SET_PROFILE(state, payload) {
     Object.assign(state.profile, payload)
+  },
+  SET_PROFILE_ISAUTHENTICATED(state, payload) {
+    state.profile.isAuthenticated = payload
   },
   SET_PROFILE_USERID(state, payload) {
     state.profile.userId = payload
@@ -167,6 +171,9 @@ const getters = {
   /* Profile */
   getProfile(state) {
     return state.profile
+  },
+  getIsAuthenticated(state) {
+    return state.profile.isAuthenticated
   },
   getUserId(state) {
     return state.profile.userId

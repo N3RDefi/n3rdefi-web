@@ -11,8 +11,9 @@
     "lint": "npm run lint:js",
     "generate": "nuxt generate",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "prettier:solidity": "./node_modules/.bin/prettier --write contracts/**/*.sol",
-    "solhint": "./node_modules/.bin/solhint -f table contracts/**/*.sol"
+    "prettier": "prettier --write contracts/**/*.sol",
+    "solhint": "./node_modules/.bin/solhint -f table contracts/**/*.sol",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "@arkane-network/arkane-connect": "^1.22.0",
@@ -36,6 +37,7 @@
     "@typescript-eslint/eslint-plugin": "^4.14.0",
     "@typescript-eslint/parser": "^4.14.0",
     "@openzeppelin/contracts": "^3.3.0",
+    "@codechecks/client": "^0.1.10",
     "chai": "^4.2.0",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
@@ -48,12 +50,15 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^7.0.1",
     "ethereum-waffle": "^3.2.1",
+    "eth-gas-reporter": "^0.2.20",
     "ethers": "^5.0.26",
     "hardhat": "^2.0.8",
     "jshint": "^2.12.0",
     "node-sass": "^4.14.1",
-    "prettier": "^2.1.2",
     "sass-loader": "^8.0.2",
+    "prettier": "^2.1.2",
+    "prettier-plugin-solidity": "^1.0.0-beta.2",
+    "standard": "^14.3.4",
     "typescript": "^4.1.3"
   }
 }

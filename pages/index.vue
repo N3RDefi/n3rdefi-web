@@ -112,22 +112,6 @@ export default {
       getWeb3: 'getWeb3',
       getUser: 'getUser',
     }),
-    web3: {
-      get() {
-        return this.$store.state.web3
-      },
-      set(value) {
-        this.$store.commit('SET_WEB3', value)
-      },
-    },
-    user: {
-      get() {
-        return this.$store.state.user
-      },
-      set(value) {
-        this.$store.commit('SET_USER', value)
-      },
-    },
   },
   async beforeCreate() {
     /* Check Web3 Instance */
@@ -164,6 +148,10 @@ export default {
         const chainName = networkFilter(chainIdHEX)
         this.$store.commit('SET_CHAIN_NAME', chainName)
         const balance = await this.$web3.getBalance(account)
+        console.log(
+          '%c Please connect MetaMask!',
+          'background: red; color: white'
+        )
         this.$store.commit('SET_BALANCE', balance)
         return true
       }

@@ -26,7 +26,7 @@
     </q-card-section>
     <q-card-section>
       <q-btn
-        v-if="profile"
+        v-if="!profile.userId"
         flat
         color="white"
         class="bg-primary full-width q-mb-sm"
@@ -117,17 +117,23 @@ export default {
           })
           const authArkaneAccount = await this.authArkaneAccount(arkaneConnect)
           console.log('authArkaneAccount:', authArkaneAccount)
-          const arkaneProfile = await this.getArkaneProfile(arkaneConnect)
-          console.log('arkaneProfile:', arkaneProfile)
-          this.$store.commit('SET_PROFILE', arkaneProfile)
+          if (authArkaneAccount.isAuthenticated) {
+            this.$store.commit('SET_PROFILE_ISAUTHENTICATED', true)
+            const arkaneProfile = await this.getArkaneProfile(arkaneConnect)
+            console.log('arkaneProfile:', arkaneProfile)
+            this.$store.commit('SET_PROFILE', arkaneProfile)
+          }
         } else {
           /* Use Mainnet environment on ArkaneConnect */
           const arkaneConnect = new ArkaneConnect(process.env.APP_NAME)
           const authArkaneAccount = await this.authArkaneAccount(arkaneConnect)
           console.log('authArkaneAccount:', authArkaneAccount)
-          const arkaneProfile = await this.getArkaneProfile(arkaneConnect)
-          console.log('arkaneProfile:', arkaneProfile)
-          this.$store.commit('SET_PROFILE', arkaneProfile)
+          if (authArkaneAccount.isAuthenticated) {
+            this.$store.commit('SET_PROFILE_ISAUTHENTICATED', true)
+            const arkaneProfile = await this.getArkaneProfile(arkaneConnect)
+            console.log('arkaneProfile:', arkaneProfile)
+            this.$store.commit('SET_PROFILE', arkaneProfile)
+          }
         }
       } catch (error) {
         // Handle the error
@@ -147,14 +153,6 @@ export default {
               console.log(`The user is NOT authenticated: ${auth}`)
             })
         )
-      // console.log(
-      //   `%c authenticationInstance : ${JSON.stringify(
-      //     authenticationInstance,
-      //     null,
-      //     4
-      //   )}`,
-      //   'background: #222; color: #bada55'
-      // )
       // AuthenticationInstance - see https://docs.arkane.network/widget/widget-advanced/object-type-reference/authenticationinstance
       // {
       //   authenticated?: boolean;
