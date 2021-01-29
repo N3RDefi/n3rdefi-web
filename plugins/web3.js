@@ -81,7 +81,7 @@ const getArkaneProvider = async () => {
         `%c createArkaneProviderEngine : ${JSON.stringify(provider, null, 4)}`,
         'background: #222; color: #bada55'
       )
-      return new Web3(provider)
+      return provider
     })
   } else {
     // If the provider is not detected, detectEthereumProvider resolves to null

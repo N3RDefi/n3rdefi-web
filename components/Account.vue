@@ -86,21 +86,21 @@ export default {
       getProfile: 'getProfile',
     }),
   },
-  // async beforeCreate() {
-  //   /* Check ArkaneProvider Instance */
-  //   const arkaneProvider = await this.$web3.connectArkaneProvider()
-  //   if (arkaneProvider) {
-  //     console.log(
-  //       '%c ArkaneProvider loaded successfully!',
-  //       'background: blue; color: white'
-  //     )
-  //   } else {
-  //     console.log(
-  //       '%c Please connect arkaneProvider!',
-  //       'background: red; color: white'
-  //     )
-  //   }
-  // },
+  async beforeCreate() {
+    /* Check ArkaneProvider Instance */
+    const arkaneProvider = await this.$web3.connectArkaneProvider()
+    if (arkaneProvider) {
+      console.log(
+        '%c ArkaneProvider loaded successfully!',
+        'background: blue; color: white'
+      )
+    } else {
+      console.log(
+        '%c Please connect arkaneProvider!',
+        'background: red; color: white'
+      )
+    }
+  },
   methods: {
     networkFilter(chainId, filterType) {
       return networkFilter(chainId, filterType)
