@@ -129,3 +129,5 @@ static/assets/ref
 #Hardhat files
 cache
 artifacts
+coverage.json
+coverage

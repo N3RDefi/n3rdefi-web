@@ -476,7 +476,7 @@ $generic-border-radius          : 4px !default
 $generic-hover-transition       : .3s cubic-bezier(.25, .8, .5, 1) !default
 $typography-font-family         : inter, -apple-system, system-ui, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol" !default
 $min-line-height                : 1.12 !default
-$button-border-radius           : 3px !default
+$button-border-radius           : 0 !default
 $button-padding                 : 4px 16px !default
 $button-dense-padding           : .285em !default
 $button-transition              : $generic-hover-transition !default
@@ -1052,7 +1052,8 @@ input[type='search']::-webkit-search-decoration
   position: relative
 .q-card
   box-shadow: $shadow-2
-  border-radius: $generic-border-radius
+  // border-radius: $generic-border-radius
+  border-radius: none
   vertical-align: top
   background: #fff
   position: relative
@@ -1083,7 +1084,7 @@ input[type='search']::-webkit-search-decoration
     border-right: 0
     box-shadow: none
   &--bordered
-    border: 1px solid $separator-color
+    border: 3px solid $black
   &--dark
     border-color: $separator-dark-color
   &__section

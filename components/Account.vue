@@ -79,12 +79,36 @@ export default {
     }
   },
   computed: {
-    ...mapState(['web3', 'profile', 'user']),
+    ...mapState(['web3', 'user', 'profile']),
     ...mapGetters({
       getWeb3: 'getWeb3',
       getUser: 'getUser',
       getProfile: 'getProfile',
     }),
+    web3: {
+      get() {
+        return this.$store.state.web3
+      },
+      set(value) {
+        this.$store.commit('SET_WEB3', value)
+      },
+    },
+    user: {
+      get() {
+        return this.$store.state.user
+      },
+      set(value) {
+        this.$store.commit('SET_USER', value)
+      },
+    },
+    profile: {
+      get() {
+        return this.$store.state.profile
+      },
+      set(value) {
+        this.$store.commit('SET_PROFILE', value)
+      },
+    },
   },
   async beforeCreate() {
     /* Check ArkaneProvider Instance */

@@ -10,6 +10,7 @@ const state = () => ({
     chainName: null,
     account: null,
     balance: null,
+    step: 0,
   },
   profile: {
     isAuthenticated: false,
@@ -37,6 +38,12 @@ const state = () => ({
 const actions = {
   pollWeb3({ commit }, payload) {
     commit('POLL_WEB3', payload)
+  },
+  increaseStep({ commit }, payload) {
+    commit('SET_STEP', payload)
+  },
+  setStep({ commit }, payload) {
+    commit('SET_STEP', payload)
   },
 }
 
@@ -77,6 +84,9 @@ const mutations = {
   },
   SET_BALANCE(state, payload) {
     state.user.balance = payload
+  },
+  SET_STEP(state, payload) {
+    state.user.step = payload
   },
   /* Arkane Profile */
   SET_PROFILE(state, payload) {
@@ -167,6 +177,9 @@ const getters = {
   },
   getBalance(state) {
     return state.user.balance
+  },
+  getStep(state) {
+    return state.user.step
   },
   /* Profile */
   getProfile(state) {

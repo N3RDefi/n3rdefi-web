@@ -1,29 +1,25 @@
 <template>
   <q-card class="n3rd-nft-card q-mb-md">
     <q-card-section horizontal>
-      <q-img class="col" :src="image" />
+      <q-img class="col" :src="nft.image" />
       <q-card-actions vertical class="justify-around">
         <q-btn flat round color="red" icon="favorite" />
         <q-btn flat round color="accent" icon="bookmark" />
         <q-btn flat round color="primary" icon="share" />
       </q-card-actions>
     </q-card-section>
+    <pre>NFT: {{ nft }}</pre>
   </q-card>
 </template>
 <script>
 export default {
   name: 'ImgCard',
-  data() {
-    return {
-      id: 0,
-      title: 'NFT Title',
-      image: 'https://cdn.quasar.dev/img/parallax2.jpg',
-      link: '',
-      price: '',
-      address: '',
-      owner: '',
-      category: '',
-    }
+  props: {
+    nft: {
+      type: Object,
+      required: false,
+      default: () => {},
+    },
   },
 }
 </script>

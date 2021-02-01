@@ -77,10 +77,6 @@ const getArkaneProvider = async () => {
   const provider = await detectEthereumProvider()
   if (provider) {
     Arkane.createArkaneProviderEngine(arkaneOptions).then((provider) => {
-      console.log(
-        `%c createArkaneProviderEngine : ${JSON.stringify(provider, null, 4)}`,
-        'background: #222; color: #bada55'
-      )
       return provider
     })
   } else {

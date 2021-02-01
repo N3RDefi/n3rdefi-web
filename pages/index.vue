@@ -10,26 +10,17 @@
           <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pa-sm">
             <Intro />
           </div>
-          <div
-            v-if="!user.account"
-            class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pa-sm"
-          >
-            <Connect :user="user" />
-          </div>
-          <div
-            v-if="user.web3Instance && user.account"
-            class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pa-sm"
-          >
-            <Account :user="user" />
+          <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pa-sm">
+            <IntroBoard />
           </div>
         </div>
         <!-- END First Row -->
         <!-- Second Row - Intro & Connect -->
         <div class="row items-start justify-evenly">
-          <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pa-sm">
+          <div class="col-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 q-pa-sm">
             <NFTGenerator />
           </div>
-          <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pa-sm">
+          <div class="col-9 col-lg-9 col-md-9 col-sm-12 col-xs-12 q-pa-sm">
             <NFTHero />
           </div>
         </div>
@@ -75,8 +66,7 @@ import Header from '../components/Header.vue'
 import SidebarLeft from '../components/SidebarLeft.vue'
 import PageStickyMenu from '../components/PageStickyMenu.vue'
 import Intro from '../components/Intro.vue'
-import Connect from '../components/Connect.vue'
-import Account from '../components/Account.vue'
+import IntroBoard from '../components/IntroBoard.vue'
 import NFTGenerator from '../components/NFTGenerator.vue'
 import NFTHero from '../components/NFTHero.vue'
 import D3fi from '../components/D3fi.vue'
@@ -84,7 +74,6 @@ import Seal from '../components/Seal.vue'
 import G3fi from '../components/G3fi.vue'
 import Incubator from '../components/Incubator.vue'
 import Academy from '../components/Academy.vue'
-
 /* LFG */
 export default {
   name: 'N3RD',
@@ -93,8 +82,7 @@ export default {
     SidebarLeft,
     PageStickyMenu,
     Intro,
-    Connect,
-    Account,
+    IntroBoard,
     NFTGenerator,
     NFTHero,
     D3fi,
@@ -107,15 +95,45 @@ export default {
     return {}
   },
   computed: {
-    ...mapState(['web3', 'user']),
+    ...mapState(['web3', 'user', 'profile']),
     ...mapGetters({
       getWeb3: 'getWeb3',
       getUser: 'getUser',
+      getProfile: 'getProfile',
+      getChainIdHEX: 'getChainIdHEX',
     }),
+    web3: {
+      get() {
+        return this.$store.state.web3
+      },
+      set(value) {
+        this.$store.commit('SET_WEB3', value)
+      },
+    },
+    user: {
+      get() {
+        return this.$store.state.user
+      },
+      set(value) {
+        this.$store.commit('SET_USER', value)
+      },
+    },
+    profile: {
+      get() {
+        return this.$store.state.profile
+      },
+      set(value) {
+        this.$store.commit('SET_PROFILE', value)
+      },
+    },
   },
   async beforeCreate() {
     /* Check Web3 Instance */
     const web3 = await this.$web3()
+    console.log(
+      `%c Web3 detected beforeCreate : ${JSON.stringify(web3, null, 4)}`,
+      'background: #222; color: #bada55'
+    )
     if (web3) {
       this.$store.commit('SET_WEB3', web3)
       this.$store.commit('SET_WEB3_INSTANCE', true)
@@ -145,13 +163,11 @@ export default {
         this.$store.commit('SET_ACCOUNT', account)
         const chainIdHEX = await this.$web3.getChainId(account)
         this.$store.commit('SET_CHAIN_ID_HEX', chainIdHEX)
-        const chainName = networkFilter(chainIdHEX)
+        const chainId = networkFilter(chainIdHEX, 'id')
+        this.$store.commit('SET_CHAIN_ID', chainId)
+        const chainName = networkFilter(chainIdHEX, 'name')
         this.$store.commit('SET_CHAIN_NAME', chainName)
         const balance = await this.$web3.getBalance(account)
-        console.log(
-          '%c Please connect MetaMask!',
-          'background: red; color: white'
-        )
         this.$store.commit('SET_BALANCE', balance)
         return true
       }

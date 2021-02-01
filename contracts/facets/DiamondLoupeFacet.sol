@@ -8,6 +8,7 @@ pragma experimental ABIEncoderV2;
 /******************************************************************************/
 
 import "../libraries/LibDiamond.sol";
+import "../interfaces/IDiamondCut.sol";
 import "../interfaces/IDiamondLoupe.sol";
 import "../interfaces/IERC165.sol";
 

@@ -1,15 +1,12 @@
 <template>
   <div class="row">
-    <div v-for="n in nfts" :key="`sm-${n}`" class="col-4 q-px-sm">
+    <div v-for="n in myNFTs" :key="`sm-${n.id}`" class="col-4 q-px-sm">
       <ImgCard :nft="n" />
-      <pre>NFT: {{ n }}</pre>
     </div>
-    <pre>NFTs: {{ nfts }}</pre>
   </div>
 </template>
 <script>
 import { mapGetters } from 'vuex'
-
 import ImgCard from './Cards/ImgCard.vue'
 
 export default {
@@ -20,8 +17,130 @@ export default {
   data() {
     return {
       title: 'N3RDy NFT',
-      lorem:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      myNFTs: [
+        {
+          id: 1,
+          title: '8 bit Arcade Machine',
+          image: './assets/images/nfts/8-bit-arcade-machine.jpg',
+          link: '',
+          price: '',
+          address: '',
+          owner: '',
+          category: '',
+        },
+        {
+          id: 2,
+          title: 'Cute Pink Unicorm',
+          image: './assets/images/nfts/cute-pink-unicorn.jpg',
+          link: '',
+          price: '',
+          address: '',
+          owner: '',
+          category: '',
+        },
+        {
+          id: 3,
+          title: 'Pixel Speech Bubbles',
+          image: './assets/images/nfts/pixel-speech-bubbles.jpg',
+          link: '',
+          price: '',
+          address: '',
+          owner: '',
+          category: '',
+        },
+        {
+          id: 4,
+          title: 'Retro Arcade Machine',
+          image: './assets/images/nfts/retro-arcade-slot-machine.jpg',
+          link: '',
+          price: '',
+          address: '',
+          owner: '',
+          category: '',
+        },
+        {
+          id: 5,
+          title: 'Pixel Pirates',
+          image:
+            './assets/images/nfts/pixel-art-pirate-knight-cowboy-queen.jpg',
+          link: '',
+          price: '',
+          address: '',
+          owner: '',
+          category: '',
+        },
+        {
+          id: 6,
+          title: 'Liewe Pixie',
+          image: './assets/images/nfts/pixel-art-cute-witch-flying-broom.jpg',
+          link: '',
+          price: '',
+          address: '',
+          owner: '',
+          category: '',
+        },
+        {
+          id: 7,
+          title: '8 bit Planets',
+          image: './assets/images/nfts/pixel-art-cartoon-planes.jpg',
+          link: '',
+          price: '',
+          address: '',
+          owner: '',
+          category: '',
+        },
+        {
+          id: 8,
+          title: 'Pixel Star',
+          image: './assets/images/nfts/pixel-star.jpg',
+          link: '',
+          price: '',
+          address: '',
+          owner: '',
+          category: '',
+        },
+        {
+          id: 9,
+          title: 'Beard Man',
+          image: './assets/images/nfts/pixel-art-beard-man.jpg',
+          link: '',
+          price: '',
+          address: '',
+          owner: '',
+          category: '',
+        },
+        {
+          id: 10,
+          title: 'Old Computer',
+          image: './assets/images/nfts/pixel-art-old-computer.jpg',
+          link: '',
+          price: '',
+          address: '',
+          owner: '',
+          category: '',
+        },
+        {
+          id: 11,
+          title: '8 bit Dragonz',
+          image:
+            './assets/images/nfts/pixel-art-dragon-8-bit-game-character.jpg',
+          link: '',
+          price: '',
+          address: '',
+          owner: '',
+          category: '',
+        },
+        {
+          id: 12,
+          title: '8 Bit Arcade',
+          image: './assets/images/nfts/8-bit-arcade.png',
+          link: '',
+          price: '',
+          address: '',
+          owner: '',
+          category: '',
+        },
+      ],
     }
   },
   computed: {
@@ -40,7 +159,7 @@ export default {
 }
 </script>
 <style lang="sass">
-@import "../assets/sass/theme-variables"
+@import "./assets/sass/theme-variables"
 
 .n3rd-element
   background-color: $white

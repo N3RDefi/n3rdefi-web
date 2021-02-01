@@ -1,7 +1,7 @@
 import { networks } from './networks'
 /* Filter the network by the HEX chainId received from MetaMask */
 /* filterType returns the Pretty name or the Id */
-export function networkFilter(chainHEX, filterType = 'name') {
+export function networkFilter(chainHEX, filterType) {
   let network = ''
   const chainIdentifier = String(chainHEX)
   switch (chainIdentifier) {

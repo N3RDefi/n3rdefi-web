@@ -7,7 +7,7 @@ export const networks = Object.freeze({
     rpcUrl: '',
     explorerUrl: '',
     color: 'green',
-    icon: '',
+    icon: 'layers_clear',
   },
   BINANCE_MAIN_NET: {
     id: 56,
@@ -17,7 +17,7 @@ export const networks = Object.freeze({
     rpcUrl: 'https://bsc-dataseed1.binance.org:443',
     explorerUrl: '',
     color: 'gold',
-    icon: '',
+    icon: 'layers_clear',
   },
   ROPSTEN_TEST_NET: {
     id: 3,
@@ -27,7 +27,7 @@ export const networks = Object.freeze({
     rpcUrl: '',
     explorerUrl: '',
     color: 'pink',
-    icon: '',
+    icon: 'layers_clear',
   },
   RINKEBY_TEST_NET: {
     id: 4,
@@ -37,7 +37,7 @@ export const networks = Object.freeze({
     rpcUrl: '',
     explorerUrl: '',
     color: 'yellow',
-    icon: '',
+    icon: 'layers_clear',
   },
   GOERLI_TEST_NET: {
     id: 5,
@@ -47,7 +47,7 @@ export const networks = Object.freeze({
     rpcUrl: '',
     explorerUrl: '',
     color: 'blue',
-    icon: '',
+    icon: 'layers_clear',
   },
   KOVAN_TEST_NET: {
     id: 42,
@@ -57,7 +57,7 @@ export const networks = Object.freeze({
     rpcUrl: '',
     explorerUrl: '',
     color: 'purple',
-    icon: '',
+    icon: 'layers_clear',
   },
   BINANCE_TEST_NET: {
     id: 97,
@@ -67,7 +67,7 @@ export const networks = Object.freeze({
     rpcUrl: 'https://data-seed-prebsc-1-s1.binance.org:8545/',
     explorerUrl: '',
     color: 'orange',
-    icon: '',
+    icon: 'layers_clear',
   },
   MATIC_MAIN_NET: {
     id: 137,
@@ -77,7 +77,7 @@ export const networks = Object.freeze({
     rpcUrl: 'https://rpc-mainnet.maticvigil.com/',
     explorerUrl: 'https://explorer.matic.network/',
     color: 'green',
-    icon: '',
+    icon: 'layers_clear',
   },
   MUMBAI_TEST_NET: {
     id: 80001,
@@ -87,7 +87,7 @@ export const networks = Object.freeze({
     rpcUrl: 'https://rpc-mumbai.maticvigil.com/',
     explorerUrl: 'https://mumbai-explorer.matic.today',
     color: 'violet',
-    icon: '',
+    icon: 'layers_clear',
   },
   TRUFFLE_DEV_NET: {
     id: 4447,
@@ -97,7 +97,7 @@ export const networks = Object.freeze({
     rpcUrl: '',
     explorerUrl: '',
     color: 'red',
-    icon: '',
+    icon: 'layers_clear',
   },
   GANACHE_DEV_NET: {
     id: 5777,
@@ -107,7 +107,7 @@ export const networks = Object.freeze({
     rpcUrl: '',
     explorerUrl: '',
     color: 'red',
-    icon: '',
+    icon: 'layers_clear',
   },
   LOCALHOST: {
     id: 8545,
@@ -117,6 +117,6 @@ export const networks = Object.freeze({
     rpcUrl: '',
     explorerUrl: '',
     color: 'red',
-    icon: '',
+    icon: 'layers_clear',
   },
 })
