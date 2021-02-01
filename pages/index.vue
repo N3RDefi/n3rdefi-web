@@ -17,11 +17,11 @@
         <!-- END First Row -->
         <!-- Second Row - Intro & Connect -->
         <div class="row items-start justify-evenly">
-          <div class="col-3 col-lg-3 col-md-3 col-sm-12 col-xs-12 q-pa-sm">
+          <div class="col-3 col-lg-3 col-md-4 col-sm-12 col-xs-12 q-pa-sm">
             <NFTGenerator />
           </div>
-          <div class="col-9 col-lg-9 col-md-9 col-sm-12 col-xs-12 q-pa-sm">
-            <NFTHero />
+          <div class="col-9 col-lg-9 col-md-8 col-sm-12 col-xs-12 q-pa-sm">
+            <NFTDummy />
           </div>
         </div>
         <!-- END Second Row -->
@@ -68,7 +68,7 @@ import PageStickyMenu from '../components/PageStickyMenu.vue'
 import Intro from '../components/Intro.vue'
 import IntroBoard from '../components/IntroBoard.vue'
 import NFTGenerator from '../components/NFTGenerator.vue'
-import NFTHero from '../components/NFTHero.vue'
+import NFTDummy from '../components/NFTDummy.vue'
 import D3fi from '../components/D3fi.vue'
 import Seal from '../components/Seal.vue'
 import G3fi from '../components/G3fi.vue'
@@ -84,7 +84,7 @@ export default {
     Intro,
     IntroBoard,
     NFTGenerator,
-    NFTHero,
+    NFTDummy,
     D3fi,
     Seal,
     G3fi,

@@ -2,72 +2,100 @@
   <q-card flat bordered class="n3rd-nft-generator n3rd-img">
     <q-card-section>
       <div class="n3rd-title">{{ title }}</div>
-      <div class="n3rd-subtitle">Create your very own 8 Bit Art</div>
       <div class="n3rd-text">
-        Create your very own 8 bit NFT, these can get staked and either put up
-        for sale or used as a blueprint for artists, so fellow N3RDs can buy
-        t-shirs, hoodie or cap with their favourite 8-Bit Art. Proceeds would be
-        distributed back to NFT holders in the form of XP, tokens or various
-        other prizes.
+        Create your own 8 Bit NFT's, stake or farm your digital assets in our
+        digital marketplace to earn rewards from the N3RDS g33k-O-system
       </div>
     </q-card-section>
-    <q-card-section class="n3rd-buttons" align="left">
-      <q-btn
-        flat
-        color="white"
-        label="Press Start"
-        class="text-black bg-secondary"
-        @click="toggleForm()"
-      />
-    </q-card-section>
-    <q-card-section v-if="showForm">
-      <div class="q-pa-md" style="max-width: 400px">
+    <q-card-section>
+      <div class="nft-form" style="max-width: 400px">
         <q-form
           ref="nftForm"
-          class="q-gutter-md"
-          @submit="generateNFT"
-          @reset="onReset"
+          class="q-gutter-md nftForm"
+          @submit="generateNFT()"
+          @reset="onReset()"
         >
           <q-input
             v-model="name"
-            filled
-            label="Name *"
-            hint="NFT name"
+            dense
+            square
+            type="text"
+            color="black"
+            label-color="black"
+            bg-color="white"
+            label="Title *"
             lazy-rules
             :rules="[
-              (val) => (val && val.length > 0) || 'Please type something',
+              (val) => (val && val.length > 0) || 'Please type something!',
             ]"
           />
-
           <q-input
-            v-model="age"
-            filled
-            type="number"
-            label="Your age *"
+            v-model="price"
+            dense
+            square
+            color="black"
+            label-color="black"
+            bg-color="white"
+            label="Price in Wei"
+            mask="#.##"
+            fill-mask="0"
+            reverse-fill-mask
+            hint="ETH: #.##"
+            input-class="text-right"
             lazy-rules
             :rules="[
-              (val) => (val !== null && val !== '') || 'Please type your age',
-              (val) => (val > 0 && val < 100) || 'Please type a real age',
+              (val) =>
+                (val !== null && val !== '') || 'Please enter your price',
+              (val) => (val > 0 && val < 100) || 'Please enter a real value!',
             ]"
           />
-          <q-toggle v-model="accept" label="I accept the license and terms" />
-
-          <div>
+          <q-file
+            v-model="file"
+            dense
+            square
+            color="black"
+            label-color="black"
+            bg-color="white"
+            label="Pick one file"
+            class="q-mb-xl"
+            @input="
+              (val) => {
+                file = val[0]
+              }
+            "
+          />
+          <div class="n3rd-buttons" align="center">
             <q-btn
-              outline
+              flat
               label="Submit"
               type="submit"
-              color="primary"
-              class="full-width q-mb-sm"
+              color="white"
+              class="bg-primary full-width q-mb-sm"
             />
             <q-btn
+              flat
+              label="Stake"
+              color="black"
+              class="bg-secondary full-width q-mb-sm"
+            />
+            <q-btn
+              outline
               label="Reset"
               type="reset"
-              color="primary"
+              color="black"
               flat
-              class="full-width"
+              class="bg-white full-width q-mb-sm"
             />
           </div>
+          <q-toggle
+            v-model="accept"
+            dense
+            checked-icon="check"
+            color="green"
+            unchecked-icon="clear"
+            class="text-white float-center q-mb-md"
+            label="I accept the licensing Terms &amp; Conditions"
+          />
         </q-form>
       </div>
     </q-card-section>
@@ -78,17 +106,14 @@ export default {
   name: 'NFTGenerator',
   data() {
     return {
-      title: 'Create your 8-Bit NFT',
-      showForm: false,
+      title: '8 Bit Art',
       name: null,
-      age: null,
+      price: 0,
+      file: null,
       accept: false,
     }
   },
   methods: {
-    toggleForm() {
-      this.showForm = !this.showForm
-    },
     onSubmit() {
       if (this.accept !== true) {
         this.$q.notify({
@@ -106,13 +131,12 @@ export default {
         })
       }
     },
-
     onReset() {
       this.name = null
-      this.age = null
+      this.price = 0
+      this.file = null
       this.accept = false
     },
-
     generateNFT(value) {
       const { newNFT } = { ...value }
       this.$store.commit('GENERATE_NFT', newNFT)
@@ -120,15 +144,19 @@ export default {
   },
 }
 </script>
-<style lang="sass">
+<style lang="sass" scope>
 @import "../assets/sass/theme-variables"
 
 .n3rd-nft-generator
   background-color: $black
+  .nftForm
+    overflow: hidden
+  .q-file
+    max-width: 350px
   .n3rd-title
     color: $white
     font-family: $heading-font
-    font-size: 22px
+    font-size: 20px
     line-height: 30px
     font-weight: 400
     letter-spacing 0.16px
@@ -142,7 +170,7 @@ export default {
     line-height: 20px
     font-weight: 400
     letter-spacing 0.16px
-    margin: 0 10px 25px 10px
+    margin: 0 10px 5px 10px
     text-align: left
   .n3rd-text
     color: $white
@@ -150,15 +178,16 @@ export default {
     font-size: 16px
     line-height: 26px
     font-weight: 400
-    margin: 0 10px 10px 10px
+    margin: 0 10px
     text-align: left
   .n3rd-buttons
-    margin: 0 10px
+    max-width: 350px
+    margin: 0 -16px 0 16px
 .n3rd-img
-  background-image: url('../assets/images/8-bit-moon-tall-bg.jpg')
-  background-size: 100%
+  background-image: url('../assets/images/animated-moon.gif')
+  background-size: cover
   background-repeat: no-repeat
-  background-position: top center
+  background-position: bottom left
   overflow: display
   padding: 0
 

@@ -18,9 +18,13 @@
       <q-space />
       <q-input
         v-model="searchText"
-        class="GPL__toolbar-input"
+        dark
         dense
-        standout="bg-primary"
+        square
+        color="black"
+        standout="bg-white"
+        bg-color="black"
+        class="GPL__toolbar-input"
         placeholder="Search"
       >
         <template #prepend>
@@ -36,26 +40,29 @@
         </template>
       </q-input>
       <q-space />
-      <q-btn
-        v-if="!profile.isAuthenticated"
-        flat
-        :color="!user.account ? 'white' : 'white'"
-        :label="!user.account ? 'Connect' : 'Load Arkane'"
-        :class="!user.account ? 'bg-primary' : 'text-black bg-secondary'"
-        @click="!user.account ? connectMetaMask() : connectArkane()"
-      />
-      <div
-        v-if="profile.isAuthenticated"
-        class="q-gutter-sm row items-center no-wrap"
-      >
+      <div class="q-gutter-sm row items-center no-wrap">
+        <q-btn
+          v-if="!profile.isAuthenticated"
+          flat
+          :color="!user.account ? 'white' : 'white'"
+          :label="!user.account ? 'Connect' : 'Load Arkane'"
+          :class="!user.account ? 'bg-primary' : 'text-black bg-secondary'"
+          icon="gamepad"
+          @click="!user.account ? connectMetaMask() : connectArkane()"
+        />
         <q-btn v-if="!profile.firstName && !profile.email" round flat>
-          <q-avatar size="30px">
-            <img src="../assets/images/logo.png" />
+          <q-avatar size="36px">
+            <img src="https://cdn.quasar.dev/img/chaosmonkey.png" />
           </q-avatar>
         </q-btn>
-        <q-btn v-else round flat>
-          <q-avatar size="30px">
-            <img src="../assets/images/N3RD.png" width="30px" />
+        <!-- User Account Dropdown Button -->
+        <q-btn
+          v-if="user.account && profile.firstName && profile.email"
+          round
+          flat
+        >
+          <q-avatar size="36px">
+            <img src="../assets/images/N3RD.png" width="36px" />
           </q-avatar>
           <q-menu anchor="top end" self="bottom left">
             <q-list class="text-grey-8">
@@ -85,6 +92,7 @@
             </q-list>
           </q-menu>
         </q-btn>
+        <!-- END User Account Dropdown Button -->
         <!-- Network Button -->
         <q-btn
           v-if="user.chainIdHEX"
@@ -324,11 +332,19 @@ export default {
 @import "../assets/sass/theme-variables"
 
 .n3rd-header
-  background-color: $white
+  color: $white
+  background-color: $black
+  border: 4px solid $primary
+  /* top | right | bottom | left */
+  border-style: none none inset none
   .n3rd-logo
-    color: $black
+    color: $white
     font-family: $heading-font
+  .GPL__toolbar-input
+    color: $black
+    font-family: $computer-font
   .computer-font
+    color: $white
     font-size: 12px
     font-weight: 500
     font-family: $computer-font

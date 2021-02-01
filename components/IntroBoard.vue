@@ -184,7 +184,7 @@ export default {
     margin: 0 10px
 .n3rd-img-0
   background-image: url('../assets/images/3dBG.gif')
-  background-size: 100%
+  background-size: cover
   background-repeat: no-repeat
   background-position: top center
   overflow: display

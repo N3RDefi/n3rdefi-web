@@ -1,7 +1,8 @@
 <template>
   <q-card class="n3rd-nft-card q-mb-md">
     <q-card-section horizontal>
-      <q-img class="col" :src="nft.image" />
+      {{ nft }}
+      <!-- <q-img class="col" src="require('nft.image)" /> -->
       <q-card-actions vertical class="justify-around">
         <q-btn flat round color="red" icon="favorite" />
         <q-btn flat round color="accent" icon="bookmark" />

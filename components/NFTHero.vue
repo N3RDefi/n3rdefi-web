@@ -21,7 +21,7 @@ export default {
         {
           id: 1,
           title: '8 bit Arcade Machine',
-          image: './assets/images/nfts/8-bit-arcade-machine.jpg',
+          image: '../../assets/images/nfts/8-bit-arcade-machine.jpg',
           link: '',
           price: '',
           address: '',
@@ -31,7 +31,7 @@ export default {
         {
           id: 2,
           title: 'Cute Pink Unicorm',
-          image: './assets/images/nfts/cute-pink-unicorn.jpg',
+          image: '../../assets/images/nfts/cute-pink-unicorn.jpg',
           link: '',
           price: '',
           address: '',
@@ -41,7 +41,7 @@ export default {
         {
           id: 3,
           title: 'Pixel Speech Bubbles',
-          image: './assets/images/nfts/pixel-speech-bubbles.jpg',
+          image: '../../assets/images/nfts/pixel-speech-bubbles.jpg',
           link: '',
           price: '',
           address: '',
@@ -51,7 +51,7 @@ export default {
         {
           id: 4,
           title: 'Retro Arcade Machine',
-          image: './assets/images/nfts/retro-arcade-slot-machine.jpg',
+          image: '../../assets/images/nfts/retro-arcade-slot-machine.jpg',
           link: '',
           price: '',
           address: '',
@@ -62,7 +62,7 @@ export default {
           id: 5,
           title: 'Pixel Pirates',
           image:
-            './assets/images/nfts/pixel-art-pirate-knight-cowboy-queen.jpg',
+            '../../assets/images/nfts/pixel-art-pirate-knight-cowboy-queen.jpg',
           link: '',
           price: '',
           address: '',
@@ -72,7 +72,8 @@ export default {
         {
           id: 6,
           title: 'Liewe Pixie',
-          image: './assets/images/nfts/pixel-art-cute-witch-flying-broom.jpg',
+          image:
+            '../../assets/images/nfts/pixel-art-cute-witch-flying-broom.jpg',
           link: '',
           price: '',
           address: '',
@@ -82,7 +83,7 @@ export default {
         {
           id: 7,
           title: '8 bit Planets',
-          image: './assets/images/nfts/pixel-art-cartoon-planes.jpg',
+          image: '../../assets/images/nfts/pixel-art-cartoon-planes.jpg',
           link: '',
           price: '',
           address: '',
@@ -92,7 +93,7 @@ export default {
         {
           id: 8,
           title: 'Pixel Star',
-          image: './assets/images/nfts/pixel-star.jpg',
+          image: '../../assets/images/nfts/pixel-star.jpg',
           link: '',
           price: '',
           address: '',
@@ -102,7 +103,7 @@ export default {
         {
           id: 9,
           title: 'Beard Man',
-          image: './assets/images/nfts/pixel-art-beard-man.jpg',
+          image: '../../assets/images/nfts/pixel-art-beard-man.jpg',
           link: '',
           price: '',
           address: '',
@@ -112,7 +113,7 @@ export default {
         {
           id: 10,
           title: 'Old Computer',
-          image: './assets/images/nfts/pixel-art-old-computer.jpg',
+          image: '../../assets/images/nfts/pixel-art-old-computer.jpg',
           link: '',
           price: '',
           address: '',
@@ -123,7 +124,7 @@ export default {
           id: 11,
           title: '8 bit Dragonz',
           image:
-            './assets/images/nfts/pixel-art-dragon-8-bit-game-character.jpg',
+            '../../assets/images/nfts/pixel-art-dragon-8-bit-game-character.jpg',
           link: '',
           price: '',
           address: '',
@@ -133,7 +134,7 @@ export default {
         {
           id: 12,
           title: '8 Bit Arcade',
-          image: './assets/images/nfts/8-bit-arcade.png',
+          image: '../../assets/images/nfts/8-bit-arcade.png',
           link: '',
           price: '',
           address: '',
