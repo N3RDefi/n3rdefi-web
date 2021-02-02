@@ -52,7 +52,7 @@
     "eslint-plugin-vue": "^7.0.1",
     "eth-gas-reporter": "^0.2.20",
     "ethereum-waffle": "^3.2.2",
-    "ethers": "^5.0.26",
+    "ethers": "^5.0.27",
     "file-loader": "^6.2.0",
     "hardhat": "^2.0.8",
     "hardhat-contract-sizer": "^2.0.2",
