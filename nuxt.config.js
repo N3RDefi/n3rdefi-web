@@ -53,7 +53,14 @@ module.exports = {
   plugins: [
     { src: '@/plugins/quasar', ssr: false },
     { src: '@/plugins/web3', ssr: false },
+    { src: '@/plugins/aave', ssr: false },
+    // { src: '@/plugins/graphql', ssr: true },
   ],
+
+  router: {
+    // middleware: ["aaveTokens"],
+  },
+
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
   /*
@@ -70,6 +77,7 @@ module.exports = {
   modules: [
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
+    '@nuxtjs/proxy',
   ],
   /*
    ** Load SASS variables/lib for all components
@@ -77,6 +85,23 @@ module.exports = {
   styleResources: {
     sass: ['~/assets/sass/theme-variables.sass'],
   },
+  gql: {
+    proxy: true
+  },
+  proxy: {
+    '/api': {
+      target: 'http://localhost:3000/api',
+      pathRewrite: {
+        '^/api' : '/'
+        }
+    }
+  },
+  // proxy: [
+  //   ['https://thegraph.com/explorer/subgraph/aave/protocol-v2?version=current', { changeOrigin: true, ws: true} ],
+  //   ['https://thegraph.com/explorer/subgraph/aave/protocol-v2-kovan', { changeOrigin: true, ws: true} ],
+  //   ['https://thegraph.com/explorer/subgraph/aave/governance-v2', { changeOrigin: true, ws: true} ],
+  //   ['https://thegraph.com/explorer/subgraph/aave/governance-v2-kovan', { changeOrigin: true, ws: true} ],
+  // ],
   /*
    ** Nuxt Firebase module configuration
    ** See https://firebase.nuxtjs.org/guide/getting-started/#full-configuration

@@ -1,15 +1,22 @@
 <template>
   <q-card flat bordered class="n3rd-intro n3rd-img">
     <q-card-section>
-      <div class="n3rd-title">Welcome to N3RDefi?</div>
-      <div class="n3rd-subtitle">An eco-system for all N3RDs</div>
-      <div class="n3rd-text">
-        Come join us as we apein to decentralized finance (Defi)<br />Create
-        your very own NFT's and farm your 8 bit artwork<br />Learn more about
-        D3fi and blockchain development
+      <div class="n3rd-intro-title float-right">Welcome to N3RDefi...</div>
+      <div class="n3rd-intro-subtitle float-right">
+        An eco-system for all things N3RDy
+      </div>
+      <div class="n3rd-intro-text float-right" align="right">
+        Come join us as we apein to 8 Bit NFT art and gamefi Defi. Get your very
+        own N3RD Diamond, but hurry, there's only 10 000 of these unique 1st gen
+        N3RD NFT's, step aside cryptopunks, lock your kitties away because the
+        N3rds are coming!
       </div>
     </q-card-section>
-    <q-card-section v-if="user.web3Instance" class="n3rd-buttons" align="right">
+    <q-card-section
+      v-if="user.web3Instance"
+      class="n3rd-intro-buttons float-right justify-end self-end"
+      align="right"
+    >
       <q-btn
         v-if="user.step >= 0 && user.step <= 2"
         outline
@@ -98,21 +105,6 @@ export default {
     goHome() {
       $nuxt.$store.dispatch('setStep', 1)
     },
-    async mintN3RD() {
-      /* Load User Account Info into the store */
-      // const accountLoaded = await this.loadAccount()
-      // if (accountLoaded) {
-      //   console.log('accountLoaded:', accountLoaded)
-      //   /* Mint the N3RD Token */
-      //   const mintedN3RD = await this.mintN3RD()
-      //   console.log('mintedN3RD:', mintedN3RD)
-      // } else {
-      //   console.log(
-      //     '%c Please connect MetaMask!',
-      //     'background: red; color: white'
-      //   )
-      // }
-    },
   },
 }
 </script>
@@ -120,27 +112,28 @@ export default {
 @import "./../assets/sass/theme-variables"
 
 .n3rd-intro
-  min-height: 320px
-  .n3rd-title
+  min-height: 380px
+  .n3rd-intro-title
     color: $black
     font-family: $heading-font
-    font-size: 22px
+    font-size: 24px
     line-height: 30px
     font-weight: 400
     letter-spacing 0.16px
     word-spacing 2px
     margin: 10px 10px 15px 10px
     text-align: right
-  .n3rd-subtitle
+  .n3rd-intro-subtitle
     color: $black
     font-family: $heading-font
-    font-size: 14px
-    line-height: 20px
+    font-size: 15px
+    line-height: 22px
     font-weight: 400
     letter-spacing 0.16px
     margin: 0 10px 25px 10px
     text-align: right
-  .n3rd-text
+  .n3rd-intro-text
+    width: 70%
     color: $black
     font-family: $button-font
     font-size: 16px
@@ -148,13 +141,13 @@ export default {
     font-weight: 400
     margin: 0 10px 10px 10px
     text-align: right
-  .n3rd-buttons
+  .n3rd-intro-buttons
     margin: 0 10px 0 0
 .n3rd-img
   background-image: url('../assets/images/SuperN3RD.png')
-  background-size: 48%
+  background-size: contain
   background-repeat: no-repeat
-  background-position: -65px 25px
+  background-position: -65px 35px
   overflow: display
   padding: 0
 

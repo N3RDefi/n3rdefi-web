@@ -164,28 +164,6 @@
         </div>
       </q-card>
     </div>
-    <div class="col-2 col-lg-2 col-md-3 col-sm-3 col-xs-4 q-pa-xs">
-      <q-card class="n3rd-nft-card">
-        <img
-          src="~/assets/images/nfts/pixel-art-pirate-knight-cowboy-queen.jpg"
-        />
-        <div
-          class="absolute-bottom full-width bg-primary text-white text-subtitle2 text-center"
-        >
-          Pixel Pirates
-        </div>
-      </q-card>
-    </div>
-    <div class="col-2 col-lg-2 col-md-3 col-sm-3 col-xs-4 q-pa-xs">
-      <q-card class="n3rd-nft-card">
-        <img src="~/assets/images/nfts/pixel-art-cute-witch-flying-broom.jpg" />
-        <div
-          class="absolute-bottom full-width bg-primary text-white text-subtitle2 text-center"
-        >
-          Liewe Pixie
-        </div>
-      </q-card>
-    </div>
   </div>
 </template>
 <script>

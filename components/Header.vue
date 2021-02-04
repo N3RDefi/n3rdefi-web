@@ -46,8 +46,12 @@
           flat
           :color="!user.account ? 'white' : 'white'"
           :label="!user.account ? 'Connect' : 'Load Arkane'"
-          :class="!user.account ? 'bg-primary' : 'text-black bg-secondary'"
-          icon="gamepad"
+          :class="
+            !user.account
+              ? 'arkane-button bg-primary'
+              : 'arkane-button text-black bg-secondary'
+          "
+          :icon="!user.account ? 'play_arrow' : 'gamepad'"
           @click="!user.account ? connectMetaMask() : connectArkane()"
         />
         <q-btn v-if="!profile.firstName && !profile.email" round flat>
@@ -337,16 +341,13 @@ export default {
   border: 4px solid $primary
   /* top | right | bottom | left */
   border-style: none none inset none
+  .arkane-button
+    font-family: $heading-font
   .n3rd-logo
     color: $white
     font-family: $heading-font
   .GPL__toolbar-input
     color: $black
-    font-family: $computer-font
-  .computer-font
-    color: $white
-    font-size: 12px
-    font-weight: 500
     font-family: $computer-font
 
 /* CSS Media Queries */

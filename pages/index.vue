@@ -17,11 +17,8 @@
         <!-- END First Row -->
         <!-- Second Row - Intro & Connect -->
         <div class="row items-start justify-evenly">
-          <div class="col-3 col-lg-3 col-md-4 col-sm-12 col-xs-12 q-pa-sm">
-            <NFTGenerator />
-          </div>
-          <div class="col-9 col-lg-9 col-md-8 col-sm-12 col-xs-12 q-pa-sm">
-            <NFTDummy />
+          <div class="col-12 col-lg-12 col-md-12 col-sm-12 col-xs-12 q-pa-sm">
+            <G3fi />
           </div>
         </div>
         <!-- END Second Row -->
@@ -37,8 +34,11 @@
         <!-- END Third Row -->
         <!-- Fourth Row - Intro & Connect -->
         <div class="row items-start justify-evenly">
-          <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pa-sm">
-            <G3fi />
+          <div class="col-9 col-lg-9 col-md-8 col-sm-12 col-xs-12 q-pa-sm">
+            <NFTDummy />
+          </div>
+          <div class="col-3 col-lg-3 col-md-4 col-sm-12 col-xs-12 q-pa-sm">
+            <NFTGenerator />
           </div>
         </div>
         <!-- END Fourth Row -->
@@ -91,6 +91,7 @@ export default {
     Incubator,
     Academy,
   },
+  // middleware: ['aaveTokens'],
   data() {
     return {}
   },
@@ -130,10 +131,6 @@ export default {
   async beforeCreate() {
     /* Check Web3 Instance */
     const web3 = await this.$web3()
-    console.log(
-      `%c Web3 detected beforeCreate : ${JSON.stringify(web3, null, 4)}`,
-      'background: #222; color: #bada55'
-    )
     if (web3) {
       this.$store.commit('SET_WEB3', web3)
       this.$store.commit('SET_WEB3_INSTANCE', true)

@@ -41,6 +41,32 @@
         size="26px"
         class="GPL__side-btn"
       >
+        <q-icon size="22px" name="photo" />
+        <div class="GPL__side-btn__label">Swap</div>
+      </q-btn>
+
+      <q-btn
+        round
+        flat
+        color="white"
+        stack
+        no-caps
+        size="26px"
+        class="GPL__side-btn"
+      >
+        <q-icon size="22px" name="photo" />
+        <div class="GPL__side-btn__label">Pools</div>
+      </q-btn>
+
+      <q-btn
+        round
+        flat
+        color="white"
+        stack
+        no-caps
+        size="26px"
+        class="GPL__side-btn"
+      >
         <q-icon size="22px" name="photo_album" />
         <div class="GPL__side-btn__label">NFT's</div>
       </q-btn>

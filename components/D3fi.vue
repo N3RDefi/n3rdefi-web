@@ -1,34 +1,130 @@
 <template>
-  <q-card flat bordered class="my-card">
+  <q-card flat bordered class="n3rd-d3fi n3rd-d3fi-img">
     <q-card-section>
-      <div class="text-h6">{{ title }}</div>
+      <div class="n3rd-d3fi-title">A D3fi Eco-system</div>
+      <div class="n3rd-d3fi-text">
+        N3RDefi is a safe environment, where fellow N3RDs can come together to
+        form a community. Being part of a community offers trust, strength,
+        safety and commitment to a united cause, this help reduce and even
+        eliminate bad actors.
+      </div>
     </q-card-section>
-    <q-card-section class="q-pt-none">
-      {{ lorem }}
-    </q-card-section>
-    <q-separator inset />
-    <q-card-section>
-      {{ lorem }}
+    <q-card-section class="n3rd-d3fi-buttons justify-end self-end" align="left">
+      <q-btn
+        flat
+        color="white"
+        label="Stake N3RDy"
+        class="bg-primary q-mb-sm"
+        @click="stakeN3RDyToken()"
+      />
     </q-card-section>
   </q-card>
 </template>
 <script>
+/* Import Vuex State, Getters and Mutations */
+import { mapState, mapGetters } from 'vuex'
+/* LFG */
 export default {
-  name: 'D3fi',
+  name: 'D3Fi',
   data() {
     return {
-      title: 'D3fi',
-      lorem:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      title: 'N3rds',
     }
+  },
+  computed: {
+    ...mapState(['web3', 'user', 'profile']),
+    ...mapGetters({
+      getWeb3: 'getWeb3',
+      getUser: 'getUser',
+      getProfile: 'getProfile',
+    }),
+    web3: {
+      get() {
+        return this.$store.state.web3
+      },
+      set(value) {
+        this.$store.commit('SET_WEB3', value)
+      },
+    },
+    user: {
+      get() {
+        return this.$store.state.user
+      },
+      set(value) {
+        this.$store.commit('SET_USER', value)
+      },
+    },
+    profile: {
+      get() {
+        return this.$store.state.profile
+      },
+      set(value) {
+        this.$store.commit('SET_PROFILE', value)
+      },
+    },
+  },
+  methods: {
+    async stakeN3RDyToken(amount) {
+      /* Load User Account Info into the store */
+      const accountLoaded = await this.loadAccount()
+      if (accountLoaded) {
+        console.log('accountLoaded:', accountLoaded)
+        console.log('amount:', amount)
+        /* Buy the N3RDy Token */
+        const tokens = await this.buyN3RDyTokens(this.user.account, amount)
+        console.log('Bought N3RDy Tokens:', tokens)
+      } else {
+        console.log(
+          '%c Please check MetaMask and try again!',
+          'background: red; color: white'
+        )
+      }
+    },
   },
 }
 </script>
 <style lang="sass">
 @import "../assets/sass/theme-variables"
 
-.n3rd-element
-  background-color: $white
+.n3rd-d3fi
+  min-height: 400px
+  .n3rd-d3fi-title
+    color: $white
+    font-family: $heading-font
+    font-size: 22px
+    line-height: 30px
+    font-weight: 400
+    letter-spacing 0.16px
+    word-spacing 2px
+    margin: 10px 10px 15px 10px
+    text-align: left
+  .n3rd-d3fi-subtitle
+    color: $white
+    font-family: $heading-font
+    font-size: 14px
+    line-height: 20px
+    font-weight: 400
+    letter-spacing 0.16px
+    margin: 0 10px 25px 10px
+    text-align: left
+  .n3rd-d3fi-text
+    min-height: 130px
+    color: $white
+    font-family: $button-font
+    font-size: 16px
+    line-height: 26px
+    font-weight: 400
+    margin: 0 10px 10px 10px
+    width: 59%
+  .n3rd-d3fi-buttons justify-end self-end
+    margin: 0 10px
+.n3rd-d3fi-img
+  background-image: url('../assets/images/etheruem.gif')
+  background-size: cover
+  background-repeat: no-repeat
+  background-position: center top
+  overflow: display
+  padding: 0
 
 /* CSS Media Queries */
 /* $breakpoint-xl: 2400px */

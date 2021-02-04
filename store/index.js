@@ -29,6 +29,7 @@ const state = () => ({
     SAFUContract: null,
     SAFUSealContract: null,
   },
+  aaveTokens: null,
   nfts: [],
   nftCats: [],
   searchText: '',
@@ -39,11 +40,11 @@ const actions = {
   pollWeb3({ commit }, payload) {
     commit('POLL_WEB3', payload)
   },
-  increaseStep({ commit }, payload) {
-    commit('SET_STEP', payload)
-  },
   setStep({ commit }, payload) {
     commit('SET_STEP', payload)
+  },
+  setAaveTokens({ commit }, payload) {
+    commit('SET_AAVE_TOKENS', payload)
   },
 }
 
@@ -131,6 +132,10 @@ const mutations = {
   },
   SET_CONTRACT_SAFUSEALCONTRACT(state, payload) {
     state.contracts.SAFUSealContract = payload
+  },
+  /* Aave Tokens List */
+  SET_AAVE_TOKENS(state, payload) {
+    state.aaveTokens = payload
   },
   /* NFTs */
   SET_NFT(state, payload) {
@@ -224,6 +229,10 @@ const getters = {
   },
   getSAFUSealContract(state) {
     return state.contracts.SAFUSealContract
+  },
+  /* Aave Tokens */
+  getAaveTokens(state) {
+    return state.aaveTokens
   },
   /* NFTs */
   getNfts(state) {

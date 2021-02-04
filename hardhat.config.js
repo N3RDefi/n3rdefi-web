@@ -46,24 +46,24 @@ export const networks = {
   },
   matic: {
     url: 'https://rpc-mainnet.matic.network',
-    accounts: [process.env.SECRET],
+    accounts: [process.env.N3RD_INFURA_SECRET],
     blockGasLimit: 20000000,
     gasPrice: 1000000000
   },
   mumbai: {
     url: 'https://rpc-mumbai.matic.today',
-    accounts: [process.env.SECRET],
+    accounts: [process.env.N3RD_INFURA_SECRET],
     blockGasLimit: 20000000,
     gasPrice: 1000000000
   },
   kovan: {
-    url: process.env.KOVAN_URL,
-    accounts: [process.env.SECRET],
+    url: process.env.N3RD_INFURA_ENPOINT_KOVAN,
+    accounts: [process.env.N3RD_INFURA_SECRET],
     gasPrice: 5000000000
   },
   rinkeby: {
-    url: "https://rinkeby.infura.io/v3/123abc123abc123abc123abc123abcde",
-    accounts: [process.env.SECRET]
+    url: process.env.N3RD_INFURA_ENPOINT_RINKEBY,
+    accounts: [process.env.N3RD_INFURA_SECRET]
   }
 }
 export const paths = {
