@@ -8,7 +8,7 @@
       </div>
     </q-card-section>
     <q-card-section>
-      <div class="nft-form" style="max-width: 400px">
+      <div class="nft-form">
         <q-form
           ref="nftForm"
           class="q-gutter-md nftForm"
@@ -70,13 +70,13 @@
               label="Submit"
               type="submit"
               color="white"
-              class="bg-primary full-width q-mb-sm"
+              class="bg-primary full-width q-mb-md"
             />
             <q-btn
               flat
               label="Stake"
               color="black"
-              class="bg-secondary full-width q-mb-sm"
+              class="bg-secondary full-width q-mb-md"
             />
             <q-btn
               outline
@@ -84,7 +84,7 @@
               type="reset"
               color="black"
               flat
-              class="bg-white full-width q-mb-sm"
+              class="bg-white full-width q-mb-md"
             />
           </div>
           <q-toggle
@@ -93,7 +93,7 @@
             checked-icon="check"
             color="green"
             unchecked-icon="clear"
-            class="text-white float-center q-mb-md"
+            class="text-white float-center q-pl-sm q-py-sm q-mt-lg"
             label="I accept the licensing Terms &amp; Conditions"
           />
         </q-form>
@@ -106,7 +106,7 @@ export default {
   name: 'NFTGenerator',
   data() {
     return {
-      title: '8 Bit Art',
+      title: '8 Bit NFTs',
       name: null,
       price: 0,
       file: null,
@@ -149,19 +149,24 @@ export default {
 
 .n3rd-nft-generator
   background-color: $black
-  .nftForm
+  .nft-form
+    max-width: 400px
+    margin: 0
+    padding: 0
     overflow: hidden
+  .nftForm
+    max-width: 400px
   .q-file
     max-width: 350px
   .n3rd-title
     color: $white
     font-family: $heading-font
-    font-size: 20px
+    font-size: 26px
     line-height: 30px
     font-weight: 400
     letter-spacing 0.16px
     word-spacing 2px
-    margin: 10px 10px 15px 10px
+    margin: 10px 10px 35px 10px
     text-align: left
   .n3rd-subtitle
     color: $white
@@ -174,11 +179,11 @@ export default {
     text-align: left
   .n3rd-text
     color: $white
-    font-family: $button-font
+    font-family: $computer-font
     font-size: 16px
     line-height: 26px
     font-weight: 400
-    margin: 0 10px
+    margin: 20px 10px
     text-align: left
   .n3rd-buttons
     max-width: 350px

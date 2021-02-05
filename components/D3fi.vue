@@ -11,7 +11,7 @@
     </q-card-section>
     <q-card-section class="n3rd-d3fi-buttons justify-end self-end" align="left">
       <q-btn
-        flat
+        outline
         color="white"
         label="Stake N3RDy"
         class="bg-primary q-mb-sm"
@@ -110,7 +110,7 @@ export default {
   .n3rd-d3fi-text
     min-height: 130px
     color: $white
-    font-family: $button-font
+    font-family: $computer-font
     font-size: 16px
     line-height: 26px
     font-weight: 400

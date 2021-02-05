@@ -43,7 +43,8 @@
       <div class="q-gutter-sm row items-center no-wrap">
         <q-btn
           v-if="!profile.isAuthenticated"
-          flat
+          dense
+          outline
           :color="!user.account ? 'white' : 'white'"
           :label="!user.account ? 'Connect' : 'Load Arkane'"
           :class="
@@ -336,8 +337,8 @@ export default {
 @import "../assets/sass/theme-variables"
 
 .n3rd-header
-  color: $white
-  background-color: $black
+  color: $black
+  background-color: $charcoal
   border: 4px solid $primary
   /* top | right | bottom | left */
   border-style: none none inset none
@@ -347,7 +348,7 @@ export default {
     color: $white
     font-family: $heading-font
   .GPL__toolbar-input
-    color: $black
+    color: $white
     font-family: $computer-font
 
 /* CSS Media Queries */

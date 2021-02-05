@@ -25,10 +25,10 @@
         <!-- Third Row - Intro & Connect -->
         <div class="row items-start justify-evenly">
           <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pa-sm">
-            <D3fi />
+            <Seal />
           </div>
           <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pa-sm">
-            <Seal />
+            <D3fi />
           </div>
         </div>
         <!-- END Third Row -->
@@ -43,14 +43,14 @@
         </div>
         <!-- END Fourth Row -->
         <!-- Fifth Row - Intro & Connect -->
-        <div class="row items-start justify-evenly">
+        <!-- <div class="row items-start justify-evenly">
           <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pa-sm">
             <Incubator />
           </div>
           <div class="col-6 col-lg-6 col-md-6 col-sm-12 col-xs-12 q-pa-sm">
             <Academy />
           </div>
-        </div>
+        </div> -->
       </q-page>
       <PageStickyMenu />
     </q-page-container>
@@ -72,8 +72,8 @@ import NFTDummy from '../components/NFTDummy.vue'
 import D3fi from '../components/D3fi.vue'
 import Seal from '../components/Seal.vue'
 import G3fi from '../components/G3fi.vue'
-import Incubator from '../components/Incubator.vue'
-import Academy from '../components/Academy.vue'
+// import Incubator from '../components/Incubator.vue'
+// import Academy from '../components/Academy.vue'
 /* LFG */
 export default {
   name: 'N3RD',
@@ -88,8 +88,8 @@ export default {
     D3fi,
     Seal,
     G3fi,
-    Incubator,
-    Academy,
+    // Incubator,
+    // Academy,
   },
   // middleware: ['aaveTokens'],
   data() {

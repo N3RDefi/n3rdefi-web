@@ -2,7 +2,7 @@
   <div class="no-margin no-paddig">
     <q-card v-if="user.step === 0" flat bordered class="n3rd-intro n3rd-img-0">
       <q-card-section>
-        <div class="n3rd-title">What is a N3RD?</div>
+        <div class="n3rd-title">Let's get N3RDy...</div>
         <div class="n3rd-subtitle">We are all g33ks at heart</div>
         <div class="n3rd-text n3rd-text-one">
           A N3RD is a uniquely generated 8 Bit N3RD character that allows you to
@@ -10,9 +10,9 @@
           in to your N3RD token today and lets get N3RDy ....
         </div>
       </q-card-section>
-      <q-card-section class="n3rd-buttons justify-end self-end" align="left">
+      <q-card-section class="n3rd-buttons justify-end self-end" align="center">
         <q-btn
-          flat
+          outline
           color="black"
           label="Let's get N3RDy"
           class="bg-secondary q-mb-sm"
@@ -20,39 +20,19 @@
         />
       </q-card-section>
     </q-card>
-    <q-card v-if="user.step === 1" flat bordered class="n3rd-intro n3rd-img-1">
-      <q-card-section>
-        <div class="n3rd-title">N3RDefi is Defi Eco-system</div>
-        <div class="n3rd-text n3rd-text-two">
-          N3RDefi is a safe environment, where fellow N3RDs can come together to
-          form a community. Being part of a community offers trust, strength,
-          safety and commitment to a united cause, this help reduce and even
-          eliminate bad actors.
-        </div>
-      </q-card-section>
-      <q-card-section class="n3rd-buttons justify-end self-end" align="left">
-        <q-btn
-          flat
-          color="white"
-          label="Stake N3RDy"
-          class="bg-primary q-mb-sm"
-          @click="stakeN3RDyToken()"
-        />
-      </q-card-section>
-    </q-card>
-    <q-card v-if="user.step === 2" flat bordered class="n3rd-intro n3rd-img-2">
+    <q-card v-if="user.step === 1" flat bordered class="n3rd-intro n3rd-img-2">
       <q-card-section>
         <div class="n3rd-title">8 Bit Art</div>
         <div class="n3rd-subtitle">NFT Marketplace</div>
-        <div class="n3rd-text n3rd-text-three">
+        <div class="n3rd-text n3rd-text-two">
           N3RDs love everything 8 Bit and there's nothing<br />better than g33ky
           NFT's. Create your own G33ky<br />NFT's and list them in our 8 Bit NFT
           Marketplace.
         </div>
       </q-card-section>
-      <q-card-section class="n3rd-buttons justify-end self-end" align="left">
+      <q-card-section class="n3rd-buttons justify-end self-end" align="center">
         <q-btn
-          flat
+          outline
           color="black"
           label="Create NFTs"
           class="bg-secondary q-mb-sm"
@@ -60,26 +40,23 @@
         />
       </q-card-section>
     </q-card>
-    <q-card v-if="user.step === 3" flat bordered class="n3rd-intro n3rd-img-3">
+    <q-card v-if="user.step === 2" flat bordered class="n3rd-intro n3rd-img-1">
       <q-card-section>
-        <div class="n3rd-title">SAFU Seal</div>
-        <div class="n3rd-subtitle">
-          N3RDefi is a safety first Defi Eco-system
-        </div>
-        <div class="n3rd-text n3rd-text-four">
-          N3RDefi is a 8bit D3fi ecosystem, purchase NFT's in our marketplace or
-          create your very own 8 bit artwork. All NFT's can be staked for extra
-          rewards. Invest in our Smart Vaults for easy yields, we have something
-          for you all...
+        <div class="n3rd-title-orange">SAFU Vaults</div>
+        <div class="n3rd-subtitle">D3Fi means funds are SAFU</div>
+        <div class="n3rd-text n3rd-text-three">
+          N3RDefi offers a full range of Defi solutions including Aave borrow,
+          lend and staking with aTokens. Our deflationary models mean up only,
+          really is up only! Our top priority is that funds are SAFU.
         </div>
       </q-card-section>
       <q-card-section class="n3rd-buttons justify-end self-end" align="left">
         <q-btn
-          flat
-          color="white"
-          label="Let's get N3RDy"
-          class="bg-primary q-mb-sm"
-          @click="getN3RDyToken(1000)"
+          outline
+          color="black"
+          label="SAFU Protocol"
+          class="bg-orange q-mb-sm"
+          @click="safuProtocol()"
         />
       </q-card-section>
     </q-card>
@@ -145,7 +122,7 @@ export default {
         )
       }
     },
-    async stakeN3RDyToken(amount) {
+    async safuProtocol(amount) {
       /* Load User Account Info into the store */
       const accountLoaded = await this.loadAccount()
       if (accountLoaded) {
@@ -188,7 +165,17 @@ export default {
   .n3rd-title
     color: $white
     font-family: $heading-font
-    font-size: 22px
+    font-size: 24px
+    line-height: 30px
+    font-weight: 400
+    letter-spacing 0.16px
+    word-spacing 2px
+    margin: 10px 10px 15px 10px
+    text-align: left
+  .n3rd-title-orange
+    color: $orange
+    font-family: $heading-font
+    font-size: 24px
     line-height: 30px
     font-weight: 400
     letter-spacing 0.16px
@@ -199,29 +186,27 @@ export default {
     color: $white
     font-family: $heading-font
     font-size: 14px
-    line-height: 20px
+    line-height: 22px
     font-weight: 400
-    letter-spacing 0.16px
+    letter-spacing 0.10px
     margin: 0 10px 25px 10px
     text-align: left
   .n3rd-text
     min-height: 130px
     color: $white
-    font-family: $button-font
+    font-family: $computer-font
     font-size: 16px
     line-height: 26px
     font-weight: 400
     margin: 0 10px 10px 10px
   .n3rd-text-one
-    width: 59%
+    width: 60%
   .n3rd-text-two
     width: 75%
   .n3rd-text-three
-    width: 75%
-  .n3rd-text-four
-    width: 75%
-  .n3rd-buttons justify-end self-end
-    margin: 0 10px
+    width: 70%
+  .n3rd-buttons
+    margin: 0 10px 0 0
 .n3rd-img-0
   background-image: url('../assets/images/n2d-deviatart.png')
   background-size: cover
@@ -230,21 +215,14 @@ export default {
   overflow: display
   padding: 0
 .n3rd-img-1
-  background-image: url('../assets/images/etheruem.gif')
-  background-size: cover
-  background-repeat: no-repeat
-  background-position: center top
+  background-image: url('../assets/images/AAVE.png'), url('../assets/images/star-background-full-bg.jpg')
+  background-size: 180px, cover
+  background-repeat: no-repeat, no-repeat
+  background-position: bottom right, center top
   overflow: display
   padding: 0
 .n3rd-img-2
   background-image: url('../assets/images/forest.gif')
-  background-size: cover
-  background-repeat: no-repeat
-  background-position: center center
-  overflow: display
-  padding: 0
-.n3rd-img-3
-  background-image: url('../assets/images/3dBG.gif')
   background-size: cover
   background-repeat: no-repeat
   background-position: center center

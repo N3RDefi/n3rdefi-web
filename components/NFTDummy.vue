@@ -164,6 +164,88 @@
         </div>
       </q-card>
     </div>
+    <div class="col-2 col-lg-2 col-md-3 col-sm-3 col-xs-4 q-pa-xs">
+      <q-card class="n3rd-nft-card">
+        <img src="~assets/images/nfts/pixel-speech-bubbles.jpg" />
+        <div
+          class="absolute-bottom full-width bg-primary text-white text-subtitle2 text-center"
+        >
+          Pixel Speech Bubbles
+        </div>
+      </q-card>
+    </div>
+    <div class="col-2 col-lg-2 col-md-3 col-sm-3 col-xs-4 q-pa-xs">
+      <q-card class="n3rd-nft-card">
+        <img src="~/assets/images/nfts/retro-arcade-slot-machine.jpg" />
+        <div
+          class="absolute-bottom full-width bg-primary text-white text-subtitle2 text-center"
+        >
+          Retro Arcade Machine
+        </div>
+      </q-card>
+    </div>
+    <div class="col-2 col-lg-2 col-md-3 col-sm-3 col-xs-4 q-pa-xs">
+      <q-card class="n3rd-nft-card">
+        <img
+          src="~/assets/images/nfts/pixel-art-pirate-knight-cowboy-queen.jpg"
+        />
+        <div
+          class="absolute-bottom full-width bg-primary text-white text-subtitle2 text-center"
+        >
+          Pixel Pirates
+        </div>
+      </q-card>
+    </div>
+    <div class="col-2 col-lg-2 col-md-3 col-sm-3 col-xs-4 q-pa-xs">
+      <q-card class="n3rd-nft-card">
+        <img src="~/assets/images/nfts/pixel-art-cute-witch-flying-broom.jpg" />
+        <div
+          class="absolute-bottom full-width bg-primary text-white text-subtitle2 text-center"
+        >
+          Liewe Pixie
+        </div>
+      </q-card>
+    </div>
+    <div class="col-2 col-lg-2 col-md-3 col-sm-3 col-xs-4 q-pa-xs">
+      <q-card class="n3rd-nft-card">
+        <img src="~/assets/images/nfts/pixel-art-cartoon-planes.jpg" />
+        <div
+          class="absolute-bottom full-width bg-primary text-white text-subtitle2 text-center"
+        >
+          8 bit Planets
+        </div>
+      </q-card>
+    </div>
+    <div class="col-2 col-lg-2 col-md-3 col-sm-3 col-xs-4 q-pa-xs">
+      <q-card class="n3rd-nft-card">
+        <img src="~/assets/images/nfts/pixel-star.jpg" />
+        <div
+          class="absolute-bottom full-width bg-primary text-white text-subtitle2 text-center"
+        >
+          Pixel Star
+        </div>
+      </q-card>
+    </div>
+    <div class="col-2 col-lg-2 col-md-3 col-sm-3 col-xs-4 q-pa-xs">
+      <q-card class="n3rd-nft-card">
+        <img src="~/assets/images/nfts/pixel-art-beard-man.jpg" />
+        <div
+          class="absolute-bottom full-width bg-primary text-white text-subtitle2 text-center"
+        >
+          Beard Man
+        </div>
+      </q-card>
+    </div>
+    <div class="col-2 col-lg-2 col-md-3 col-sm-3 col-xs-4 q-pa-xs">
+      <q-card class="n3rd-nft-card">
+        <img src="~/assets/images/nfts/vintage-gamepad.jpg" />
+        <div
+          class="absolute-bottom full-width bg-primary text-white text-subtitle2 text-center"
+        >
+          Gamepad
+        </div>
+      </q-card>
+    </div>
   </div>
 </template>
 <script>

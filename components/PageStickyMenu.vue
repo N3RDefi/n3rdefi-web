@@ -124,7 +124,7 @@ export default {
 @import "../assets/sass/theme-variables"
 
 .n3rd-page-sticky-sidebar
-  background: $black
+  background-color: $charcoal
   border: 4px solid $primary
   /* top | right | bottom | left */
   border-style: none inset outset none

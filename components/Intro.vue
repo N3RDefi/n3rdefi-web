@@ -1,45 +1,42 @@
 <template>
   <q-card flat bordered class="n3rd-intro n3rd-img">
     <q-card-section>
-      <div class="n3rd-intro-title float-right">Welcome to N3RDefi...</div>
+      <div class="n3rd-intro-title float-right">Welcome to N3RDefi</div>
       <div class="n3rd-intro-subtitle float-right">
-        An eco-system for all things N3RDy
+        An eco-system for all things N3rdy
       </div>
       <div class="n3rd-intro-text float-right" align="right">
-        Come join us as we apein to 8 Bit NFT art and gamefi Defi. Get your very
-        own N3RD Diamond, but hurry, there's only 10 000 of these unique 1st gen
-        N3RD NFT's, step aside cryptopunks, lock your kitties away because the
-        N3rds are coming!
+        Come join us as we ape in to 8 bit NFT art and gamefi Defi. Get your
+        very own N3RD Diamond NFT, but hurry, there's only 10 000 of these
+        unique <strong>1st Gen. N3RD NFT's</strong>, step aside cryptopunks,
+        lock your kitties away because the N3rds are coming!
       </div>
     </q-card-section>
     <q-card-section
       v-if="user.web3Instance"
-      class="n3rd-intro-buttons float-right justify-end self-end"
+      class="n3rd-intro-buttons float-right items-end justify-end self-end"
       align="right"
     >
       <q-btn
         v-if="user.step >= 0 && user.step <= 2"
         outline
+        color="white"
+        :label="user.step === 0 ? 'Start' : 'GameFi'"
+        :class="
+          user.step === 0
+            ? 'play-button bg-primary q-mb-sm'
+            : 'play-button text-black bg-secondary q-mb-sm'
+        "
+        :icon="user.step === 0 ? 'play_arrow' : 'gamepad'"
+        class="bg-primary"
+        @click="nextStep()"
+      />
+      <q-btn
+        outline
         color="black"
         label="Go Back"
-        class="q-mb-sm q-mr-sm"
+        class="q-mb-sm q-ml-sm"
         @click="goBack()"
-      />
-      <q-btn
-        v-if="user.step === 3"
-        flat
-        color="black"
-        label="Go Home"
-        class="bg-secondary q-mb-sm q-mr-sm"
-        @click="goHome()"
-      />
-      <q-btn
-        v-if="user.step >= 0 && user.step <= 3"
-        flat
-        color="white"
-        label="More Info"
-        class="bg-primary q-mb-sm"
-        @click="nextStep()"
       />
     </q-card-section>
   </q-card>
@@ -89,7 +86,7 @@ export default {
   },
   methods: {
     nextStep() {
-      if (this.user.step === 3) {
+      if (this.user.step === 2) {
         $nuxt.$store.dispatch('setStep', 0)
       } else {
         $nuxt.$store.dispatch('setStep', this.user.step + 1)
@@ -97,13 +94,10 @@ export default {
     },
     goBack() {
       if (this.user.step === 0) {
-        $nuxt.$store.dispatch('setStep', 3)
+        $nuxt.$store.dispatch('setStep', 2)
       } else {
         $nuxt.$store.dispatch('setStep', this.user.step - 1)
       }
-    },
-    goHome() {
-      $nuxt.$store.dispatch('setStep', 1)
     },
   },
 }
@@ -126,16 +120,17 @@ export default {
   .n3rd-intro-subtitle
     color: $black
     font-family: $heading-font
-    font-size: 15px
+    font-size: 14px
     line-height: 22px
     font-weight: 400
-    letter-spacing 0.16px
+    letter-spacing 0.10px
     margin: 0 10px 25px 10px
     text-align: right
   .n3rd-intro-text
-    width: 70%
+    width: 66%
+    min-height: 130px
     color: $black
-    font-family: $button-font
+    font-family: $computer-font
     font-size: 16px
     line-height: 26px
     font-weight: 400
@@ -143,6 +138,8 @@ export default {
     text-align: right
   .n3rd-intro-buttons
     margin: 0 10px 0 0
+  .play-button
+    min-width: 120px
 .n3rd-img
   background-image: url('../assets/images/SuperN3RD.png')
   background-size: contain
