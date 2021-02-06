@@ -244,7 +244,7 @@ contract ItemsFacet is LibAppStorageModifiers {
     }
 
     function equippedWearables(uint256 _tokenId) external view returns (uint256[16] memory wearableIds_) {
-        uint256 l_equippedWearables = s.aavegotchis[_tokenId].equippedWearables;
+        uint256 l_equippedWearables = s.n3rds[_tokenId].equippedWearables;
         for (uint16 i; i < 16; i++) {
             wearableIds_[i] = uint16(l_equippedWearables >> (i * 16));
         }
@@ -290,15 +290,15 @@ contract ItemsFacet is LibAppStorageModifiers {
 
         uint8[] allowedCollaterals; //[WEARABLE ONLY] The collaterals this wearable can be equipped to. An empty array is "any"
         string name; //The name of the item
-        uint96 ghstPrice; //How much GHST this item costs
+        uint96 n3rdyPrice; //How much N3RDy this item costs
         uint32 svgId; //The svgId of the item
         uint32 maxQuantity; //Total number that can be minted of this item.
         uint8 rarityScoreModifier; //Number from 1-50.
         // Each bit is a slot position. 1 is true, 0 is false
         bool[] slotPositions; //[WEARABLE ONLY] The slots that this wearable can be added to.
-        bool canPurchaseWithGhst;
+        bool canPurchaseWithN3rdy;
         uint32 totalQuantity; //The total quantity of this item minted so far
-        uint8 minLevel; //The minimum N3RDAavegotchi level required to use this item. Default is 1.
+        uint8 minLevel; //The minimum N3RD level required to use this item. Default is 1.
         bool canBeTransferred;
         uint8 category; // 0 is wearable, 1 is badge, 2 is consumable
         int8 kinshipBonus; //[CONSUMABLE ONLY] How much this consumable boosts (or reduces) kinship score
@@ -321,7 +321,7 @@ contract ItemsFacet is LibAppStorageModifiers {
         }
         itemType_.allowedCollaterals = itemType.allowedCollaterals;
         itemType_.name = itemType.name;
-        itemType_.ghstPrice = itemType.ghstPrice;
+        itemType_.n3rdyPrice = itemType.n3rdyPrice;
         itemType_.svgId = itemType.svgId;
         itemType_.maxQuantity = itemType.maxQuantity;
         itemType_.rarityScoreModifier = itemType.rarityScoreModifier;
@@ -329,9 +329,9 @@ contract ItemsFacet is LibAppStorageModifiers {
         for (uint256 i; i < 16; i++) {
             itemType_.slotPositions[i] = ((itemType.slotPositions >> i) & 1) == 1;
         }
-        itemType_.canPurchaseWithGhst = itemType.canPurchaseWithGhst;
+        itemType_.canPurchaseWithN3rdy = itemType.canPurchaseWithN3rdy;
         itemType_.totalQuantity = itemType.totalQuantity;
-        itemType_.minLevel = itemType.minLevel; //The minimum N3RDAavegotchi level required to use this item. Default is 1.
+        itemType_.minLevel = itemType.minLevel; //The minimum N3RD level required to use this item. Default is 1.
         itemType_.canBeTransferred = itemType.canBeTransferred;
         itemType_.category = itemType.category;
         itemType_.kinshipBonus = itemType.kinshipBonus;
@@ -485,12 +485,12 @@ contract ItemsFacet is LibAppStorageModifiers {
     ) external {
         require(_to != address(0), "Items: Can't transfer to 0 address");
         if (_fromContract == address(this)) {
-            address owner = s.aavegotchis[_fromTokenId].owner;
+            address owner = s.n3rds[_fromTokenId].owner;
             require(
                 LibMeta.msgSender() == owner || s.operators[owner][LibMeta.msgSender()] || LibMeta.msgSender() == s.approved[_fromTokenId],
                 "Items: Not owner and not approved to transfer"
             );
-            require(s.aavegotchis[_fromTokenId].unlockTime < block.timestamp, "Items: Only callable on unlocked N3RDAavegotchis");
+            require(s.n3rds[_fromTokenId].unlockTime < block.timestamp, "Items: Only callable on unlocked N3RDs");
         } else {
             address owner = IERC721(_fromContract).ownerOf(_fromTokenId);
             require(
@@ -504,7 +504,7 @@ contract ItemsFacet is LibAppStorageModifiers {
         require(_value <= bal, "Items: Doesn't have that many to transfer");
         bal -= _value;
         if (bal == 0 && _fromContract == address(this)) {
-            uint256 l_equippedWearables = s.aavegotchis[_fromTokenId].equippedWearables;
+            uint256 l_equippedWearables = s.n3rds[_fromTokenId].equippedWearables;
             for (uint256 i; i < 16; i++) {
                 require(uint16(l_equippedWearables >> (i * 16)) != _id, "Items: Cannot transfer wearable that is equipped");
             }
@@ -525,12 +525,12 @@ contract ItemsFacet is LibAppStorageModifiers {
         require(_ids.length == _values.length, "Items: ids.length not the same as values.length");
         require(_to != address(0), "Items: Can't transfer to 0 address");
         if (_fromContract == address(this)) {
-            address owner = s.aavegotchis[_fromTokenId].owner;
+            address owner = s.n3rds[_fromTokenId].owner;
             require(
                 LibMeta.msgSender() == owner || s.operators[owner][LibMeta.msgSender()] || LibMeta.msgSender() == s.approved[_fromTokenId],
                 "Items: Not owner and not approved to transfer"
             );
-            require(s.aavegotchis[_fromTokenId].unlockTime < block.timestamp, "Items: Only callable on unlocked N3RDAavegotchis");
+            require(s.n3rds[_fromTokenId].unlockTime < block.timestamp, "Items: Only callable on unlocked N3RDs");
         } else {
             address owner = IERC721(_fromContract).ownerOf(_fromTokenId);
             require(
@@ -547,7 +547,7 @@ contract ItemsFacet is LibAppStorageModifiers {
             require(value <= bal, "Items: Doesn't have that many to transfer");
             bal -= value;
             if (bal == 0 && _fromContract == address(this)) {
-                uint256 l_equippedWearables = s.aavegotchis[_fromTokenId].equippedWearables;
+                uint256 l_equippedWearables = s.n3rds[_fromTokenId].equippedWearables;
                 for (uint256 j; j < 16; j++) {
                     require(uint16(l_equippedWearables >> (j * 16)) != id, "Items: Cannot transfer wearable that is equipped");
                 }
@@ -576,12 +576,12 @@ contract ItemsFacet is LibAppStorageModifiers {
     ) external {
         require(_toContract != address(0), "Items: Can't transfer to 0 address");
         if (_fromContract == address(this)) {
-            address owner = s.aavegotchis[_fromTokenId].owner;
+            address owner = s.n3rds[_fromTokenId].owner;
             require(
                 LibMeta.msgSender() == owner || s.operators[owner][LibMeta.msgSender()] || LibMeta.msgSender() == s.approved[_fromTokenId],
                 "Items: Not owner and not approved to transfer"
             );
-            require(s.aavegotchis[_fromTokenId].unlockTime <= block.timestamp, "Items: Only callable on unlocked N3RDAavegotchis");
+            require(s.n3rds[_fromTokenId].unlockTime <= block.timestamp, "Items: Only callable on unlocked N3RDs");
         } else {
             address owner = IERC721(_fromContract).ownerOf(_fromTokenId);
             require(
@@ -595,7 +595,7 @@ contract ItemsFacet is LibAppStorageModifiers {
         require(_value <= bal, "Items: Doesn't have that many to transfer");
         bal -= _value;
         if (bal == 0 && _fromContract == address(this)) {
-            uint256 l_equippedWearables = s.aavegotchis[_fromTokenId].equippedWearables;
+            uint256 l_equippedWearables = s.n3rds[_fromTokenId].equippedWearables;
             for (uint256 i; i < 16; i++) {
                 require(uint16(l_equippedWearables >> (i * 16)) != _id, "Items: Cannot transfer wearable that is equipped");
             }
@@ -607,10 +607,10 @@ contract ItemsFacet is LibAppStorageModifiers {
         emit TransferToParent(_toContract, _toTokenId, _id, _value);
     }
 
-    function equipWearables(uint256 _tokenId, uint256 _equippedWearables) external onlyN3RDAavegotchiOwner(_tokenId) {
-        N3RDAavegotchi storage aavegotchi = s.aavegotchis[_tokenId];
+    function equipWearables(uint256 _tokenId, uint256 _equippedWearables) external onlyN3RDOwner(_tokenId) {
+        N3RD storage n3rd = s.n3rds[_tokenId];
 
-        uint256 aavegotchiLevel = LibAppStorage.aavegotchiLevel(aavegotchi.experience);
+        uint256 n3rdLevel = LibAppStorage.n3rdLevel(n3rd.experience);
 
         for (uint256 slot; slot < 16; slot++) {
             uint256 wearableId = uint16(_equippedWearables >> (16 * slot));
@@ -619,7 +619,7 @@ contract ItemsFacet is LibAppStorageModifiers {
                 continue;
             }
             ItemType storage itemType = s.itemTypes[wearableId];
-            require(aavegotchiLevel >= itemType.minLevel, "ItemsFacet: N3RDAavegotchi level lower than minLevel");
+            require(n3rdLevel >= itemType.minLevel, "ItemsFacet: N3RD level lower than minLevel");
             require(itemType.category == LibAppStorage.ITEM_CATEGORY_WEARABLE, "ItemsFacet: Only wearables can be equippped");
 
             // bitmask and bitwise operators used here. Info on them: https://code.tutsplus.com/articles/understanding-bitwise-operators--active-11301
@@ -629,7 +629,7 @@ contract ItemsFacet is LibAppStorageModifiers {
             bool canBeEquipped;
             uint8[] memory allowedCollaterals = itemType.allowedCollaterals;
             if (allowedCollaterals.length > 0) {
-                uint256 collateralIndex = s.collateralTypeIndexes[aavegotchi.collateralType];
+                uint256 collateralIndex = s.collateralTypeIndexes[n3rd.collateralType];
 
                 for (uint256 i; i < allowedCollaterals.length; i++) {
                     if (collateralIndex == allowedCollaterals[i]) {
@@ -640,7 +640,7 @@ contract ItemsFacet is LibAppStorageModifiers {
                 require(canBeEquipped == true, "ItemsFacet: Wearable cannot be equipped in this collateral type");
             }
 
-            //Then check if this wearable is in the N3RDAavegotchis inventory
+            //Then check if this wearable is in the N3RDs inventory
             uint256 balance = s.nftBalances[address(this)][_tokenId][wearableId];
             //To do (Nick) prevent wearable from being equipped twice in the same transaction
 
@@ -648,15 +648,15 @@ contract ItemsFacet is LibAppStorageModifiers {
                 balance = s.items[LibMeta.msgSender()][wearableId];
                 require(balance > 0, "ItemsFacet: Wearable is not in inventories");
 
-                //Transfer to N3RDAavegotchi
+                //Transfer to N3RD
                 s.items[LibMeta.msgSender()][wearableId] = balance - 1;
                 s.nftBalances[address(this)][_tokenId][wearableId] += 1;
                 emit TransferToParent(address(this), _tokenId, wearableId, 1);
                 emit TransferSingle(LibMeta.msgSender(), LibMeta.msgSender(), address(this), wearableId, 1);
             }
         }
-        emit EquipWearables(_tokenId, aavegotchi.equippedWearables, _equippedWearables);
-        aavegotchi.equippedWearables = _equippedWearables;
+        emit EquipWearables(_tokenId, n3rd.equippedWearables, _equippedWearables);
+        n3rd.equippedWearables = _equippedWearables;
         LibAppStorage.interact(_tokenId);
     }
 
@@ -664,7 +664,7 @@ contract ItemsFacet is LibAppStorageModifiers {
         uint256 _tokenId,
         uint256[] calldata _itemIds,
         uint256[] calldata _quantities
-    ) external onlyUnlocked(_tokenId) onlyN3RDAavegotchiOwner(_tokenId) {
+    ) external onlyUnlocked(_tokenId) onlyN3RDOwner(_tokenId) {
         require(_itemIds.length == _quantities.length, "ItemsFacet: _itemIds length does not match _quantities length");
         for (uint256 i; i < _itemIds.length; i++) {
             uint256 itemId = _itemIds[i];
@@ -678,22 +678,22 @@ contract ItemsFacet is LibAppStorageModifiers {
 
             //Increase kinship permanently
             if (itemType.kinshipBonus > 0) {
-                uint256 kinship = (uint256(itemType.kinshipBonus) * quantity) + s.aavegotchis[_tokenId].interactionCount;
+                uint256 kinship = (uint256(itemType.kinshipBonus) * quantity) + s.n3rds[_tokenId].interactionCount;
                 require(kinship <= type(uint16).max, "ItemsFacet: kinship beyond max value");
-                s.aavegotchis[_tokenId].interactionCount = uint16(kinship);
+                s.n3rds[_tokenId].interactionCount = uint16(kinship);
             }
 
             //Boost traits and reset clock
             if (itemType.traitModifiers != 0) {
-                s.aavegotchis[_tokenId].lastTemporaryBoost = uint40(block.timestamp);
-                s.aavegotchis[_tokenId].temporaryTraitBoosts = itemType.traitModifiers;
+                s.n3rds[_tokenId].lastTemporaryBoost = uint40(block.timestamp);
+                s.n3rds[_tokenId].temporaryTraitBoosts = itemType.traitModifiers;
             }
 
             //Increase experience
             if (itemType.experienceBonus > 0) {
-                uint256 experience = (uint256(itemType.experienceBonus) * quantity) + s.aavegotchis[_tokenId].experience;
+                uint256 experience = (uint256(itemType.experienceBonus) * quantity) + s.n3rds[_tokenId].experience;
                 require(experience <= type(uint32).max, "ItemsFacet: Experience beyond max value");
-                s.aavegotchis[_tokenId].experience = uint32(experience);
+                s.n3rds[_tokenId].experience = uint32(experience);
             }
 
             itemType.totalQuantity -= uint32(quantity);

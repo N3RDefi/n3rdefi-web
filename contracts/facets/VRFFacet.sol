@@ -195,7 +195,7 @@ contract VrfFacet {
         vrf_ds.tokenIdToVrfPending[tokenId] = false;
 
         s.tokenIdToRandomNumber[tokenId] = _randomNumber;
-        s.aavegotchis[tokenId].status = LibAppStorage.STATUS_OPEN_PORTAL;
+        s.n3rds[tokenId].status = LibAppStorage.STATUS_OPEN_PORTAL;
 
         emit PortalOpened(tokenId);
         emit VrfRandomNumber(tokenId, _randomNumber, block.timestamp);

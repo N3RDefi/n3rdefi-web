@@ -5,41 +5,14 @@
         <q-card-section>
           <div class="n3rd-defi-title">D3Fi</div>
           <div class="n3rd-defi-text">
-            N3RDefi is a safe environment, where fellow N3RDs can come together
-            to form a community. Being part of a community offers trust,
-            strength, safety and commitment to a united cause, this help reduce
-            and even eliminate bad actors.
+            N3RDefi is a safe environment, where fellow N3RDs can come together to form a community. Being part of a community offers trust, strength,
+            safety and commitment to a united cause, this help reduce and even eliminate bad actors.
           </div>
         </q-card-section>
-        <q-card-section
-          v-if="user.account"
-          class="n3rd-defi-buttons justify-end self-end"
-          align="right"
-        >
-          <q-btn
-            outline
-            dense
-            color="white"
-            label="aTokens"
-            class="full-width q-mb-sm"
-            @click="nextStep()"
-          />
-          <q-btn
-            outline
-            dense
-            color="secondary"
-            label="Deposit"
-            class="full-width q-mb-sm q-mr-sm"
-            @click="goHome()"
-          />
-          <q-btn
-            outline
-            dense
-            color="primary"
-            label="Borrow"
-            class="full-width q-mb-sm"
-            @click="nextStep()"
-          />
+        <q-card-section v-if="user.account" class="n3rd-defi-buttons justify-end self-end" align="right">
+          <q-btn outline dense color="white" label="aTokens" class="full-width q-mb-sm" @click="nextStep()" />
+          <q-btn outline dense color="secondary" label="Deposit" class="full-width q-mb-sm q-mr-sm" @click="goHome()" />
+          <q-btn outline dense color="primary" label="Borrow" class="full-width q-mb-sm" @click="nextStep()" />
         </q-card-section>
       </q-card>
       <q-card outlinee bordered class="n3rd-tvl n3rd-tvl-img">
@@ -48,20 +21,13 @@
         </q-card-section>
         <q-card-section>
           <div class="n3rd-tvl-title">Aavegotchi</div>
-          <div class="n3rd-tvl-ghst items-center justify-center">
-            GHST $<span class="n3rd-tvl-text"> 1000</span>
-          </div>
-          <div class="n3rd-tvl-n3rdy items-center justify-center">
-            N3RDy $<span class="n3rd-tvl-text"> 10000</span>
-          </div>
+          <div class="n3rd-tvl-ghst items-center justify-center">GHST $<span class="n3rd-tvl-text"> 1000</span></div>
+          <div class="n3rd-tvl-n3rdy items-center justify-center">N3RDy $<span class="n3rd-tvl-text"> 10000</span></div>
         </q-card-section>
         <q-card-section align="center">
-          <img
-            src="~assets/images/ghst_coin.gif"
-            width="100px"
-            title="Aavegotchi"
-          />
+          <img src="~assets/images/ghst_coin.gif" width="100px" title="Aavegotchi" />
           <q-btn
+            v-if="user.account"
             outline
             dense
             color="white"
@@ -70,6 +36,7 @@
             @click="stakeGHST()"
           />
           <q-btn
+            v-if="user.account"
             outline
             dense
             color="black"
@@ -105,761 +72,347 @@
         <tbody>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aDAI.svg"
-                width="24px"
-                title="DAI"
-              />
+              <img src="~assets/images/aTokens/aDAI.svg" width="24px" title="DAI" />
             </td>
             <td class="token-title">DAI</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aUSDC.svg"
-                width="24px"
-                title="aUSDC"
-              />
+              <img src="~assets/images/aTokens/aUSDC.svg" width="24px" title="aUSDC" />
             </td>
             <td class="token-title">USD Coin (USDC)</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aTUSD.svg"
-                width="24px"
-                title="aTUSD"
-              />
+              <img src="~assets/images/aTokens/aTUSD.svg" width="24px" title="aTUSD" />
             </td>
             <td class="token-title">TrueUSD (TUSD)</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aUSDT.svg"
-                width="24px"
-                title="aUSDT"
-              />
+              <img src="~assets/images/aTokens/aUSDT.svg" width="24px" title="aUSDT" />
             </td>
             <td class="token-title">USDT Coin (USDT)</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aSUSD.svg"
-                width="24px"
-                title="aSUSD"
-              />
+              <img src="~assets/images/aTokens/aSUSD.svg" width="24px" title="aSUSD" />
             </td>
             <td class="token-title">sUSD</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aBUSD.svg"
-                width="24px"
-                title="aBUSD"
-              />
+              <img src="~assets/images/aTokens/aBUSD.svg" width="24px" title="aBUSD" />
             </td>
             <td class="token-title">Binance USD (BUSD)</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aGUSD.svg"
-                width="24px"
-                title="aGUSD"
-              />
+              <img src="~assets/images/aTokens/aGUSD.svg" width="24px" title="aGUSD" />
             </td>
             <td class="token-title">Gemini Dollar (GUSD)</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aWETH.svg"
-                width="24px"
-                title="aWETH"
-              />
+              <img src="~assets/images/aTokens/aWETH.svg" width="24px" title="aWETH" />
             </td>
             <td class="token-title">Wrapped ETH</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aAAVE.svg"
-                width="24px"
-                title="aAAVE"
-              />
+              <img src="~assets/images/aTokens/aAAVE.svg" width="24px" title="aAAVE" />
             </td>
             <td class="token-title">Aave (AAVE)</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aUNI.svg"
-                width="24px"
-                title="aUNI"
-              />
+              <img src="~assets/images/aTokens/aUNI.svg" width="24px" title="aUNI" />
             </td>
             <td class="token-title">Uniswap</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aYFI.svg"
-                width="24px"
-                title="aYFI"
-              />
+              <img src="~assets/images/aTokens/aYFI.svg" width="24px" title="aYFI" />
             </td>
             <td class="token-title">yearn.finance (YFI)</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aBAT.svg"
-                width="24px"
-                title="aBAT"
-              />
+              <img src="~assets/images/aTokens/aBAT.svg" width="24px" title="aBAT" />
             </td>
             <td class="token-title">Basic Attention Token</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aREN.svg"
-                width="24px"
-                title="aREN"
-              />
+              <img src="~assets/images/aTokens/aREN.svg" width="24px" title="aREN" />
             </td>
             <td class="token-title">REN</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aENJ.svg"
-                width="24px"
-                title="aENJ"
-              />
+              <img src="~assets/images/aTokens/aENJ.svg" width="24px" title="aENJ" />
             </td>
             <td class="token-title">EnjinCoin (ENJ)</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aKNC.svg"
-                width="24px"
-                title="aKNC"
-              />
+              <img src="~assets/images/aTokens/aKNC.svg" width="24px" title="aKNC" />
             </td>
             <td class="token-title">Kyber Network (KNC)</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aLINK.svg"
-                width="24px"
-                title="aLINK"
-              />
+              <img src="~assets/images/aTokens/aLINK.svg" width="24px" title="aLINK" />
             </td>
             <td class="token-title">ChainLink (LINK)</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aMANA.svg"
-                width="24px"
-                title="aMANA"
-              />
+              <img src="~assets/images/aTokens/aMANA.svg" width="24px" title="aMANA" />
             </td>
             <td class="token-title">Decentraland</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aMKR.svg"
-                width="24px"
-                title="aMKR"
-              />
+              <img src="~assets/images/aTokens/aMKR.svg" width="24px" title="aMKR" />
             </td>
             <td class="token-title">Maker (MKR)</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aSNX.svg"
-                width="24px"
-                title="aSNX"
-              />
+              <img src="~assets/images/aTokens/aSNX.svg" width="24px" title="aSNX" />
             </td>
             <td class="token-title">SNX</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aWBTC.svg"
-                width="24px"
-                title="aWBTC"
-              />
+              <img src="~assets/images/aTokens/aWBTC.svg" width="24px" title="aWBTC" />
             </td>
             <td class="token-title">WBTC Coin (WBTC)</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aZRX.svg"
-                width="24px"
-                title="aZRX"
-              />
+              <img src="~assets/images/aTokens/aZRX.svg" width="24px" title="aZRX" />
             </td>
             <td class="token-title">0x Coin (ZRX)</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aCRV.svg"
-                width="24px"
-                title="aCRV"
-              />
+              <img src="~assets/images/aTokens/aCRV.svg" width="24px" title="aCRV" />
             </td>
             <td class="token-title">Curve DAO Token</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
           <tr>
             <td>
-              <img
-                src="~assets/images/aTokens/aBAL.svg"
-                width="24px"
-                title="aBAL"
-              />
+              <img src="~assets/images/aTokens/aBAL.svg" width="24px" title="aBAL" />
             </td>
             <td class="token-title">Balancer (BAL)</td>
-            <td align="center">$ 72.02M</td>
-            <td align="center">$59.03M</td>
+            <td align="center" class="token-price">$ 72.02M</td>
+            <td align="center" class="token-price">$59.03M</td>
             <td align="center" class="purple">7.82 %</td>
             <td align="center" class="green">11.45 %</td>
             <td align="center" class="orange">16.45 %</td>
             <td>
-              <q-btn
-                outline
-                dense
-                color="white"
-                label="Deposit"
-                class="bg-primary q-mb-sm q-mr-sm"
-                @click="deposit()"
-              />
-              <q-btn
-                outline
-                dense
-                color="black"
-                label="Borrow"
-                class="bg-secondary q-mb-sm"
-                @click="borrow()"
-              />
+              <q-btn outline dense color="white" label="Deposit" class="bg-primary q-mb-sm q-mr-sm" @click="deposit()" />
+              <q-btn outline dense color="black" label="Borrow" class="bg-secondary q-mb-sm" @click="borrow()" />
             </td>
           </tr>
         </tbody>
@@ -1051,25 +604,28 @@ export default {
 .aave-table
   width: 100%
   th
-    font-weight: bold
+    font-weight: 600
   td
     font-family: $computer-font
     font-weight: 400
   .token-title
     font-size: 16px
-    font-weight: 600
+    font-weight: 400
+  .token-price
+    font-size: 16px
+    font-weight: 400
   .purple
     font-size: 16px
     color: $purple
-    font-weight: 600
+    font-weight: 400
   .green
     font-size: 16px
-    color: $positive
-    font-weight: 600
+    color: $warning
+    font-weight: 400
   .orange
     font-size: 16px
-    color: $warning
-    font-weight: 600
+    color: $positive
+    font-weight: 400
 
 /* CSS Media Queries */
 /* $breakpoint-xl: 2400px */

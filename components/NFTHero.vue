@@ -61,8 +61,7 @@ export default {
         {
           id: 5,
           title: 'Pixel Pirates',
-          image:
-            '../../assets/images/nfts/pixel-art-pirate-knight-cowboy-queen.jpg',
+          image: '../../assets/images/nfts/pixel-art-pirate-knight-cowboy-queen.jpg',
           link: '',
           price: '',
           address: '',
@@ -72,8 +71,7 @@ export default {
         {
           id: 6,
           title: 'Liewe Pixie',
-          image:
-            '../../assets/images/nfts/pixel-art-cute-witch-flying-broom.jpg',
+          image: '../../assets/images/nfts/pixel-art-cute-witch-flying-broom.jpg',
           link: '',
           price: '',
           address: '',
@@ -123,8 +121,7 @@ export default {
         {
           id: 11,
           title: '8 bit Dragonz',
-          image:
-            '../../assets/images/nfts/pixel-art-dragon-8-bit-game-character.jpg',
+          image: '../../assets/images/nfts/pixel-art-dragon-8-bit-game-character.jpg',
           link: '',
           price: '',
           address: '',

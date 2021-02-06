@@ -1,7 +1,7 @@
 /* global ethers hre task */
 const fs = require('fs')
 
-const basePath = '/contracts/Aavegotchi/facets/'
+const basePath = '/contracts/facets/'
 
 task('diamondABI', 'Generates ABI file for diamond, includes all ABIs of facets')
   .setAction(async () => {

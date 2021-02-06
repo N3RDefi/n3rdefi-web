@@ -3,18 +3,12 @@
     <q-card-section>
       <div class="n3rd-title">{{ title }}</div>
       <div class="n3rd-text">
-        Create your own 8 Bit NFT's, stake or farm your digital assets in our
-        digital marketplace to earn rewards from the N3RDS g33k-O-system
+        Create your own 8 Bit NFT's, stake or farm your digital assets in our digital marketplace to earn rewards from the N3RDS g33k-O-system
       </div>
     </q-card-section>
     <q-card-section>
       <div class="nft-form">
-        <q-form
-          ref="nftForm"
-          class="q-gutter-md nftForm"
-          @submit="generateNFT()"
-          @reset="onReset()"
-        >
+        <q-form ref="nftForm" class="q-gutter-md nftForm" @submit="generateNFT()" @reset="onReset()">
           <q-input
             v-model="name"
             dense
@@ -25,9 +19,7 @@
             bg-color="white"
             label="Title *"
             lazy-rules
-            :rules="[
-              (val) => (val && val.length > 0) || 'Please type something!',
-            ]"
+            :rules="[(val) => (val && val.length > 0) || 'Please type something!']"
           />
           <q-input
             v-model="price"
@@ -44,8 +36,7 @@
             input-class="text-right"
             lazy-rules
             :rules="[
-              (val) =>
-                (val !== null && val !== '') || 'Please enter your price',
+              (val) => (val !== null && val !== '') || 'Please enter your price',
               (val) => (val > 0 && val < 100) || 'Please enter a real value!',
             ]"
           />
@@ -65,27 +56,9 @@
             "
           />
           <div class="n3rd-buttons" align="center">
-            <q-btn
-              flat
-              label="Submit"
-              type="submit"
-              color="white"
-              class="bg-primary full-width q-mb-md"
-            />
-            <q-btn
-              flat
-              label="Stake"
-              color="black"
-              class="bg-secondary full-width q-mb-md"
-            />
-            <q-btn
-              outline
-              label="Reset"
-              type="reset"
-              color="black"
-              flat
-              class="bg-white full-width q-mb-md"
-            />
+            <q-btn flat label="Submit" type="submit" color="white" class="bg-primary full-width q-mb-md" />
+            <q-btn flat label="Stake" color="black" class="bg-secondary full-width q-mb-md" />
+            <q-btn outline label="Reset" type="reset" color="black" flat class="bg-white full-width q-mb-md" />
           </div>
           <q-toggle
             v-model="accept"

@@ -31,12 +31,7 @@
           <q-icon v-if="searchText === ''" name="search" />
         </template>
         <template #append>
-          <q-icon
-            v-if="searchText !== ''"
-            name="clear"
-            class="cursor-pointer"
-            @click="search('')"
-          />
+          <q-icon v-if="searchText !== ''" name="clear" class="cursor-pointer" @click="search('')" />
         </template>
       </q-input>
       <q-space />
@@ -47,11 +42,7 @@
           outline
           :color="!user.account ? 'white' : 'white'"
           :label="!user.account ? 'Connect' : 'Load Arkane'"
-          :class="
-            !user.account
-              ? 'arkane-button bg-primary'
-              : 'arkane-button text-black bg-secondary'
-          "
+          :class="!user.account ? 'arkane-button bg-primary' : 'arkane-button text-black bg-secondary'"
           :icon="!user.account ? 'play_arrow' : 'gamepad'"
           @click="!user.account ? connectMetaMask() : connectArkane()"
         />
@@ -61,11 +52,7 @@
           </q-avatar>
         </q-btn>
         <!-- User Account Dropdown Button -->
-        <q-btn
-          v-if="user.account && profile.firstName && profile.email"
-          round
-          flat
-        >
+        <q-btn v-if="user.account && profile.firstName && profile.email" round flat>
           <q-avatar size="36px">
             <img src="../assets/images/N3RD.png" width="36px" />
           </q-avatar>
@@ -73,10 +60,7 @@
             <q-list class="text-grey-8">
               <q-item class="computer-font">
                 <q-item-section
-                  ><strong
-                    >Account:
-                    {{ profile.firstName + ' ' + profile.lastName }}</strong
-                  ></q-item-section
+                  ><strong>Account: {{ profile.firstName + ' ' + profile.lastName }}</strong></q-item-section
                 >
               </q-item>
               <!-- <q-item class="computer-font">
@@ -99,17 +83,8 @@
         </q-btn>
         <!-- END User Account Dropdown Button -->
         <!-- Network Button -->
-        <q-btn
-          v-if="user.chainIdHEX"
-          round
-          dense
-          flat
-          :color="networkColor"
-          :icon="networkIcon"
-        >
-          <q-tooltip :content-class="`bg-${networkColor}`">{{
-            user.chainName
-          }}</q-tooltip>
+        <q-btn v-if="user.chainIdHEX" round dense flat :color="networkColor" :icon="networkIcon">
+          <q-tooltip :content-class="`bg-${networkColor}`">{{ user.chainName }}</q-tooltip>
         </q-btn>
         <!-- END Network Button -->
       </div>
@@ -185,15 +160,9 @@ export default {
     /* Check ArkaneProvider Instance */
     const arkaneProvider = await this.$web3.connectArkaneProvider()
     if (arkaneProvider) {
-      console.log(
-        '%c ArkaneProvider loaded successfully!',
-        'background: blue; color: white'
-      )
+      console.log('%c ArkaneProvider loaded successfully!', 'background: blue; color: white')
     } else {
-      console.log(
-        '%c Please connect arkaneProvider!',
-        'background: red; color: white'
-      )
+      console.log('%c Please connect arkaneProvider!', 'background: red; color: white')
     }
   },
   methods: {
@@ -217,15 +186,9 @@ export default {
       /* Load User Account Info into the store */
       const accountLoaded = await this.loadAccount()
       if (accountLoaded) {
-        console.log(
-          '%c MetaMask connected successfully!',
-          'background: blue; color: white'
-        )
+        console.log('%c MetaMask connected successfully!', 'background: blue; color: white')
       } else {
-        console.log(
-          '%c Please connect MetaMask!',
-          'background: red; color: white'
-        )
+        console.log('%c Please connect MetaMask!', 'background: red; color: white')
       }
     },
     async loadAccount() {
@@ -247,10 +210,7 @@ export default {
     },
     async connectArkane() {
       try {
-        if (
-          process.env.NODE_ENV === 'development' ||
-          process.env.NODE_ENV === 'staging'
-        ) {
+        if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'staging') {
           /* Use staging environment on ArkaneConnect */
           const arkaneConnect = new ArkaneConnect(process.env.APP_NAME, {
             environment: 'staging',
@@ -282,17 +242,15 @@ export default {
     },
     async authArkaneAccount(arkaneConnect) {
       /* Check if a user is authenticated with Arkane */
-      const authenticationInstance = await arkaneConnect
-        .checkAuthenticated()
-        .then((result) =>
-          result
-            .authenticated((auth) => {
-              console.log(`The user is authenticated: ${auth.subject}`)
-            })
-            .notAuthenticated((auth) => {
-              console.log(`The user is NOT authenticated: ${auth}`)
-            })
-        )
+      const authenticationInstance = await arkaneConnect.checkAuthenticated().then((result) =>
+        result
+          .authenticated((auth) => {
+            console.log(`The user is authenticated: ${auth.subject}`)
+          })
+          .notAuthenticated((auth) => {
+            console.log(`The user is NOT authenticated: ${auth}`)
+          }),
+      )
       // AuthenticationInstance - see https://docs.arkane.network/widget/widget-advanced/object-type-reference/authenticationinstance
       // {
       //   authenticated?: boolean;

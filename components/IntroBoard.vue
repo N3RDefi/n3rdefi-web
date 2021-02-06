@@ -5,8 +5,7 @@
         <div class="n3rd-title">Let's get N3RDy...</div>
         <div class="n3rd-subtitle">We are all g33ks at heart</div>
         <div class="n3rd-text n3rd-text-one">
-          A N3RD is a uniquely generated 8 Bit N3RD character that allows you to
-          N3RDefi. There will only be 10,000 first generation N3RDs minted. Ape
+          A N3RD is a uniquely generated 8 Bit N3RD character that allows you to N3RDefi. There will only be 10,000 first generation N3RDs minted. Ape
           in to your N3RD token today and lets get N3RDy ....
         </div>
       </q-card-section>
@@ -16,6 +15,7 @@
           color="black"
           label="Let's get N3RDy"
           class="bg-secondary q-mb-sm"
+          :icon="`img:${require('@/assets/icons/precision_manufacturing.svg') ? require('@/assets/icons/precision_manufacturing.svg') : ''}`"
           @click="getN3RDyToken()"
         />
       </q-card-section>
@@ -25,8 +25,7 @@
         <div class="n3rd-title">8 Bit Art</div>
         <div class="n3rd-subtitle">NFT Marketplace</div>
         <div class="n3rd-text n3rd-text-two">
-          N3RDs love everything 8 Bit and there's nothing<br />better than g33ky
-          NFT's. Create your own G33ky<br />NFT's and list them in our 8 Bit NFT
+          N3RDs love everything 8 Bit and there's nothing better than g33ky NFT's. Create your own G33ky NFT's and list them in our 8 Bit NFT
           Marketplace.
         </div>
       </q-card-section>
@@ -36,6 +35,7 @@
           color="black"
           label="Create NFTs"
           class="bg-secondary q-mb-sm"
+          :icon="`img:${require('@/assets/icons/stars.svg') ? require('@/assets/icons/stars.svg') : ''}`"
           @click="createNFT()"
         />
       </q-card-section>
@@ -45,8 +45,7 @@
         <div class="n3rd-title-orange">SAFU Vaults</div>
         <div class="n3rd-subtitle">D3Fi means funds are SAFU</div>
         <div class="n3rd-text n3rd-text-three">
-          N3RDefi offers a full range of Defi solutions including Aave borrow,
-          lend and staking with aTokens. Our deflationary models mean up only,
+          N3RDefi offers a full range of Defi solutions including Aave borrow, lend and staking with aTokens. Our deflationary models mean up only,
           really is up only! Our top priority is that funds are SAFU.
         </div>
       </q-card-section>
@@ -56,6 +55,7 @@
           color="black"
           label="SAFU Protocol"
           class="bg-orange q-mb-sm"
+          :icon="`img:${require('@/assets/icons/speed.svg') ? require('@/assets/icons/speed.svg') : ''}`"
           @click="safuProtocol()"
         />
       </q-card-section>
@@ -116,10 +116,7 @@ export default {
         const tokens = await this.buyN3RDyTokens(this.user.account, amount)
         console.log('Bought N3RDy Tokens:', tokens)
       } else {
-        console.log(
-          '%c Please check MetaMask and try again!',
-          'background: red; color: white'
-        )
+        console.log('%c Please check MetaMask and try again!', 'background: red; color: white')
       }
     },
     async safuProtocol(amount) {
@@ -132,10 +129,7 @@ export default {
         const tokens = await this.buyN3RDyTokens(this.user.account, amount)
         console.log('Bought N3RDy Tokens:', tokens)
       } else {
-        console.log(
-          '%c Please check MetaMask and try again!',
-          'background: red; color: white'
-        )
+        console.log('%c Please check MetaMask and try again!', 'background: red; color: white')
       }
     },
     async createNFT(amount) {
@@ -148,10 +142,7 @@ export default {
         const tokens = await this.buyN3RDyTokens(this.user.account, amount)
         console.log('Bought N3RDy Tokens:', tokens)
       } else {
-        console.log(
-          '%c Please check MetaMask and try again!',
-          'background: red; color: white'
-        )
+        console.log('%c Please check MetaMask and try again!', 'background: red; color: white')
       }
     },
   },

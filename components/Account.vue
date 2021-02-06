@@ -25,37 +25,15 @@
       <p>Arkane lastName: {{ profile.lastName }}</p>
     </q-card-section>
     <q-card-section>
-      <q-btn
-        v-if="!profile.userId"
-        flat
-        color="white"
-        class="bg-primary full-width q-mb-sm"
-        label="Connect Arkane"
-        @click="connectArkane()"
-      />
+      <q-btn v-if="!profile.userId" flat color="white" class="bg-primary full-width q-mb-sm" label="Connect Arkane" @click="connectArkane()" />
       <q-btn
         outline
         color="grey-8"
         class="full-width q-mb-sm"
         label="Test Transaction"
-        @click="
-          sendTransaction(
-            (from = 'test'),
-            (to = 'test'),
-            (value = 'test'),
-            (gas = 'test'),
-            (gasPrice = 'test')
-          )
-        "
+        @click="sendTransaction((from = 'test'), (to = 'test'), (value = 'test'), (gas = 'test'), (gasPrice = 'test'))"
       />
-      <q-btn
-        v-if="user"
-        outline
-        color="primary"
-        class="full-width"
-        label="Request Permissions"
-        @click="requestPermissions()"
-      />
+      <q-btn v-if="user" outline color="primary" class="full-width" label="Request Permissions" @click="requestPermissions()" />
     </q-card-section>
     <q-card-section class="q-pt-none">
       <pre>User: {{ user }}</pre>
@@ -114,15 +92,9 @@ export default {
     /* Check ArkaneProvider Instance */
     const arkaneProvider = await this.$web3.connectArkaneProvider()
     if (arkaneProvider) {
-      console.log(
-        '%c ArkaneProvider loaded successfully!',
-        'background: blue; color: white'
-      )
+      console.log('%c ArkaneProvider loaded successfully!', 'background: blue; color: white')
     } else {
-      console.log(
-        '%c Please connect arkaneProvider!',
-        'background: red; color: white'
-      )
+      console.log('%c Please connect arkaneProvider!', 'background: red; color: white')
     }
   },
   methods: {
@@ -131,10 +103,7 @@ export default {
     },
     async connectArkane() {
       try {
-        if (
-          process.env.NODE_ENV === 'development' ||
-          process.env.NODE_ENV === 'staging'
-        ) {
+        if (process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'staging') {
           /* Use staging environment on ArkaneConnect */
           const arkaneConnect = new ArkaneConnect(process.env.APP_NAME, {
             environment: 'staging',
@@ -166,17 +135,15 @@ export default {
     },
     async authArkaneAccount(arkaneConnect) {
       /* Check if a user is authenticated with Arkane */
-      const authenticationInstance = await arkaneConnect
-        .checkAuthenticated()
-        .then((result) =>
-          result
-            .authenticated((auth) => {
-              console.log(`The user is authenticated: ${auth.subject}`)
-            })
-            .notAuthenticated((auth) => {
-              console.log(`The user is NOT authenticated: ${auth}`)
-            })
-        )
+      const authenticationInstance = await arkaneConnect.checkAuthenticated().then((result) =>
+        result
+          .authenticated((auth) => {
+            console.log(`The user is authenticated: ${auth.subject}`)
+          })
+          .notAuthenticated((auth) => {
+            console.log(`The user is NOT authenticated: ${auth}`)
+          }),
+      )
       // AuthenticationInstance - see https://docs.arkane.network/widget/widget-advanced/object-type-reference/authenticationinstance
       // {
       //   authenticated?: boolean;
@@ -216,13 +183,7 @@ export default {
     },
     async sendTransaction(from, to, value, gas, gasPrice) {
       try {
-        const sent = await this.$web3.sendTransaction(
-          from,
-          to,
-          value,
-          gas,
-          gasPrice
-        )
+        const sent = await this.$web3.sendTransaction(from, to, value, gas, gasPrice)
         // Handle the result
         console.log(sent)
       } catch (error) {
@@ -237,9 +198,7 @@ export default {
           params: [{ eth_accounts: {} }],
         })
         .then((permissions) => {
-          const accountsPermission = permissions.find(
-            (permission) => permission.parentCapability === 'eth_accounts'
-          )
+          const accountsPermission = permissions.find((permission) => permission.parentCapability === 'eth_accounts')
           if (accountsPermission) {
             console.log('eth_accounts permission successfully requested!')
           }

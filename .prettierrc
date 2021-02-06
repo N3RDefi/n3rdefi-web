@@ -1,12 +1,21 @@
 {
+  "tabWidth": 2,
+  "useTabs": false,
+  "printWidth": 150,
   "semi": false,
   "singleQuote": true,
+  "quoteProps": "consistent",
+  "trailingComma": "all",
+  "bracketSpacing": true,
+  "jsxBracketSameLine": true,
+  "arrowParens": "always",
+  "endOfLine": "auto",
   "overrides": [
     {
       "files": "*.sol",
       "options": {
         "printWidth": 150,
-        "tabWidth": 4,
+        "tabWidth": 2,
         "useTabs": false,
         "singleQuote": false,
         "bracketSpacing": false,

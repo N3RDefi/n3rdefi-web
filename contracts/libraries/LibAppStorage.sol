@@ -7,10 +7,10 @@ import "../libraries/LibMeta.sol";
 //import "../interfaces/IERC20.sol";
 // import "hardhat/console.sol";
 
-struct Aavegotchi {
+struct N3rd {
     // This 256 bit value is broken up into 16 16-bit slots for storing wearableIds
     // See helper function that converts this value into a uint16[16] memory equipedWearables
-    uint256 equippedWearables; //The currently equipped wearables of the Aavegotchi
+    uint256 equippedWearables; //The currently equipped wearables of the N3rd
     string name;
     uint256 randomNumber;
     // [Experience, Rarity Score, Kinship, Eye Color, Eye Shape, Brain Size, Spookiness, Aggressiveness, Energy]
@@ -20,15 +20,15 @@ struct Aavegotchi {
     address owner;
     // uint32 batchId;
     uint16 hauntId;
-    uint8 status; // 0 == portal, 1 = open portal, 2 = Aavegotchi
-    uint32 experience; //How much XP this Aavegotchi has accrued. Begins at 0.
+    uint8 status; // 0 == portal, 1 = open portal, 2 = N3rd
+    uint32 experience; //How much XP this N3rd has accrued. Begins at 0.
     address collateralType;
     uint88 minimumStake; //The minimum amount of collateral that must be staked. Set upon creation.
-    uint16 usedSkillPoints; //The number of skill points this aavegotchi has already used
-    uint40 claimTime; //The block timestamp when this Aavegotchi was claimed
-    uint40 lastInteracted; //The last time this Aavegotchi was interacted with
-    uint16 interactionCount; //How many times the owner of this Aavegotchi has interacted with it. Gets reset when the Aavegotchi is transferred to a new owner.
-    address escrow; //The escrow address this Aavegotchi manages.
+    uint16 usedSkillPoints; //The number of skill points this n3rd has already used
+    uint40 claimTime; //The block timestamp when this N3rd was claimed
+    uint40 lastInteracted; //The last time this N3rd was interacted with
+    uint16 interactionCount; //How many times the owner of this N3rd has interacted with it. Gets reset when the N3rd is transferred to a new owner.
+    address escrow; //The escrow address this N3rd manages.
     uint256 unlockTime;
 }
 
@@ -41,15 +41,15 @@ struct ItemType {
     // this is an array of uint indexes into the collateralTypes array
     uint8[] allowedCollaterals; //[WEARABLE ONLY] The collaterals this wearable can be equipped to. An empty array is "any"
     string name; //The name of the item
-    uint96 ghstPrice; //How much GHST this item costs
+    uint96 n3rdyPrice; //How much N3RDy this item costs
     uint32 svgId; //The svgId of the item
     uint32 maxQuantity; //Total number that can be minted of this item.
     uint8 rarityScoreModifier; //Number from 1-50.
     // Each bit is a slot position. 1 is true, 0 is false
     uint16 slotPositions; //[WEARABLE ONLY] The slots that this wearable can be added to.
-    bool canPurchaseWithGhst;
+    bool canPurchaseWithN3rdy;
     uint32 totalQuantity; //The total quantity of this item minted so far
-    uint8 minLevel; //The minimum Aavegotchi level required to use this item. Default is 1.
+    uint8 minLevel; //The minimum N3rd level required to use this item. Default is 1.
     bool canBeTransferred;
     uint8 category; // 0 is wearable, 1 is badge, 2 is consumable
     int8 kinshipBonus; //[CONSUMABLE ONLY] How much this consumable boosts (or reduces) kinship score
@@ -78,7 +78,7 @@ struct SvgLayer {
     uint16 size;
 }
 
-struct AavegotchiCollateralTypeInfo {
+struct N3rdCollateralTypeInfo {
     // treated as an arary of int8
     uint256 modifiers; //Trait modifiers for each collateral. Can be 2, 1, -1, or -2
     bytes3 primaryColor;
@@ -104,20 +104,20 @@ struct ERC1155Listing {
 }
 
 struct AppStorage {
-    mapping(address => AavegotchiCollateralTypeInfo) collateralTypeInfo;
+    mapping(address => N3rdCollateralTypeInfo) collateralTypeInfo;
     mapping(address => uint256) collateralTypeIndexes;
     mapping(bytes32 => SvgLayer[]) svgLayers;
     mapping(address => mapping(uint256 => mapping(uint256 => uint256))) nftBalances;
-    mapping(address => uint256) aavegotchiBalance;
+    mapping(address => uint256) n3rdBalance;
     ItemType[] itemTypes;
     WearableSet[] wearableSets;
     mapping(uint256 => Haunt) haunts;
     mapping(address => mapping(uint256 => uint256)) items;
     mapping(uint256 => uint256) tokenIdToRandomNumber;
-    mapping(uint256 => Aavegotchi) aavegotchis;
+    mapping(uint256 => N3rd) n3rds;
     mapping(address => mapping(address => bool)) operators;
     mapping(uint256 => address) approved;
-    mapping(string => bool) aavegotchiNamesUsed;
+    mapping(string => bool) n3rdNamesUsed;
     mapping(address => uint256) metaNonces;
     bytes32[1000] emptySlots;
     uint32 totalSupply;
@@ -170,10 +170,10 @@ library LibAppStorage {
 
     uint8 internal constant WEARABLE_SLOTS_TOTAL = 11;
 
-    event AavegotchiInteract(uint256 indexed _tokenId, uint256 kinship);
+    event N3rdInteract(uint256 indexed _tokenId, uint256 kinship);
 
-    modifier onlyAavegotchiOwner(uint256 _tokenId) {
-        require(LibMeta.msgSender() == diamondStorage().aavegotchis[_tokenId].owner, "AavegotchiFacet: Only aavegotchi owner can increase stake");
+    modifier onlyN3rdOwner(uint256 _tokenId) {
+        require(LibMeta.msgSender() == diamondStorage().n3rds[_tokenId].owner, "N3rdFacet: Only n3rd owner can increase stake");
         _;
     }
 
@@ -183,23 +183,23 @@ library LibAppStorage {
         }
     }
 
-    // Need to ensure there is no overflow of _ghst
-    function purchase(uint256 _ghst) internal {
+    // Need to ensure there is no overflow of _n3rdy
+    function purchase(uint256 _n3rdy) internal {
         AppStorage storage s = diamondStorage();
         //33% to burn address
-        uint256 burnShare = (_ghst * 33) / 100;
+        uint256 burnShare = (_n3rdy * 33) / 100;
 
         //17% to Pixelcraft wallet
-        uint256 companyShare = (_ghst * 17) / 100;
+        uint256 companyShare = (_n3rdy * 17) / 100;
 
         //40% to rarity farming rewards
-        uint256 rarityFarmShare = (_ghst * 2) / 5;
+        uint256 rarityFarmShare = (_n3rdy * 2) / 5;
 
         //10% to DAO
-        uint256 daoShare = (_ghst - burnShare - companyShare - rarityFarmShare);
+        uint256 daoShare = (_n3rdy - burnShare - companyShare - rarityFarmShare);
 
         // Using 0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF as burn address.
-        // GHST token contract does not allow transferring to address(0) address: https://etherscan.io/address/0x3F382DbD960E3a9bbCeaE22651E88158d2791550#code
+        // N3RDy token contract does not allow transferring to address(0) address: https://etherscan.io/address/0x3F382DbD960E3a9bbCeaE22651E88158d2791550#code
         LibERC20.transferFrom(s.n3rdContract, LibMeta.msgSender(), address(0xFFfFfFffFFfffFFfFFfFFFFFffFFFffffFfFFFfF), burnShare);
         LibERC20.transferFrom(s.n3rdContract, LibMeta.msgSender(), s.pixelCraft, companyShare);
         LibERC20.transferFrom(s.n3rdContract, LibMeta.msgSender(), s.rarityFarming, rarityFarmShare);
@@ -222,7 +222,7 @@ library LibAppStorage {
         }
     }
 
-    function aavegotchiLevel(uint32 _experience) internal pure returns (uint256 level_) {
+    function n3rdLevel(uint32 _experience) internal pure returns (uint256 level_) {
         if (_experience > 490050) {
             return 99;
         }
@@ -240,13 +240,13 @@ library LibAppStorage {
 
     function interact(uint256 _tokenId) internal {
         AppStorage storage s = diamondStorage();
-        uint256 lastInteracted = s.aavegotchis[_tokenId].lastInteracted;
+        uint256 lastInteracted = s.n3rds[_tokenId].lastInteracted;
         // if interacted less than 12 hours ago
         if (block.timestamp < lastInteracted + 12 hours) {
             return;
         }
 
-        uint256 interactionCount = s.aavegotchis[_tokenId].interactionCount;
+        uint256 interactionCount = s.n3rds[_tokenId].interactionCount;
         uint256 interval = block.timestamp - lastInteracted;
         uint256 daysSinceInteraction = interval / 86400;
         uint256 kinship;
@@ -260,25 +260,25 @@ library LibAppStorage {
             hateBonus = 2;
         }
         kinship += 1 + hateBonus;
-        s.aavegotchis[_tokenId].interactionCount = uint16(kinship);
+        s.n3rds[_tokenId].interactionCount = uint16(kinship);
 
-        s.aavegotchis[_tokenId].lastInteracted = uint40(block.timestamp);
-        emit AavegotchiInteract(_tokenId, kinship);
+        s.n3rds[_tokenId].lastInteracted = uint40(block.timestamp);
+        emit N3rdInteract(_tokenId, kinship);
     }
 }
 
 contract LibAppStorageModifiers {
     AppStorage internal s;
-    modifier onlyAavegotchiOwner(uint256 _tokenId) {
-        require(LibMeta.msgSender() == s.aavegotchis[_tokenId].owner, "LibAppStorage: Only aavegotchi owner can call this function");
+    modifier onlyN3rdOwner(uint256 _tokenId) {
+        require(LibMeta.msgSender() == s.n3rds[_tokenId].owner, "LibAppStorage: Only n3rd owner can call this function");
         _;
     }
     modifier onlyUnlocked(uint256 _tokenId) {
-        require(s.aavegotchis[_tokenId].unlockTime < block.timestamp, "LibAppStorage: Only callable on unlocked Aavegotchis");
+        require(s.n3rds[_tokenId].unlockTime < block.timestamp, "LibAppStorage: Only callable on unlocked N3rds");
         _;
     }
     // modifier onlyLocked(uint256 _tokenId) {
-    //     require(s.aavegotchis[_tokenId].unlockTime > block.timestamp, "Only callable on unlocked Aavegotchis");
+    //     require(s.n3rds[_tokenId].unlockTime > block.timestamp, "Only callable on unlocked N3rds");
     //     _;
     // }
 

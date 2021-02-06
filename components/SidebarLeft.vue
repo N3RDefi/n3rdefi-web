@@ -1,11 +1,5 @@
 <template>
-  <q-drawer
-    v-model="leftDrawerOpen"
-    bordered
-    behavior="mobile"
-    class="n3rd-sidebar-left"
-    @click="toggleLeftDrawer(leftDrawerOpen)"
-  >
+  <q-drawer v-model="leftDrawerOpen" bordered behavior="mobile" class="n3rd-sidebar-left" @click="toggleLeftDrawer(leftDrawerOpen)">
     <q-scroll-area class="fit">
       <q-toolbar class="GPL__toolbar">
         <q-toolbar-title class="row items-center">
@@ -13,12 +7,7 @@
         </q-toolbar-title>
       </q-toolbar>
       <q-list padding>
-        <q-item
-          v-for="link in links1"
-          :key="link.text"
-          clickable
-          class="GPL__drawer-item"
-        >
+        <q-item v-for="link in links1" :key="link.text" clickable class="GPL__drawer-item">
           <q-item-section avatar>
             <q-icon :name="link.icon" />
           </q-item-section>
@@ -29,12 +18,7 @@
 
         <q-separator class="q-my-md" />
 
-        <q-item
-          v-for="link in links2"
-          :key="link.text"
-          clickable
-          class="GPL__drawer-item"
-        >
+        <q-item v-for="link in links2" :key="link.text" clickable class="GPL__drawer-item">
           <q-item-section avatar>
             <q-icon :name="link.icon" />
           </q-item-section>

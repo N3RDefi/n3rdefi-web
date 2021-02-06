@@ -1,22 +1,17 @@
 <template>
   <q-card flat bordered class="n3rd-seal n3rd-seal-img">
     <q-card-section>
-      <div class="n3rd-seal-title">SAFU Seal</div>
-      <div class="n3rd-seal-subtitle">
-        N3RDefi is a safety first Defi Eco-system
-      </div>
-      <div class="n3rd-seal-text">
-        N3RDefi offers a full range of Defi solutions including Aave borrow,
-        lend and staking with aTokens. Our deflationary models mean up only,
-        really is up only! Our top priority is that funds are SAFU.
-      </div>
+      <div class="n3rd-seal-title">SAFU Protocol</div>
+      <div class="n3rd-seal-subtitle">All our vaults are secured by the SAFU Seal</div>
+      <div class="n3rd-seal-text">Our deflationary models means only up! <br />>Our top priority is that funds are SAFU.</div>
     </q-card-section>
-    <q-card-section class="n3rd-seal-buttons justify-end self-end" align="left">
+    <q-card-section class="n3rd-seal-buttons justify-end self-end" align="center">
       <q-btn
         outline
         color="black"
         label="SAFU Seal"
         class="bg-orange q-mb-sm"
+        :icon="`img:${require('@/assets/icons/speed.svg') ? require('@/assets/icons/speed.svg') : ''}`"
         @click="getSafuSealToken()"
       />
     </q-card-section>
@@ -76,10 +71,7 @@ export default {
         const tokens = await this.buyN3RDyTokens(this.user.account, amount)
         console.log('Bought N3RDy Tokens:', tokens)
       } else {
-        console.log(
-          '%c Please check MetaMask and try again!',
-          'background: red; color: white'
-        )
+        console.log('%c Please check MetaMask and try again!', 'background: red; color: white')
       }
     },
   },
@@ -99,7 +91,7 @@ export default {
     letter-spacing 0.16px
     word-spacing 2px
     margin: 10px 10px 25px 10px
-    text-align: left
+    text-align: center
   .n3rd-seal-subtitle
     color: $white
     font-family: $heading-font
@@ -108,18 +100,20 @@ export default {
     font-weight: 400
     letter-spacing 0.16px
     margin: 0 10px 25px 10px
-    text-align: left
+    text-align: center
   .n3rd-seal-text
+    width: 50%
     min-height: 130px
-    color: $white
+    color: $purple
     font-family: $computer-font
     font-size: 16px
     line-height: 26px
     font-weight: 400
-    margin: 0 10px 10px 10px
-    width: 75%
+    margin: 0 auto
+    text-align: center
   .n3rd-seal-buttons
     margin: 0 10px
+    text-align: center
 .n3rd-seal-img
   background-image: url('../assets/images/3dBG.gif')
   background-size: cover

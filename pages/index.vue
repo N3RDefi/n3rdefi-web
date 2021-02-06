@@ -140,15 +140,9 @@ export default {
       /* Load User Account Info into the store */
       const accountLoaded = await this.loadAccount()
       if (accountLoaded) {
-        console.log(
-          '%c MetaMask loaded successfully!',
-          'background: green; color: white'
-        )
+        console.log('%c MetaMask loaded successfully!', 'background: green; color: white')
       } else {
-        console.log(
-          '%c Please connect MetaMask!',
-          'background: red; color: white'
-        )
+        console.log('%c Please connect MetaMask!', 'background: red; color: white')
       }
     }
   },

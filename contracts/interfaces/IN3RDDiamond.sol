@@ -3,13 +3,13 @@ pragma solidity 0.7.6;
 pragma experimental ABIEncoderV2;
 
 import "../libraries/LibAppStorage.sol";
-import "../facets/AavegotchiFacet.sol";
+import "../facets/N3RDFacet.sol";
 import "../facets/CollateralFacet.sol";
 
-interface IAavegotchiDiamond {
+interface IN3RDiamond {
     /////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////
-    // AavegotchiFacet
+    // N3rdFacet
     /////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////
     event Transfer(address indexed _from, address indexed _to, uint256 indexed _tokenId);
@@ -21,19 +21,19 @@ interface IAavegotchiDiamond {
 
     event OpenPortals(uint256[] _tokenIds);
 
-    event ClaimAavegotchi(uint256 indexed _tokenId);
+    event ClaimN3rd(uint256 indexed _tokenId);
 
-    event SetAavegotchiName(uint256 indexed _tokenId, string _oldName, string _newName);
+    event SetN3rdName(uint256 indexed _tokenId, string _oldName, string _newName);
 
     event SetBatchId(uint256 indexed _batchId, uint256[] tokenIds);
 
     event SpendSkillpoints(uint256 indexed _tokenId, int8[4] _values);
 
-    event LockAavegotchi(uint256 indexed _tokenId, uint256 _lockDuration);
+    event LockN3rd(uint256 indexed _tokenId, uint256 _lockDuration);
 
     function totalSupply() external view returns (uint256 totalSupply_);
 
-    function aavegotchiNameAvailable(string memory _name) external view returns (bool available_);
+    function n3rdNameAvailable(string memory _name) external view returns (bool available_);
 
     function currentHaunt() external view returns (uint16 hauntId_, Haunt memory haunt_);
 
@@ -46,14 +46,14 @@ interface IAavegotchiDiamond {
 
     function revenueShares() external view returns (RevenueSharesIO memory);
 
-    struct InternalPortalAavegotchiTraitsIO {
+    struct InternalPortalN3rdTraitsIO {
         uint256 randomNumber;
         uint256 numericTraits;
         address collateralType;
         uint256 minimumStake;
     }
 
-    struct PortalAavegotchiTraitsIO {
+    struct PortalN3rdTraitsIO {
         uint256 randomNumber;
         int256[] numericTraits;
         uint256 numericTraitsUint;
@@ -61,14 +61,14 @@ interface IAavegotchiDiamond {
         uint256 minimumStake;
     }
 
-    /* function portalAavegotchiTraits(uint256 _tokenId) external view returns (PortalAavegotchiTraitsIO[10] memory portalAavegotchiTraits_);
+    /* function portalN3rdTraits(uint256 _tokenId) external view returns (PortalN3rdTraitsIO[10] memory portalN3rdTraits_);
      */
 
-    function ghstAddress() external view returns (address contract_);
+    function n3rdyAddress() external view returns (address contract_);
 
     function balanceOf(address _owner) external view returns (uint256 balance_);
 
-    struct AavegotchiInfo {
+    struct N3rdInfo {
         uint256 tokenId;
         string name;
         address owner;
@@ -81,22 +81,22 @@ interface IAavegotchiDiamond {
         uint256 stakedAmount;
         uint256 minimumStake;
         //New
-        uint256 kinship; //The kinship value of this Aavegotchi. Default is 50.
+        uint256 kinship; //The kinship value of this N3rd. Default is 50.
         uint256 lastInteracted;
-        uint256 experience; //How much XP this Aavegotchi has accrued. Begins at 0.
+        uint256 experience; //How much XP this N3rd has accrued. Begins at 0.
         uint256 usedSkillPoints; //number of skill points used
-        uint256 level; //the current aavegotchi level
+        uint256 level; //the current n3rd level
         uint256 batchId;
         uint256 hauntId;
     }
 
     function getNumericTraits(uint256 _tokenId) external view returns (uint256 numericTraits_);
 
-    function getAavegotchi(uint256 _tokenId) external view returns (AavegotchiInfo memory aavegotchiInfo_);
+    function getN3rd(uint256 _tokenId) external view returns (N3rdInfo memory n3rdInfo_);
 
     function availableSkillPoints(uint256 _tokenId) external view returns (uint256);
 
-    function aavegotchiLevel(uint32 _experience) external pure returns (uint256 level_);
+    function n3rdLevel(uint32 _experience) external pure returns (uint256 level_);
 
     function rarityMultiplier(uint256 _numericTraits, address _collateralType) external view returns (uint256 multiplier);
 
@@ -108,7 +108,7 @@ interface IAavegotchiDiamond {
         int256[] numericTraits_;
     }
 
-    //Only valid for claimed Aavegotchis
+    //Only valid for claimed N3rds
     function modifiedRarityScore(uint256 _tokenId) external view returns (ModifiedRarityScore memory info_);
 
     function kinship(uint256 _tokenId) external view returns (uint256 score_);
@@ -123,19 +123,19 @@ interface IAavegotchiDiamond {
 
     function openPortals(uint256[] calldata _tokenIds) external;
 
-    function claimAavegotchi(
+    function claimN3rd(
         uint256 _tokenId,
         uint256 _option,
         uint256 _stakeAmount
     ) external;
 
-    function setAavegotchiName(uint256 _tokenId, string memory _name) external;
+    function setN3rdName(uint256 _tokenId, string memory _name) external;
 
     function interact(uint256 _tokenId) external;
 
     function spendSkillPoints(uint256 _tokenId, int8[4] calldata _values) external;
 
-    function lockAavegotchi(uint256 _tokenId, uint256 _lockDuration) external;
+    function lockN3rd(uint256 _tokenId, uint256 _lockDuration) external;
 
     function safeTransferFrom(
         address _from,
@@ -170,12 +170,12 @@ interface IAavegotchiDiamond {
     event DecreaseStake(uint256 indexed _tokenId, uint256 _reduceAmount);
     event ExperienceTransfer(uint256 indexed _fromTokenId, uint256 indexed _toTokenId, uint256 experience);
 
-    struct AavegotchiCollateralTypeIO {
+    struct N3rdCollateralTypeIO {
         address collateralType;
-        AavegotchiCollateralTypeInfo collateralTypeInfo;
+        N3rdCollateralTypeInfo collateralTypeInfo;
     }
 
-    function collateralInfo(uint256 _collateralId) external view returns (AavegotchiCollateralTypeIO memory collateralInfo_);
+    function collateralInfo(uint256 _collateralId) external view returns (N3rdCollateralTypeIO memory collateralInfo_);
 
     function collateralBalance(uint256 _tokenId)
         external
@@ -200,7 +200,7 @@ interface IAavegotchiDiamond {
     event DaoTransferred(address indexed previousDao, address indexed newDao);
     event DaoTreasuryTransferred(address indexed previousDaoTreasury, address indexed newDaoTreasury);
     event UpdateCollateralModifiers(uint256 _oldModifiers, uint256 _newModifiers);
-    event AddCollateralType(AavegotchiCollateralTypeIO _collateralType);
+    event AddCollateralType(N3rdCollateralTypeIO _collateralType);
     event CreateHaunt(uint256 indexed _hauntId, uint256 _hauntMaxSize, uint256 _portalPrice, bytes32 _bodyColor);
     event GrantExperience(uint256[] _tokenIds, uint32[] _xpValues);
     event AddWearableSet(WearableSet _wearableSet);
@@ -342,21 +342,21 @@ interface IAavegotchiDiamond {
         address indexed _to,
         uint256 indexed _batchId,
         uint256 _tokenId,
-        uint256 _numAavegotchisToPurchase,
+        uint256 _numN3rdsToPurchase,
         uint256 _totalPrice
     );
 
-    event PurchaseItemsWithGhst(address indexed _from, address indexed _to, uint256[] _itemIds, uint256[] _quantities, uint256 _totalPrice);
+    event PurchaseItemsWithN3rdy(address indexed _from, address indexed _to, uint256[] _itemIds, uint256[] _quantities, uint256 _totalPrice);
 
     event PurchaseItemsWithVouchers(address indexed _from, address indexed _to, uint256[] _itemIds, uint256[] _quantities);
 
     function buyPortals(
         address _to,
-        uint256 _ghst,
+        uint256 _n3rdy,
         bool _setBatchId
     ) external;
 
-    function purchaseItemsWithGhst(
+    function purchaseItemsWithN3rdy(
         address _to,
         uint256[] calldata _itemIds,
         uint256[] calldata _quantities
@@ -397,10 +397,10 @@ interface IAavegotchiDiamond {
         string[7] eyeColors;
     }
 
-    // Given an aavegotchi token id, return the combined SVG of its layers and its wearables
-    function getAavegotchiSvg(uint256 _tokenId) external view returns (string memory ag_);
+    // Given an n3rd token id, return the combined SVG of its layers and its wearables
+    function getN3rdSvg(uint256 _tokenId) external view returns (string memory ag_);
 
-    function portalAavegotchisSvg(uint256 _tokenId) external view returns (string[10] memory svg_);
+    function portalN3rdsSvg(uint256 _tokenId) external view returns (string[10] memory svg_);
 
     /* function storeSvg(string calldata _svg, LibSvg.SvgTypeAndSizes[] calldata _typesAndSizes) external;*/
 

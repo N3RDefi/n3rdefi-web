@@ -4,7 +4,7 @@ pragma experimental ABIEncoderV2;
 
 /******************************************************************************\
 * Authors: Craig Moss
-*
+* Twitter: @N3RDefi
 * Implementation of a Diamond 1 by Nick Mudge (mudgen)
 /******************************************************************************/
 

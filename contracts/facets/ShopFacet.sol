@@ -27,11 +27,11 @@ contract ShopFacet {
         address indexed _to,
         // uint256 indexed _batchId,
         uint256 _tokenId,
-        uint256 _numAavegotchisToPurchase,
+        uint256 _numN3rdsToPurchase,
         uint256 _totalPrice
     );
 
-    event PurchaseItemsWithGhst(address indexed _from, address indexed _to, uint256[] _itemIds, uint256[] _quantities, uint256 _totalPrice);
+    event PurchaseItemsWithN3rdy(address indexed _from, address indexed _to, uint256[] _itemIds, uint256[] _quantities, uint256 _totalPrice);
 
     event PurchaseItemsWithVouchers(address indexed _from, address indexed _to, uint256[] _itemIds, uint256[] _quantities);
 
@@ -45,35 +45,35 @@ contract ShopFacet {
    |             Write Functions        |
    |__________________________________*/
 
-    function buyPortals(address _to, uint256 _ghst) external {
+    function buyPortals(address _to, uint256 _n3rdy) external {
         uint256 currentHauntId = s.currentHauntId;
         Haunt memory haunt = s.haunts[currentHauntId];
-        require(_ghst >= haunt.portalPrice, "ShopFacet: Not enough GHST to buy portal");
-        uint256 ghstBalance = IERC20(s.n3rdContract).balanceOf(LibMeta.msgSender());
-        require(ghstBalance >= _ghst, "ShopFacet: Not enough GHST!");
+        require(_n3rdy >= haunt.portalPrice, "ShopFacet: Not enough N3RDy to buy portal");
+        uint256 n3rdyBalance = IERC20(s.n3rdContract).balanceOf(LibMeta.msgSender());
+        require(n3rdyBalance >= _n3rdy, "ShopFacet: Not enough N3RDy!");
         uint16 hauntId = s.currentHauntId;
-        uint256 numAavegotchisToPurchase = _ghst / haunt.portalPrice;
-        require(numAavegotchisToPurchase <= 50, "ShopFacet: Cannot buy more than 50 portals at a time");
-        uint256 hauntCount = haunt.totalCount + numAavegotchisToPurchase;
-        require(hauntCount <= haunt.hauntMaxSize, "ShopFacet: Exceeded max number of aavegotchis for this haunt");
+        uint256 numN3rdsToPurchase = _n3rdy / haunt.portalPrice;
+        require(numN3rdsToPurchase <= 50, "ShopFacet: Cannot buy more than 50 portals at a time");
+        uint256 hauntCount = haunt.totalCount + numN3rdsToPurchase;
+        require(hauntCount <= haunt.hauntMaxSize, "ShopFacet: Exceeded max number of n3rds for this haunt");
         s.haunts[currentHauntId].totalCount = uint24(hauntCount);
 
         uint256 tokenId = s.totalSupply;
-        uint256 totalPrice = _ghst - (_ghst % haunt.portalPrice);
-        emit BuyPortals(LibMeta.msgSender(), _to, tokenId, numAavegotchisToPurchase, totalPrice);
-        for (uint256 i; i < numAavegotchisToPurchase; i++) {
-            s.aavegotchis[tokenId].owner = _to;
-            s.aavegotchis[tokenId].hauntId = hauntId;
+        uint256 totalPrice = _n3rdy - (_n3rdy % haunt.portalPrice);
+        emit BuyPortals(LibMeta.msgSender(), _to, tokenId, numN3rdsToPurchase, totalPrice);
+        for (uint256 i; i < numN3rdsToPurchase; i++) {
+            s.n3rds[tokenId].owner = _to;
+            s.n3rds[tokenId].hauntId = hauntId;
             emit Transfer(address(0), _to, tokenId);
             tokenId++;
         }
 
-        s.aavegotchiBalance[_to] += numAavegotchisToPurchase;
+        s.n3rdBalance[_to] += numN3rdsToPurchase;
         s.totalSupply = uint32(tokenId);
         LibAppStorage.purchase(totalPrice);
     }
 
-    function purchaseItemsWithGhst(
+    function purchaseItemsWithN3rdy(
         address _to,
         uint256[] calldata _itemIds,
         uint256[] calldata _quantities
@@ -85,17 +85,17 @@ contract ShopFacet {
             uint256 quantity = _quantities[i];
             require(quantity < 1_000_000, "ShopFacet: Cannot purchase so many items at the same time");
             ItemType storage itemType = s.itemTypes[itemId];
-            require(itemType.canPurchaseWithGhst, "ShopFacet: Can't purchase item type with GHST");
+            require(itemType.canPurchaseWithN3rdy, "ShopFacet: Can't purchase item type with N3RDy");
             uint256 totalQuantity = itemType.totalQuantity + quantity;
             require(totalQuantity <= itemType.maxQuantity, "ShopFacet: Total item type quantity exceeds max quantity");
             itemType.totalQuantity = uint32(totalQuantity);
-            totalPrice += quantity * itemType.ghstPrice;
+            totalPrice += quantity * itemType.n3rdyPrice;
             s.items[_to][itemId] += quantity;
         }
-        emit PurchaseItemsWithGhst(LibMeta.msgSender(), _to, _itemIds, _quantities, totalPrice);
+        emit PurchaseItemsWithN3rdy(LibMeta.msgSender(), _to, _itemIds, _quantities, totalPrice);
         LibERC1155.onERC1155BatchReceived(LibMeta.msgSender(), _to, _itemIds, _quantities, "");
-        uint256 ghstBalance = IERC20(s.n3rdContract).balanceOf(LibMeta.msgSender());
-        require(ghstBalance >= totalPrice, "ShopFacet: Not enough GHST!");
+        uint256 n3rdyBalance = IERC20(s.n3rdContract).balanceOf(LibMeta.msgSender());
+        require(n3rdyBalance >= totalPrice, "ShopFacet: Not enough N3RDy!");
 
         LibAppStorage.purchase(totalPrice);
     }

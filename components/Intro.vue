@@ -2,41 +2,23 @@
   <q-card flat bordered class="n3rd-intro n3rd-img">
     <q-card-section>
       <div class="n3rd-intro-title float-right">Welcome to N3RDefi</div>
-      <div class="n3rd-intro-subtitle float-right">
-        An eco-system for all things N3rdy
-      </div>
+      <div class="n3rd-intro-subtitle float-right">An eco-system for all things N3rdy</div>
       <div class="n3rd-intro-text float-right" align="right">
-        Come join us as we ape in to 8 bit NFT art and gamefi Defi. Get your
-        very own N3RD Diamond NFT, but hurry, there's only 10 000 of these
-        unique <strong>1st Gen. N3RD NFT's</strong>, step aside cryptopunks,
-        lock your kitties away because the N3rds are coming!
+        Come join us as we ape in to 8 bit NFT art and gamefi Defi. Get your very own N3RD Diamond NFT, but hurry, there's only 10 000 of these unique
+        <strong>1st Gen. N3RD NFT's</strong>, step aside cryptopunks, lock your kitties away because the N3rds are coming!
       </div>
     </q-card-section>
-    <q-card-section
-      v-if="user.web3Instance"
-      class="n3rd-intro-buttons float-right items-end justify-end self-end"
-      align="right"
-    >
+    <q-card-section v-if="user.web3Instance" class="n3rd-intro-buttons float-right items-center justify-end self-end" align="right">
+      <q-btn outline color="black" label="Go Back" class="q-mb-sm q-ml-sm" icon="fast_rewind" @click="goBack()" />
       <q-btn
         v-if="user.step >= 0 && user.step <= 2"
         outline
         color="white"
-        :label="user.step === 0 ? 'Start' : 'GameFi'"
-        :class="
-          user.step === 0
-            ? 'play-button bg-primary q-mb-sm'
-            : 'play-button text-black bg-secondary q-mb-sm'
-        "
-        :icon="user.step === 0 ? 'play_arrow' : 'gamepad'"
+        :label="user.step === 0 ? 'Play' : 'GameFi'"
+        :class="user.step === 0 ? 'play-button bg-primary q-mb-sm' : 'play-button text-black bg-secondary q-mb-sm'"
+        :icon-right="user.step === 0 ? 'play_arrow' : 'gamepad'"
         class="bg-primary"
         @click="nextStep()"
-      />
-      <q-btn
-        outline
-        color="black"
-        label="Go Back"
-        class="q-mb-sm q-ml-sm"
-        @click="goBack()"
       />
     </q-card-section>
   </q-card>

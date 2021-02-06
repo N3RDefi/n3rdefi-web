@@ -1,32 +1,22 @@
 # N3RDefi
 
-> Welcome to N3RDefi - A Defi ecosystem for N3RDz
+> Welcome to N3RDefi - A Defi g33k-o-system for N3RDs
 
 What is N3RDefi?
-N3RDefi is a safe environment, where fellow N3RDz can come together to form a community. Being part of a community offers trust, strength, safety and commitment to a united cause, this help reduce and even eliminate bad actors.
+N3RDefi is a SAFU environment, where fellow N3RDs can come together to form and be part of a community. Being part of a community offers trust, strength, safety and commitment to a united cause, this help reduce and even eliminate bad actors.
 
-Once bad actors have been removed from a community, it allows for better growth and yields which can help grow the eco-system. Rewards can vary from kudos for good actions, like social interactions. Rewards can also be issued in the form of NFT's which serves as weight so you can level up and gain XP in your community.
+Once bad actors have been removed from a community, it allows for better growth and yields which can help grow the eco-system. Rewards can vary from kudos for good actions, like social interactions. In addition to various Defi protocols, N3RDefi offers other decentralised financial services like our smart vaults and deflationary yield farming.
+
+## N3RD Diamond
+
+The N3RD Diamond is firstly a unique NFT, in a simialr fashion to Cryptopuns or Crypto Kitties and Aavegotchi, but N3RDs are unique in the fact that they allow you to
+benefit from your interactions within our g33k-o-system. Rewards can be issued in the form of N3rdy tokens, NFT's and experience which serves as weight so you can level up your N3RD and earn more in doing so.
 
 Rewards earned for being a good player can be utilised throughout the N3RDefi ecosystem, for example to purchase NFT's in our NFT marketplace, these can get staked and either put up for sale or used as a blueprint for artists, so fellow N3RDs can buy a t-shirt, hoodie or cap with their favourite 8-Bit Art. Proceeds would be distributed back to NFT holders in the form of XP, tokens or various other prizes.
 
-## Build Setup
+## SAFU Protocol
 
-```bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+The SAFU Protocol ensures all funds are SAFU, with our smart vault locks, we ensure only legit players can interact with our main vaults and systems.
 
 ## Diamond 1 implementation by Author
 
@@ -37,7 +27,7 @@ Contact:
 - https://twitter.com/mudgen
 - nick@perfectabstractions.com
 
-# Diamond Standard Reference Implementation
+### Diamond Standard Reference Implementation
 
 This is a reference implementation for [EIP-2535 Diamond Standard](https://github.com/ethereum/EIPs/issues/2535). To learn about other reference implementations go here: https://github.com/mudgen/diamond
 
@@ -55,7 +45,7 @@ The `contracts/libraries/LibDiamondStorage.sol` file shows how to implement Diam
 
 The `test/diamondTest.js` file gives tests for the `diamondCut` function and the Diamond Loupe functions.
 
-## How to Get Started Making Your Diamond
+### How to Get Started Making Your Diamond
 
 1. The most important thing is reading and understanding the [Diamond Standard](https://github.com/ethereum/EIPs/issues/2535). If something is unclear let me know!
 
@@ -71,7 +61,7 @@ The [LibDiamondStorage.sol](./contracts/libraries/LibDiamondStorage.sol) library
 
 The [LibDiamondCut.sol](./contracts/libraries/LibDiamondCut.sol) library contains an internal function version of `diamondCut` that can be used in the constructor of a diamond or other places.
 
-## Calling Diamond Functions
+#### Calling Diamond Functions
 
 In order to call a function that exists in a diamond you need to use the ABI information of the facet that has the function.
 
@@ -91,11 +81,11 @@ Similarly you need to use the ABI of a facet in Solidity code in order to call f
 string result = MyUsefulFacet(diamondAddress).getResult()
 ```
 
-## Get Help and Join the Community
+### Get Help and Join the Community
 
 If you need help or would like to discuss diamonds then send me a message [on twitter](https://twitter.com/mudgen), or [email me](mailto:nick@perfectabstractions.com). Or join the [Diamond Standard Discord server](https://discord.gg/kQewPw2).
 
-## Useful Links
+### Useful Links
 
 1. [EIP-2535 Diamond Standard](https://github.com/ethereum/EIPs/issues/2535)
 1. [Understanding Diamonds on Ethereum](https://dev.to/mudgen/understanding-diamonds-on-ethereum-1fb)
@@ -105,4 +95,31 @@ If you need help or would like to discuss diamonds then send me a message [on tw
 1. [Upgradeable smart contracts using the Diamond Standard](https://hiddentao.com/archives/2020/05/28/upgradeable-smart-contracts-using-diamond-standard)
 1. [buidler-deploy supports diamonds](https://github.com/wighawag/buidler-deploy/)
 
+## Tech Stack
 
+TECH STACK
+Vue.js
+Nuxt.js
+Solidity
+Ethereum
+Hardhat
+Matic
+
+## Build Setup
+
+```bash
+# install dependencies
+$ npm install
+
+# serve with hot reload at localhost:3000
+$ npm run dev
+
+# build for production and launch server
+$ npm run build
+$ npm run start
+
+# generate static project
+$ npm run generate
+```
+
+For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

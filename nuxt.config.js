@@ -85,17 +85,14 @@ module.exports = {
   styleResources: {
     sass: ['~/assets/sass/theme-variables.sass'],
   },
-  gql: {
-    proxy: true
-  },
-  proxy: {
-    '/api': {
-      target: 'http://localhost:3000/api',
-      pathRewrite: {
-        '^/api' : '/'
-        }
-    }
-  },
+  // proxy: {
+  //   '/api': {
+  //     target: 'http://localhost:3000/api',
+  //     pathRewrite: {
+  //       '^/api' : '/'
+  //       }
+  //   }
+  // },
   // proxy: [
   //   ['https://thegraph.com/explorer/subgraph/aave/protocol-v2?version=current', { changeOrigin: true, ws: true} ],
   //   ['https://thegraph.com/explorer/subgraph/aave/protocol-v2-kovan', { changeOrigin: true, ws: true} ],

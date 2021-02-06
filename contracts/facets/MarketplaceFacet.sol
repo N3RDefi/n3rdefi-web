@@ -104,7 +104,7 @@ contract Marketplace is LibAppStorageModifiers {
         );
 
         uint256 cost = LibMath.mul(_quantity, _priceInWei);
-        require(cost >= 1e18, "Marketplace: cost should be 1 GHST or larger");
+        require(cost >= 1e18, "Marketplace: cost should be 1 N3RDy or larger");
         require(_expires > block.timestamp + 1 minutes, "Marketplace: Listing should be more than 1 minute in the future");
 
         bytes32 listingId = keccak256(abi.encodePacked(_erc1155TokenAddress, _erc1155TypeId, LibMeta.msgSender()));
@@ -163,7 +163,7 @@ contract Marketplace is LibAppStorageModifiers {
         require(listing.expires > block.timestamp, "Marketplace: listing has expired");
         uint256 bal = IERC20(s.n3rdContract).balanceOf(buyer);
         uint256 cost = LibMath.mul(_quantity, listing.priceInWei);
-        require(bal >= cost, "Marketplace: not enough GHST");
+        require(bal >= cost, "Marketplace: not enough N3RDy");
         uint256 daoShare = cost / 100;
         uint256 pixelCraftShare = (cost * 2) / 100;
         uint256 transferAmount = cost - (daoShare + pixelCraftShare);
@@ -192,7 +192,7 @@ contract Marketplace is LibAppStorageModifiers {
                 }
             }
         } else {
-            // GHSTStakingDiamond
+            // N3RDy StakingDiamond
             IERC1155(listing.erc1155TokenAddress).safeTransferFrom(seller, buyer, listing.erc1155TypeId, _quantity, new bytes(0));
         }
         listing.timeLastPurchased = block.timestamp;

@@ -16,11 +16,11 @@ contract DAOFacet is LibAppStorageModifiers {
     event DaoTreasuryTransferred(address indexed previousDaoTreasury, address indexed newDaoTreasury);
     event TransferSingle(address indexed _operator, address indexed _from, address indexed _to, uint256 _id, uint256 _value);
     event UpdateCollateralModifiers(uint256 _oldModifiers, uint256 _newModifiers);
-    struct AavegotchiCollateralTypeIO {
+    struct N3rdCollateralTypeIO {
         address collateralType;
-        AavegotchiCollateralTypeInfo collateralTypeInfo;
+        N3rdCollateralTypeInfo collateralTypeInfo;
     }
-    event AddCollateralType(AavegotchiCollateralTypeIO _collateralType);
+    event AddCollateralType(N3rdCollateralTypeIO _collateralType);
     event AddItemType(ItemType _itemType);
     event CreateHaunt(uint256 indexed _hauntId, uint256 _hauntMaxSize, uint256 _portalPrice, bytes32 _bodyColor);
     event GrantExperience(uint256[] _tokenIds, uint32[] _xpValues);
@@ -47,7 +47,7 @@ contract DAOFacet is LibAppStorageModifiers {
         s.daoTreasury = _newDaoTreasury;
     }
 
-    function addCollateralTypes(AavegotchiCollateralTypeIO[] calldata _collateralTypes) external onlyDaoOrOwner {
+    function addCollateralTypes(N3rdCollateralTypeIO[] calldata _collateralTypes) external onlyDaoOrOwner {
         for (uint256 i; i < _collateralTypes.length; i++) {
             address collateralType = _collateralTypes[i].collateralType;
 
@@ -85,7 +85,7 @@ contract DAOFacet is LibAppStorageModifiers {
         uint256 currentHauntId = s.currentHauntId;
         require(
             s.haunts[currentHauntId].totalCount == s.haunts[currentHauntId].hauntMaxSize,
-            "AavegotchiFacet: Haunt must be full before creating new"
+            "N3rdFacet: Haunt must be full before creating new"
         );
         hauntId_ = currentHauntId + 1;
         s.currentHauntId = uint16(hauntId_);
@@ -126,10 +126,10 @@ contract DAOFacet is LibAppStorageModifiers {
             require(xp <= 1000, "DAOFacet: Cannot grant more than 1000 XP at a time");
 
             //To test (Dan): Deal with overflow here? - Handling it just in case
-            uint32 experience = s.aavegotchis[tokenId].experience;
+            uint32 experience = s.n3rds[tokenId].experience;
             uint32 increasedExperience = experience + xp;
             require(increasedExperience >= experience, "DAOFacet: Experience overflow");
-            s.aavegotchis[tokenId].experience = increasedExperience;
+            s.n3rds[tokenId].experience = increasedExperience;
         }
         emit GrantExperience(_tokenIds, _xpValues);
     }

@@ -3,10 +3,8 @@
     <q-card-section>
       <div class="n3rd-d3fi-title">A D3fi Eco-system</div>
       <div class="n3rd-d3fi-text">
-        N3RDefi is a safe environment, where fellow N3RDs can come together to
-        form a community. Being part of a community offers trust, strength,
-        safety and commitment to a united cause, this help reduce and even
-        eliminate bad actors.
+        N3RDefi is a safe environment, where fellow N3RDs can come together to form a community. Being part of a community offers trust, strength,
+        safety and commitment to a united cause, this help reduce and even eliminate bad actors.
       </div>
     </q-card-section>
     <q-card-section class="n3rd-d3fi-buttons justify-end self-end" align="left">
@@ -15,6 +13,7 @@
         color="white"
         label="Stake N3RDy"
         class="bg-primary q-mb-sm"
+        :icon="`img:${require('@/assets/icons/precision_manufacturing.svg') ? require('@/assets/icons/precision_manufacturing.svg') : ''}`"
         @click="stakeN3RDyToken()"
       />
     </q-card-section>
@@ -74,10 +73,7 @@ export default {
         const tokens = await this.buyN3RDyTokens(this.user.account, amount)
         console.log('Bought N3RDy Tokens:', tokens)
       } else {
-        console.log(
-          '%c Please check MetaMask and try again!',
-          'background: red; color: white'
-        )
+        console.log('%c Please check MetaMask and try again!', 'background: red; color: white')
       }
     },
   },
