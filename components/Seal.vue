@@ -2,8 +2,8 @@
   <q-card flat bordered class="n3rd-seal n3rd-seal-img">
     <q-card-section>
       <div class="n3rd-seal-title">SAFU Protocol</div>
-      <div class="n3rd-seal-subtitle">All our vaults are secured by the SAFU Seal</div>
-      <div class="n3rd-seal-text">Our deflationary models means only up! <br />>Our top priority is that funds are SAFU.</div>
+      <div class="n3rd-seal-subtitle">Smart vaults secured by the SAFU Seal</div>
+      <div class="n3rd-seal-text">Our deflationary models means only up! Our top priority is that funds are SAFU.</div>
     </q-card-section>
     <q-card-section class="n3rd-seal-buttons justify-end self-end" align="center">
       <q-btn
@@ -90,7 +90,7 @@ export default {
     font-weight: 400
     letter-spacing 0.16px
     word-spacing 2px
-    margin: 10px 10px 25px 10px
+    margin: 10px 10px 35px 10px
     text-align: center
   .n3rd-seal-subtitle
     color: $white
@@ -99,14 +99,14 @@ export default {
     line-height: 20px
     font-weight: 400
     letter-spacing 0.16px
-    margin: 0 10px 25px 10px
+    margin: 0 10px 35px 10px
     text-align: center
   .n3rd-seal-text
     width: 50%
     min-height: 130px
-    color: $purple
+    color: $white
     font-family: $computer-font
-    font-size: 16px
+    font-size: 18px
     line-height: 26px
     font-weight: 400
     margin: 0 auto

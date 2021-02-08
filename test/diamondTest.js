@@ -18,9 +18,9 @@ function getSelectors (contract) {
     if (val.type === 'function') {
       acc.push(val.signature)
       return acc
-    } else {
-      return acc
     }
+      return acc
+
   }, [])
   return selectors
 }

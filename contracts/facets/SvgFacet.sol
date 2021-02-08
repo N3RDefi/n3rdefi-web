@@ -4,14 +4,14 @@ pragma experimental ABIEncoderV2;
 
 import {AppStorage, SvgLayer} from "../libraries/LibAppStorage.sol";
 import "../libraries/LibDiamond.sol";
-import "../libraries/LibSvg.sol";
+import "../libraries/LibSVG.sol";
 import "../libraries/LibStrings.sol";
 import "./N3RDFacet.sol";
 
 // This contract was added as a facet to the diamond
 contract SvgFacet is LibAppStorageModifiers {
     uint256 internal constant EQUIPPED_WEARABLE_SLOTS = 16;
-    uint256 internal constant PORTAL_AAVEGOTCHIS_NUM = 10;
+    uint256 internal constant PORTAL_N3RD_NUM = 10;
 
     event StoreSvg(LibSvg.SvgTypeAndSizes[] _typesAndSizes);
 
@@ -276,13 +276,13 @@ contract SvgFacet is LibAppStorageModifiers {
         // 10. pet wearable
     }
 
-    function portalN3RDsSvg(uint256 _tokenId) external view returns (string[PORTAL_AAVEGOTCHIS_NUM] memory svg_) {
+    function portalN3RDsSvg(uint256 _tokenId) external view returns (string[PORTAL_N3RD_NUM] memory svg_) {
         require(s.n3rds[_tokenId].status == LibAppStorage.STATUS_OPEN_PORTAL, "N3RDFacet: Portal not open");
-        N3RDFacet.PortalN3RDTraitsIO[PORTAL_AAVEGOTCHIS_NUM] memory l_portalN3RDTraits =
+        N3RDFacet.PortalN3rdTraitsIO[PORTAL_N3RD_NUM] memory l_portalN3rdTraits =
             N3RDFacet(address(this)).portalN3RDTraits(_tokenId);
         for (uint256 i; i < svg_.length; i++) {
-            address collateralType = l_portalN3RDTraits[i].collateralType;
-            uint256 numericTraits = l_portalN3RDTraits[i].numericTraitsUint;
+            address collateralType = l_portalN3rdTraits[i].collateralType;
+            uint256 numericTraits = l_portalN3rdTraits[i].numericTraitsUint;
             svg_[i] = string(
                 abi.encodePacked(
                     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">',

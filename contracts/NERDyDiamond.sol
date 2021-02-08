@@ -8,11 +8,11 @@ pragma experimental ABIEncoderV2;
 * Implementation of a Diamond 1 by Nick Mudge
 /******************************************************************************/
 
-import "../shared/libraries/LibDiamond.sol";
-import "../shared/interfaces/IDiamondLoupe.sol";
-import "../shared/interfaces/IDiamondCut.sol";
-import "../shared/interfaces/IERC173.sol";
-import "../shared/interfaces/IERC165.sol";
+import "./libraries/LibDiamond.sol";
+import "./interfaces/IDiamondLoupe.sol";
+import "./interfaces/IDiamondCut.sol";
+import "./interfaces/IERC173.sol";
+import "./interfaces/IERC165.sol";
 import "./libraries/AppStorage.sol";
 
 contract NERDyDiamond {

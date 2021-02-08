@@ -2,7 +2,7 @@
 pragma solidity 0.7.6;
 pragma experimental ABIEncoderV2;
 
-import "../../shared/libraries/LibDiamond.sol";
+import "../libraries/LibDiamond.sol";
 import "../libraries/AppStorage.sol";
 
 contract N3RDyFacet {

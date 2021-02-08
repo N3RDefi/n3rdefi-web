@@ -286,6 +286,18 @@ export default {
       //   "firstName": "Karel",
       //   "lastName": "Striegel"
       // }
+      const arkaneAccount = await arkaneConnect.flows.getAccount('ETHEREUM').then((account) => {
+        console.log('User name:', account.auth.tokenParsed.name)
+        console.log('User email:', account.auth.tokenParsed.email)
+        console.log(`%c Account Wallets : ${JSON.stringify(account.wallets, null, 4)}`, 'background: #222; color: #bada55')
+        console.log('First wallet address:', account.wallets[0].address)
+        console.log('First wallet balance:', account.wallets[0].balance.balance)
+        console.log('2nd wallet address:', account.wallets[1].address)
+        console.log('2nd wallet balance:', account.wallets[1].balance.balance)
+        console.log('3rd wallet address:', account.wallets[2].address)
+        console.log('3rd wallet balance:', account.wallets[2].balance.balance)
+      })
+      console.log(`%c Console.log like a Boss : ${JSON.stringify(arkaneAccount, null, 4)}`, 'background: #222; color: #bada55')
       return arkaneProfile
     },
   },

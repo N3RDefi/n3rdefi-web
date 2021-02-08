@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity 0.7.3;
+pragma solidity 0.7.6;
 
 interface BEP20 {
     /**
@@ -385,7 +385,7 @@ contract BEP20FixedSupply is Context, BEP20, Ownable {
         _name = "N3RD";
         _symbol = "N3RD";
         _decimals = 18;
-        _totalSupply = 100000000000000000000000;
+        _totalSupply = 10000000e18;
         _balances[msg.sender] = _totalSupply;
 
         emit Transfer(address(0), msg.sender, _totalSupply);

@@ -1,5 +1,6 @@
 const hre = require("hardhat")
-const ethers = hre.ethers
+
+const {ethers} = hre
 
 // See Example of Governance contracts
 // https://github.com/withtally/Tutorial-Deploy-Governance/blob/main/scripts/Deploy.js

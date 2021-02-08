@@ -5,10 +5,10 @@ pragma experimental ABIEncoderV2;
 import "../libraries/LibAppStorage.sol";
 import "../interfaces/IERC20.sol";
 import "../libraries/LibStrings.sol";
-import "../libraries/LibSvg.sol";
+import "../libraries/LibSVG.sol";
 import "../libraries/LibDiamond.sol";
 import "../libraries/LibERC20.sol";
-import "./VrfFacet.sol";
+import "./VRFFacet.sol";
 // import "hardhat/console.sol";
 import "../CollateralEscrow.sol";
 import "../libraries/LibVrf.sol";
@@ -39,7 +39,7 @@ interface ERC721TokenReceiver {
 contract N3rdFacet is LibAppStorageModifiers {
     bytes4 private constant ERC721_RECEIVED = 0x150b7a02;
     uint256 internal constant EQUIPPED_WEARABLE_SLOTS = 16;
-    uint256 internal constant PORTAL_AAVEGOTCHIS_NUM = 10;
+    uint256 internal constant PORTAL_N3RD_NUM = 10;
 
     /***********************************|
    |             Events                |
@@ -156,7 +156,7 @@ contract N3rdFacet is LibAppStorageModifiers {
     function portalN3rdTraits(uint256 _tokenId)
         external
         view
-        returns (PortalN3rdTraitsIO[PORTAL_AAVEGOTCHIS_NUM] memory portalN3rdTraits_)
+        returns (PortalN3rdTraitsIO[PORTAL_N3RD_NUM] memory portalN3rdTraits_)
     {
         require(s.n3rds[_tokenId].status == LibAppStorage.STATUS_OPEN_PORTAL, "N3rdFacet: Portal not open");
 
@@ -439,7 +439,7 @@ contract N3rdFacet is LibAppStorageModifiers {
     ) external onlyN3rdOwner(_tokenId) {
         N3rd storage n3rd = s.n3rds[_tokenId];
         require(n3rd.status == LibAppStorage.STATUS_OPEN_PORTAL, "N3rdFacet: Portal not open");
-        require(_option < PORTAL_AAVEGOTCHIS_NUM, "N3rdFacet: Only 10 n3rd options available");
+        require(_option < PORTAL_N3RD_NUM, "N3rdFacet: Only 10 n3rd options available");
 
         uint256 randomNumber = s.tokenIdToRandomNumber[_tokenId];
 
