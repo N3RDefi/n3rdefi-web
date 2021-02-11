@@ -6,18 +6,18 @@ import "./interfaces/IERC20.sol";
 import "./libraries/LibMeta.sol";
 
 contract CollateralEscrow {
-    struct AppStorage {
-        address owner;
-    }
-    AppStorage internal s;
+  struct AppStorage {
+    address owner;
+  }
+  AppStorage internal s;
 
-    constructor(address _aTokenContract) {
-        s.owner = LibMeta.msgSender();
-        approveN3RDDiamond(_aTokenContract);
-    }
+  constructor(address _aTokenContract) {
+    s.owner = LibMeta.msgSender();
+    approveN3RDDiamond(_aTokenContract);
+  }
 
-    function approveN3RDDiamond(address _aTokenContract) public {
-        require(LibMeta.msgSender() == s.owner, "CollateralEscrow: Not owner of contract");
-        require(IERC20(_aTokenContract).approve(s.owner, type(uint256).max), "CollateralEscrow: token not approved for transfer");
-    }
+  function approveN3RDDiamond(address _aTokenContract) public {
+    require(LibMeta.msgSender() == s.owner, "CollateralEscrow: Not owner of contract");
+    require(IERC20(_aTokenContract).approve(s.owner, type(uint256).max), "CollateralEscrow: token not approved for transfer");
+  }
 }
