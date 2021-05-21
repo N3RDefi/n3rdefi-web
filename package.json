@@ -26,7 +26,7 @@
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/proxy": "^2.1.0",
     "core-js": "^3.6.5",
-    "ethers": "^5.0.26",
+    "ethers": "^5.2.0",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "nes.css": "^2.3.0",
