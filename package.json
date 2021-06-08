@@ -42,7 +42,7 @@
     "@nuxtjs/style-resources": "^1.0.0",
     "@openzeppelin/contracts": "^3.3.0",
     "@typescript-eslint/eslint-plugin": "^4.14.0",
-    "@typescript-eslint/parser": "^4.14.0",
+    "@typescript-eslint/parser": "^4.26.1",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.1.0",
     "chai": "^4.2.0",
